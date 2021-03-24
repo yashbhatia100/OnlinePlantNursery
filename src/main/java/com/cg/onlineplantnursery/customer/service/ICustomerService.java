@@ -2,7 +2,9 @@ package com.cg.onlineplantnursery.customer.service;
 
 import java.util.List;
 
+import com.cg.onlineplantnursery.customer.entity.Address;
 import com.cg.onlineplantnursery.customer.entity.Customer;
+import com.cg.onlineplantnursery.customer.repository.ICustomerRepository;
 
 public interface ICustomerService {
 	Customer addCustomer(Customer customer);
