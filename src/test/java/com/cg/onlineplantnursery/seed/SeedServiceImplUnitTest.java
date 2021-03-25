@@ -26,6 +26,9 @@ public class SeedServiceImplUnitTest {
 	@InjectMocks
 	SeedServiceImpl service;
 
+	/*
+	 * success scenario: seed added
+	 */
 	@Test
 	public void testAddSeed_1() {
 		Seed seed = Mockito.mock(Seed.class);
@@ -37,6 +40,9 @@ public class SeedServiceImplUnitTest {
 		Mockito.verify(repository).save(seed);
 	}
 
+	/*
+	 * scenario: seed is null
+	 */
 	@Test
 	public void testAddSeed_2() {
 		Seed seed = null;
@@ -46,6 +52,9 @@ public class SeedServiceImplUnitTest {
 
 	}
 
+	/*
+	 * success scenario: seed is updated
+	 */
 	@Test
 	public void testUpdateSeed_1() {
 		Integer id = 1;
@@ -59,6 +68,9 @@ public class SeedServiceImplUnitTest {
 		Mockito.verify(repository).save(seed);
 	}
 
+	/*
+	 * scenario: id does not exist
+	 */
 	@Test
 	public void testUpdateSeed_2() {
 		Integer id = 2;
@@ -70,6 +82,9 @@ public class SeedServiceImplUnitTest {
 		Mockito.verify(repository, Mockito.never()).save(seed);
 	}
 
+	/*
+	 * success scenario: when all seeds are viewed
+	 */
 	@Test
 	public void testViewAllSeeds_1() {
 		List<Seed> seedList = Mockito.mock(List.class);
@@ -80,6 +95,9 @@ public class SeedServiceImplUnitTest {
 		Assertions.assertEquals(seedList, result);
 	}
 
+	/*
+	 * scenario: when seedList is empty
+	 */
 	@Test
 	public void testViewAllSeeds_2() {
 		List<Seed> seedList = Mockito.mock(List.class);
@@ -89,6 +107,9 @@ public class SeedServiceImplUnitTest {
 		Assertions.assertThrows(SeedNotFoundException.class, executable);
 	}
 
+	/*
+	 * success scenario: when all seeds of typeOfSeed viewed
+	 */
 	@Test
 	public void testViewAllTypeSeeds_1() {
 		String typeOfSeed = "Pineapple";
@@ -100,6 +121,9 @@ public class SeedServiceImplUnitTest {
 		Assertions.assertEquals(seedList, result);
 	}
 
+	/*
+	 * scenario: when seedList is empty
+	 */
 	@Test
 	public void testViewAllTypeSeeds_2() {
 		String typeOfSeed = "apple";

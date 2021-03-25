@@ -13,6 +13,7 @@ public class SeedServiceImpl implements ISeedService {
 	@Autowired
 	private ISeedRepository repository;
 
+	// Add seed
 	@Override
 	public Seed addSeed(Seed seed) {
 		if (seed == null) {
@@ -23,6 +24,7 @@ public class SeedServiceImpl implements ISeedService {
 
 	}
 
+	// Update seed by id
 	@Override
 	public Seed updateSeed(Seed seed) {
 		Integer id = seed.getSeedId();
@@ -47,6 +49,7 @@ public class SeedServiceImpl implements ISeedService {
 		return null;
 	}
 
+	// View all seeds
 	public List<Seed> viewAllSeeds() {
 		List<Seed> seedList = repository.viewAllSeeds();
 		if (seedList.isEmpty()) {
@@ -56,6 +59,7 @@ public class SeedServiceImpl implements ISeedService {
 		return seedList;
 	}
 
+	// View all seeds of typeOfSeed
 	public List<Seed> viewAllSeeds(String typeOfSeed) {
 		List<Seed> seedList = repository.viewAllSeeds(typeOfSeed);
 		if (seedList.isEmpty()) {
