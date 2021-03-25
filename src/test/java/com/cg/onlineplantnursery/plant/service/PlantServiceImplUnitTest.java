@@ -30,7 +30,8 @@ class PlantServiceImplUnitTest {
 	PlantServiceImpl service;
 
 	/*
-	 * To Test: addPlant Scenario: when plant object is added successfully
+	 * To Test: addPlant 
+	 * Scenario: when plant object is added successfully
 	 */
 	@Test
 	void test_addPlant_1() {
@@ -46,7 +47,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: addPlant Scenario: when passed plant object is null
+	 * To Test: addPlant 
+	 * Scenario: when passed plant object is null
 	 */
 	@Test
 	void test_addPlant_2() {
@@ -59,8 +61,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: updatePlant Scenario: when plant object to be updated exists in
-	 * store and is updated successfully
+	 * To Test: updatePlant 
+	 * Scenario: when plant object to be updated exists in store and is updated successfully
 	 */
 	@Test
 	void test_updatePlant_1() {
@@ -75,8 +77,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: updatePlant Scenario: when plant object to be updated does not exist
-	 * in store
+	 * To Test: updatePlant 
+	 * Scenario: when plant object to be updated does not exist in store
 	 */
 	@Test
 	void test_updatePlant_2() {
@@ -89,8 +91,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: deletePlant Scenario: when plant object to be deleted does not exist
-	 * in store
+	 * To Test: deletePlant 
+	 * Scenario: when plant object to be deleted does not exist in store
 	 */
 	@Test
 	void test_deletePlant_1() {
@@ -103,8 +105,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: deletePlant Scenario: when plant object to be deleted exists in
-	 * store and is deleted successfully
+	 * To Test: deletePlant 
+	 * Scenario: when plant object to be deleted exists in store and is deleted successfully
 	 */
 	@Test
 	void test_deletePlant_2() {
@@ -117,7 +119,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: viewPlant(int plantId) Scenario: when entered plantId is invalid
+	 * To Test: viewPlant(int plantId) 
+	 * Scenario: when entered plantId is invalid
 	 */
 	@Test
 	void test_viewById_1() {
@@ -129,8 +132,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: viewPlant(int plantId) Scenario: when plant object to view by id
-	 * does not exist in store
+	 * To Test: viewPlant(int plantId) 
+	 * Scenario: when plant object to view by id does not exist in store
 	 */
 	@Test
 	void test_viewById_2() {
@@ -145,8 +148,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: viewPlant(int plantId) Scenario: when plant object to view by id
-	 * exists in store and is fetched successfully
+	 * To Test: viewPlant(int plantId) 
+	 * Scenario: when plant object to view by id exists in store and is fetched successfully
 	 */
 	@Test
 	void test_viewById_3() {
@@ -163,8 +166,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: viewPlant(String commonName) Scenario: when commonName passed is
-	 * null
+	 * To Test: viewPlant(String commonName) 
+	 * Scenario: when commonName passed is null
 	 */
 	@Test
 	void test_viewByCommonName_1() {
@@ -178,8 +181,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: viewPlant(String commonName) Scenario: when plant object to view by
-	 * common name does not exist in store
+	 * To Test: viewPlant(String commonName) 
+	 * Scenario: when plant object to view by common name does not exist in store
 	 */
 	@Test
 	void test_viewByCommonName_2() {
@@ -194,8 +197,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: viewPlant(String commonName) Scenario: when plant object to view by
-	 * common name exists in store and is fetched successfully
+	 * To Test: viewPlant(String commonName) 
+	 * Scenario: when plant object to view by common name exists in store and is fetched successfully
 	 */
 	@Test
 	void test_viewByCommonName_3() {
@@ -213,8 +216,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: viewAllPlants() Scenario: when all the plant objects are fetched
-	 * successfully
+	 * To Test: viewAllPlants() 
+	 * Scenario: when all the plant objects are fetched successfully
 	 */
 	@Test
 	void test_viewAllPlants_1() {
@@ -229,8 +232,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: viewAllPlants() Scenario: when plant objects doesnt exist in store
-	 * and list is empty
+	 * To Test: viewAllPlants() 
+	 * Scenario: when plant objects doesnt exist in store and list is empty
 	 */
 	@Test
 	void test_viewAllPlants_2() {
@@ -244,7 +247,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: viewAllPlants(String typeOfPlant) Scenario: when typeOfPlant is null
+	 * To Test: viewAllPlants(String typeOfPlant) 
+	 * Scenario: when typeOfPlant is null
 	 */
 	@Test
 	void test_viewPlantsByType_1() {
@@ -257,8 +261,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: viewAllPlants(String typeOfPlant) Scenario: when plant objects of
-	 * specified type does not exist in store
+	 * To Test: viewAllPlants(String typeOfPlant) 
+	 * Scenario: when plant objects of specified type does not exist in store
 	 */
 	@Test
 	void test_viewPlantsByType_2() {
@@ -274,8 +278,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: viewAllPlants(String typeOfPlant) Scenario: when plant objects of
-	 * specified type exists and fetched successfully
+	 * To Test: viewAllPlants(String typeOfPlant) 
+	 * Scenario: when plant objects of specified type exists and fetched successfully
 	 */
 	@Test
 	void test_viewAllPlantsByType_3() {
@@ -292,8 +296,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: validatePlantId(Integer id) Scenario: when InvalidPlantIdException
-	 * is thrown
+	 * To Test: validatePlantId(Integer id) 
+	 * Scenario: when InvalidPlantIdException is thrown
 	 */
 	@Test
 	void test_validatePlantId() {
@@ -304,8 +308,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: validatePlantType(String typeOfPlant) Scenario: when
-	 * InvalidPlantTypeException is thrown
+	 * To Test: validatePlantType(String typeOfPlant) 
+	 * Scenario: when InvalidPlantTypeException is thrown
 	 */
 	@Test
 	void test_validatePlantType() {
@@ -316,8 +320,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: validateCommonName(String commonName) Scenario: when
-	 * InvalidPlantNameException is thrown
+	 * To Test: validateCommonName(String commonName) 
+	 * Scenario: when InvalidPlantNameException is thrown
 	 */
 	@Test
 	void test_validateCommonName() {
@@ -328,8 +332,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: validatePlantById(Plant plant) Scenario: when PlantNotFoundException
-	 * is thrown
+	 * To Test: validatePlantById(Plant plant) 
+	 * Scenario: when PlantNotFoundException is thrown
 	 */
 	@Test
 	void test_validatePlantById() {
@@ -344,8 +348,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: validatePlant(Plant plant) Scenario: when AddPlantException is
-	 * thrown
+	 * To Test: validatePlant(Plant plant) 
+	 * Scenario: when AddPlantException is thrown
 	 */
 	@Test
 	void test_validatePlant_1() {
@@ -356,8 +360,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: validatePlant(Plant plant) Scenario: when
-	 * InvalidPlantHeightException is thrown
+	 * To Test: validatePlant(Plant plant) 
+	 * Scenario: when InvalidPlantHeightException is thrown
 	 */
 	@Test
 	void test_validatePlant_2() {
@@ -369,8 +373,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: validatePlant(Plant plant) Scenario: when InvalidPlantCostException
-	 * is thrown
+	 * To Test: validatePlant(Plant plant) 
+	 * Scenario: when InvalidPlantCostException is thrown
 	 */
 	@Test
 	void test_validatePlant_3() {
@@ -383,8 +387,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: validatePlant(Plant plant) Scenario: when InvalidPlantNameException
-	 * is thrown
+	 * To Test: validatePlant(Plant plant) 
+	 * Scenario: when InvalidPlantNameException is thrown
 	 */
 	@Test
 	void test_validatePlant_4() {
@@ -398,8 +402,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: validatePlant(Plant plant) Scenario: when
-	 * InvalidPlantSpreadException is thrown
+	 * To Test: validatePlant(Plant plant) 
+	 * Scenario: when InvalidPlantSpreadException is thrown
 	 */
 	@Test
 	void test_validatePlant_5() {
@@ -414,8 +418,8 @@ class PlantServiceImplUnitTest {
 	}
 
 	/*
-	 * To Test: validatePlant(Plant plant) Scenario: when InvalidPlantTypeException
-	 * is thrown
+	 * To Test: validatePlant(Plant plant) 
+	 * Scenario: when InvalidPlantTypeException is thrown
 	 */
 	@Test
 	void test_validatePlant_6() {
