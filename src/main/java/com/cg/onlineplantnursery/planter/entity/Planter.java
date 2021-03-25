@@ -9,34 +9,19 @@ public class Planter {
 	@Id
 	@GeneratedValue
 	private Integer planterId;
-	private float planterheight;
+	private float planterHeight;
 	private int planterCapacity;
 	private int drainageHoles;
 	private String planterColor;
 	private String planterShape;
 	private int planterStock;
 	private int planterCost;
-	//private Plant plants;
-	//private Seed seeds;
-	
+	// private Plant plants;
+	// private Seed seeds;
+
 	public Planter() {
 
 	}
-
-	
-	
-	public Planter(float planterheight, int planterCapacity, int drainageHoles, String planterColor,
-			String planterShape, int planterStock, int planterCost) {
-		this.planterheight = planterheight;
-		this.planterCapacity = planterCapacity;
-		this.drainageHoles = drainageHoles;
-		this.planterColor = planterColor;
-		this.planterShape = planterShape;
-		this.planterStock = planterStock;
-		this.planterCost = planterCost;
-	}
-
-
 
 	public Integer getPlanterId() {
 		return planterId;
@@ -46,12 +31,12 @@ public class Planter {
 		this.planterId = planterId;
 	}
 
-	public float getPlanterheight() {
-		return planterheight;
+	public float getPlanterHeight() {
+		return planterHeight;
 	}
 
-	public void setPlanterheight(float planterheight) {
-		this.planterheight = planterheight;
+	public void setPlanterheight(float planterHeight) {
+		this.planterHeight = planterHeight;
 	}
 
 	public int getPlanterCapacity() {
@@ -62,16 +47,13 @@ public class Planter {
 		this.planterCapacity = planterCapacity;
 	}
 
-
 	public int getDrainageHoles() {
 		return drainageHoles;
 	}
 
-
 	public void setDrainageHoles(int drainageHoles) {
 		this.drainageHoles = drainageHoles;
 	}
-
 
 	public String getPlanterColor() {
 		return planterColor;
@@ -105,15 +87,12 @@ public class Planter {
 		this.planterCost = planterCost;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Planter Details [planterId=" + planterId + ", planterheight=" + planterheight + ", planterCapacity="
+		return "Planter Details [planterId=" + planterId + ", planterheight=" + planterHeight + ", planterCapacity="
 				+ planterCapacity + ", drainageHoles=" + drainageHoles + ", planterColor=" + planterColor
 				+ ", planterShape=" + planterShape + ", planterStock=" + planterStock + ", planterCost=" + planterCost
 				+ "]";
 	}
-
-	
 
 }

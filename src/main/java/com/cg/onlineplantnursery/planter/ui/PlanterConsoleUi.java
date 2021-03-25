@@ -22,9 +22,35 @@ public class PlanterConsoleUi {
 
 		System.out.println("\n***********Planters**********\n");
 
-		Planter planter1 = new Planter(10.0f, 10, 1, "Red", "Cylinderical", 10, 150);
-		Planter planter2 = new Planter(11.0f, 15, 2, "Green", "Square", 12, 250);
-		Planter planter3 = new Planter(12.0f, 20, 3, "Yellow", "Rectangular", 14, 300);
+		Planter planter1 = new Planter();
+		Planter planter2 = new Planter();
+		Planter planter3 = new Planter();
+
+		planter1.setPlanterheight(10.0f);
+		planter1.setPlanterCapacity(10);
+		planter1.setDrainageHoles(1);
+		planter1.setPlanterColor("Red");
+		planter1.setPlanterShape("Cylinderical");
+		planter1.setPlanterStock(10);
+		planter1.setPlanterCost(150);
+
+
+		planter2.setPlanterheight(11.0f);
+		planter2.setPlanterCapacity(15);
+		planter2.setDrainageHoles(2);
+		planter2.setPlanterColor("Green");
+		planter2.setPlanterShape("Square");
+		planter2.setPlanterStock(12);
+		planter2.setPlanterCost(250);
+
+		planter3.setPlanterheight(12.0f);
+		planter3.setPlanterCapacity(20);
+		planter3.setDrainageHoles(3);
+		planter3.setPlanterColor("Yellow");
+		planter3.setPlanterShape("Rectangular");
+		planter3.setPlanterStock(14);
+		planter3.setPlanterCost(300);
+		
 		planterService.addPlanter(planter1);
 		planterService.addPlanter(planter2);
 		planterService.addPlanter(planter3);
@@ -45,17 +71,14 @@ public class PlanterConsoleUi {
 		System.out.println("\n***********Deleting the planter******\n");
 		System.out.println("Planter is deleted for the id " + planter3.getPlanterId());
 		planterService.deletePlanter(planter3);
-		
-		
+
 		System.out.println("\n************Updating the planter**********\n");
 		planterService.updatePlanter(planter2);
-		
+
 		display(planter2);
-		
-		
-		
+
 		System.out.println("\n*************Displaying by the Cost*********\n");
-		List<Planter>planterList=planterService.viewAllPlanters(100.0d, 300.0d);
+		List<Planter> planterList = planterService.viewAllPlanters(100.0d, 300.0d);
 		displayAll(planterList);
 	}
 
