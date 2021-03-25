@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.cg.onlineplantnursery.planter.entity.Planter;
@@ -54,13 +55,7 @@ public class PlanterServiceImpl implements IPlanterService {
 
 	@Override
 	public Planter deletePlanter(Planter planter) {
-		int id = planter.getPlanterId();
-
-		boolean exists = planterRepository.existsById(id);
-		if (!exists) {
-			throw new PlanterDeleteException("Planter does not exists");
-
-		}
+		validatePlanterId(planter);
 		planterRepository.delete(planter);
 		return planter;
 
@@ -159,6 +154,16 @@ public class PlanterServiceImpl implements IPlanterService {
 	public void validatePlanterShape(String planterShape) {
 		if (planterShape == null || planterShape.isEmpty() || planterShape.trim().isEmpty()) {
 			throw new InvalidPlanterDataException("Shape cannnot be zero");
+		}
+
+	}
+	
+	public void validatePlanterId(Planter planter) {
+		int id=planter.getPlanterId();
+		boolean exists = planterRepository.existsById(id);
+		if(!exists)
+		{
+			throw new InvalidPlanterDataException("Plant does nt exists for this id");
 		}
 
 	}

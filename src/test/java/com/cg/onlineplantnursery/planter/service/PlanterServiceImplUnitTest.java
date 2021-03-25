@@ -264,9 +264,8 @@ class PlanterServiceImplUnitTest {
 	 */
 	@Test
 	void testDeletePlanter_1() {
-		int id=4;
 		Planter planter = Mockito.mock(Planter.class);
-		when(planterRepository.existsById(id)).thenReturn(true);
+		doNothing().when(planterService).validatePlanterId(planter);
 		Planter result = planterService.deletePlanter(planter);
 		assertSame(planter,result);
 		verify(planterRepository).delete(planter);
@@ -279,11 +278,12 @@ class PlanterServiceImplUnitTest {
 	 */
 	@Test
 	void testDeletePlanter_2() {
-		int id = 5;
+	
 		Planter planter = Mockito.mock(Planter.class);
-		when(planterRepository.existsById(id)).thenReturn(false);
+		doThrow(InvalidPlanterDataException.class).when(planterService).validatePlanterId(planter);
+		
 		Executable executable = () -> planterService.deletePlanter(planter);
-		assertThrows(PlanterDeleteException.class, executable);
+		assertThrows(InvalidPlanterDataException.class, executable);
 		verify(planterRepository, never()).delete(planter);
 
 	}
