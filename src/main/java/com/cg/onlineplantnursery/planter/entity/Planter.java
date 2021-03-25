@@ -4,9 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import com.cg.onlineplantnursery.plant.entity.Plant;
-import com.cg.onlineplantnursery.seed.entity.Seed;
-
 @Entity
 public class Planter {
 	@Id
@@ -14,24 +11,25 @@ public class Planter {
 	private Integer planterId;
 	private float planterheight;
 	private int planterCapacity;
-	private int drinageHoles;
+	private int drainageHoles;
 	private String planterColor;
 	private String planterShape;
 	private int planterStock;
 	private int planterCost;
-	private Plant plants;
-	private Seed seeds;
-
-	public Plant getPlants() {
-		return plants;
-	}
+	//private Plant plants;
+	//private Seed seeds;
 	
+	public Planter() {
 
-	public Planter( float planterheight, int planterCapacity, int drinageHoles, String planterColor,
+	}
+
+	
+	
+	public Planter(float planterheight, int planterCapacity, int drainageHoles, String planterColor,
 			String planterShape, int planterStock, int planterCost) {
 		this.planterheight = planterheight;
 		this.planterCapacity = planterCapacity;
-		this.drinageHoles = drinageHoles;
+		this.drainageHoles = drainageHoles;
 		this.planterColor = planterColor;
 		this.planterShape = planterShape;
 		this.planterStock = planterStock;
@@ -39,21 +37,6 @@ public class Planter {
 	}
 
 
-	public void setPlants(Plant plants) {
-		this.plants = plants;
-	}
-
-	public Seed getSeeds() {
-		return seeds;
-	}
-
-	public void setSeeds(Seed seeds) {
-		this.seeds = seeds;
-	}
-
-	public Planter() {
-
-	}
 
 	public Integer getPlanterId() {
 		return planterId;
@@ -79,16 +62,16 @@ public class Planter {
 		this.planterCapacity = planterCapacity;
 	}
 
-	public int getDrinageHoles() {
-		return drinageHoles;
+
+	public int getDrainageHoles() {
+		return drainageHoles;
 	}
 
-	public void setDrainageHoles(int drinageHoles) {
-		this.drinageHoles = drinageHoles;
+
+	public void setDrainageHoles(int drainageHoles) {
+		this.drainageHoles = drainageHoles;
 	}
 
-	
-	
 
 	public String getPlanterColor() {
 		return planterColor;
@@ -96,10 +79,6 @@ public class Planter {
 
 	public void setPlanterColor(String planterColor) {
 		this.planterColor = planterColor;
-	}
-
-	public void setDrinageHoles(int drinageHoles) {
-		this.drinageHoles = drinageHoles;
 	}
 
 	public String getPlanterShape() {
@@ -126,12 +105,15 @@ public class Planter {
 		this.planterCost = planterCost;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Planter [planterId=" + planterId + ", planterheight=" + planterheight + ", planterCapacity="
-				+ planterCapacity + ", drinageHoles=" + drinageHoles + ", planterColor=" + planterColor
+		return "Planter Details [planterId=" + planterId + ", planterheight=" + planterheight + ", planterCapacity="
+				+ planterCapacity + ", drainageHoles=" + drainageHoles + ", planterColor=" + planterColor
 				+ ", planterShape=" + planterShape + ", planterStock=" + planterStock + ", planterCost=" + planterCost
 				+ "]";
 	}
+
+	
 
 }
