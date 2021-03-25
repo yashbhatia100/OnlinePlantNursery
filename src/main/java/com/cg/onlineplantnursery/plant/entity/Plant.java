@@ -1,6 +1,14 @@
 package com.cg.onlineplantnursery.plant.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Plant {
+	
+	@GeneratedValue
+	@Id
 	private Integer plantId;
 	private Integer plantHeight;
 	private String plantSpread;

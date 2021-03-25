@@ -48,7 +48,8 @@ public class PlantServiceImpl implements IPlantService {
 		if(!exists) {
 			throw new PlantNotFoundException("Plant does not exist");
 		}
-		return repository.delete(plant);
+		repository.delete(plant);
+		return null;
 	}
 	
 	// Fetching a plant object from store by ID
@@ -66,11 +67,11 @@ public class PlantServiceImpl implements IPlantService {
 	@Override
 	public Plant viewPlant(String commonName) {
 		
-		boolean exists = repository.existsByName(commonName);
+		boolean exists = repository.existsByCommonName(commonName);
 		if(!exists) {
 			throw new PlantNotFoundException("Plant does not exist!");
 		}
-		return repository.findByName(commonName);
+		return repository.findByCommonName(commonName);
 	}
 
 	// Fetching all plant objects from store
@@ -88,7 +89,7 @@ public class PlantServiceImpl implements IPlantService {
 	@Override
 	public List<Plant> viewAllPlants(String typeOfPlant){
 		
-		List<Plant> plantList = repository.findAllByType(typeOfPlant);
+		List<Plant> plantList = repository.findAllByTypeOfPlant(typeOfPlant);
 		if(plantList.isEmpty()) {
 			throw new PlantNotFoundException("No plants found!");
 		}

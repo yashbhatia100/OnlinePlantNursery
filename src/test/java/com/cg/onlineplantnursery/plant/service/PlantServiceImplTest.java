@@ -24,7 +24,7 @@ import com.cg.onlineplantnursery.plant.repository.IPlantRepository;
 class PlantServiceImplTest {
 
 	@Mock
-	private IPlantRepository repository;
+	IPlantRepository repository;
 	
 	@Spy
 	@InjectMocks
@@ -119,7 +119,6 @@ class PlantServiceImplTest {
 		Plant plant = mock(Plant.class);
 		Mockito.when(plant.getPlantId()).thenReturn(id);
 		Mockito.when(repository.existsById(id)).thenReturn(true);
-		Mockito.when(repository.delete(plant)).thenReturn(null);
 		Plant result = service.deletePlant(plant);
 		
 		Assertions.assertNull(result);
@@ -163,11 +162,11 @@ class PlantServiceImplTest {
 	void test_viewByCommonName_1() {
 		
 		String commonName = "abcd";
-		Mockito.when(repository.existsByName(commonName)).thenReturn(false);
+		Mockito.when(repository.existsByCommonName(commonName)).thenReturn(false);
 		Executable executable =()->service.viewPlant(commonName);
 		
 		Assertions.assertThrows(PlantNotFoundException.class, executable);
-		verify(repository,never()).findByName(commonName);
+		verify(repository,never()).findByCommonName(commonName);
 	}
 	
 	/*
@@ -178,13 +177,13 @@ class PlantServiceImplTest {
 		
 		String commonName = "abcd";
 		Plant fetched = mock(Plant.class);
-		Mockito.when(repository.existsByName(commonName)).thenReturn(true);
-		Mockito.when(repository.findByName(commonName)).thenReturn(fetched);
+		Mockito.when(repository.existsByCommonName(commonName)).thenReturn(true);
+		Mockito.when(repository.findByCommonName(commonName)).thenReturn(fetched);
 		Plant result = service.viewPlant(commonName);
 		
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals(fetched, result);
-		verify(repository).findByName(commonName);
+		verify(repository).findByCommonName(commonName);
 	}
 	
 	/*
@@ -239,7 +238,7 @@ class PlantServiceImplTest {
 		
 		String commonName="abcd";
 		List<Plant> fetchedList = mock(List.class);
-		Mockito.when(repository.findAllByType(commonName)).thenReturn(fetchedList);
+		Mockito.when(repository.findAllByTypeOfPlant(commonName)).thenReturn(fetchedList);
 		Mockito.when(fetchedList.isEmpty()).thenReturn(false);
 		List<Plant> resultList = service.viewAllPlants(commonName);
 		

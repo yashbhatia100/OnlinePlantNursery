@@ -3,6 +3,8 @@ package com.cg.onlineplantnursery.plant.repository;
 import java.util.List;
 import java.util.Optional;
 
+//import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.cg.onlineplantnursery.plant.entity.Plant;
 
 
@@ -13,7 +15,7 @@ public interface IPlantRepository {
 	Plant delete(Plant plant);
 	Optional<Plant> findById(Integer id);
 	List<Plant> findAll();
-	Plant findByName(String commonName);
-	boolean existsByName(String commonName);
-	List<Plant> findAllByType(String typeOfPlant);
+	Plant findByCommonName(String commonName);
+	boolean existsByCommonName(String commonName);
+	List<Plant> findAllByTypeOfPlant(String typeOfPlant);
 }
