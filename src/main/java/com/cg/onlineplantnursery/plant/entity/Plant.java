@@ -24,29 +24,6 @@ public class Plant {
 	
 	public Plant() {}
 	
-	public Plant(Integer plantId, Integer plantHeight, 
-				String plantSpread, String commonName, 
-				String bloomTime,String medicinalOrCulinaryUse, 
-				String difficultyLevel, String temperature, 
-				String typeOfPlant, String plantDescription, 
-				Integer plantsStock, double plantCost) {
-	
-		this.plantId = plantId;
-		this.plantHeight = plantHeight;
-		this.plantSpread = plantSpread;
-		this.commonName = commonName;
-		this.bloomTime = bloomTime;
-		this.medicinalOrCulinaryUse = medicinalOrCulinaryUse;
-		this.difficultyLevel = difficultyLevel;
-		this.temperature = temperature;
-		this.typeOfPlant = typeOfPlant;
-		this.plantDescription = plantDescription;
-		this.plantsStock = plantsStock;
-		this.plantCost = plantCost;
-	}
-
-
-
 	public Integer getPlantId() {
 		return plantId;
 	}

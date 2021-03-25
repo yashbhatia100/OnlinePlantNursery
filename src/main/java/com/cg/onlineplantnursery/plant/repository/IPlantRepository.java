@@ -14,8 +14,8 @@ public interface IPlantRepository {
 	boolean existsById(Integer id);
 	Plant delete(Plant plant);
 	Optional<Plant> findById(Integer id);
-	List<Plant> findAll();
-	Plant findByCommonName(String commonName);
+	List<Plant>findAll();
+	Plant findPlantByCommonName(String commonName);
 	boolean existsByCommonName(String commonName);
-	List<Plant> findAllByTypeOfPlant(String typeOfPlant);
+	List<Plant> findByTypeOfPlant(String typeOfPlant);
 }
