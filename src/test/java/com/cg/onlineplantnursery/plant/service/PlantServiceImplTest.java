@@ -1,22 +1,30 @@
 package com.cg.onlineplantnursery.plant.service;
 
+import static org.mockito.Mockito.*;
+
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.cg.onlineplantnursery.exceptions.AddPlantException;
+import com.cg.onlineplantnursery.exceptions.PlantNotFoundException;
 import com.cg.onlineplantnursery.plant.entity.Plant;
 import com.cg.onlineplantnursery.plant.repository.IPlantRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class PlantServiceImplTest {
+class PlantServiceImplTest {
 
 	@Mock
-	IPlantRepository repository;
+	private IPlantRepository repository;
 	
 	@Spy
 	@InjectMocks
@@ -26,73 +34,216 @@ public class PlantServiceImplTest {
 	 * Scenario: when plant object is added successfully
 	 */
 	@Test
-	public void test_addPlant_1() {
-		Integer plantId=1;
-		Integer plantHeight=10;
-		String plantSpread="fifty";
-		String commonName="plant1";
-		String bloomTime="two months";
-		String medicinalOrCulinaryUse="boosts immunity";
-		String difficultyLevel="moderate";
-		String temperature="cool";
-		String typeOfPlant="shrub";
-		String plantDescription="garden plant";
-		Integer plantsStock=10;
-		double plantCost =100;
+	void test_addPlant_1() {
 		
-		Plant plant = new Plant(plantId,plantHeight, plantSpread, commonName, bloomTime, 
-						medicinalOrCulinaryUse, difficultyLevel, temperature, typeOfPlant,
-						plantDescription, plantsStock,plantCost);
-		
-		Mockito.when(repository.addPlant(plant)).thenReturn(plant);
-		
+		Plant plant = mock(Plant.class);
+		Plant saved = mock(Plant.class);
+		Mockito.when(repository.save(plant)).thenReturn(saved);
 		Plant result = service.addPlant(plant);
 		
 		Assertions.assertNotNull(result);
-		Assertions.assertEquals(plant, result);
+		Assertions.assertEquals(saved, result);
+		verify(repository).save(plant);
 	}
 	
 	/*
-	 * Scenario: when plant object is updated successfully
+	 * Scenario: when passed plant object is null
 	 */
 	@Test
-	public void test_updatePlant_1() {
-		Integer plantId=1;
-		Integer plantHeight=10;
-		String plantSpread="fifty";
-		String commonName="plant1";
-		String bloomTime="two months";
-		String medicinalOrCulinaryUse="boosts immunity";
-		String difficultyLevel="moderate";
-		String temperature="cool";
-		String typeOfPlant="shrub";
-		String plantDescription="garden plant";
-		Integer plantsStock=10;
-		double plantCost =100;
+	void test_addPlant_2() {
 		
-		Plant plant = new Plant(plantId,plantHeight, plantSpread, commonName, bloomTime, 
-						medicinalOrCulinaryUse, difficultyLevel, temperature, typeOfPlant,
-						plantDescription, plantsStock,plantCost);
+		Plant plant = null;
+		Executable executable=()->service.addPlant(plant);
+		
+		Assertions.assertThrows(AddPlantException.class, executable);
+		verify(repository,never()).save(plant);
+	}
 	
-		Mockito.doReturn(plant).when(service).addPlant(plant);
+	/*
+	 * Scenario: when plant object to be updated exists in store and is updated successfully
+	 */
+	@Test
+	void test_updatePlant_1() {
 		
-		Plant result = service.addPlant(plant);
+		Integer id=2;
+		Plant plant = mock(Plant.class);
+		Mockito.when(plant.getPlantId()).thenReturn(id);
+		Mockito.when(repository.existsById(id)).thenReturn(true);
+		Mockito.when(repository.save(plant)).thenReturn(plant);
+		Plant result = service.updatePlant(plant);
 		
-		Mockito.when(service.updatePlant(plant)).thenReturn(plant);
+		Assertions.assertNotNull(result);
+		Assertions.assertSame(plant, result);
+		verify(repository).save(plant);
+	}
+	
+	/*
+	 *  Scenario: when plant object to be updated does not exist in store
+	 */
+	@Test
+	void test_updatePlant_2() {
 		
-		result.setPlantId(2);
-		result.setPlantHeight(20);
-		result.setPlantSpread("sixty");
-		result.setDifficultyLevel("easy");
-		result.setPlantCost(200);
+		Integer id = 1;
+		Plant plant = mock(Plant.class);
+		Mockito.when(plant.getPlantId()).thenReturn(id);
+		Mockito.when(repository.existsById(id)).thenReturn(false);
+		Executable executable =()->service.updatePlant(plant);
 		
-		Plant updated = service.updatePlant(result);
+		Assertions.assertThrows(PlantNotFoundException.class,executable);
+		verify(repository,never()).save(plant);
+	}
+	
+	/*
+	 *  Scenario: when plant object to be deleted does not exist in store
+	 */
+	@Test
+	void test_deletePlant_1() {
 		
-		Assertions.assertNotNull(updated);
-		Assertions.assertEquals(2, updated.getPlantId());
-		Assertions.assertEquals(20, updated.getPlantHeight());
-		Assertions.assertEquals("sixty", updated.getPlantSpread());
-		Assertions.assertEquals("easy", updated.getDifficultyLevel());
-		Assertions.assertEquals(200, updated.getPlantCost());
+		Integer id = 1;
+		Plant plant = mock(Plant.class);
+		Mockito.when(plant.getPlantId()).thenReturn(id);
+		Mockito.when(repository.existsById(id)).thenReturn(false);
+		Executable executable =()->service.deletePlant(plant);
+		
+		Assertions.assertThrows(PlantNotFoundException.class,executable);
+		verify(repository,never()).delete(plant);
+	}
+	
+	/*
+	 *  Scenario: when plant object to be deleted exists in store and is deleted successfully
+	 */
+	@Test
+	void test_deletePlant_2() {
+		
+		Integer id=2;
+		Plant plant = mock(Plant.class);
+		Mockito.when(plant.getPlantId()).thenReturn(id);
+		Mockito.when(repository.existsById(id)).thenReturn(true);
+		Mockito.when(repository.delete(plant)).thenReturn(null);
+		Plant result = service.deletePlant(plant);
+		
+		Assertions.assertNull(result);
+		verify(repository).delete(plant);
+	}
+		
+	/*
+	 *  Scenario: when plant object to view by id does not exist in store
+	 */
+	@Test
+	void test_viewById_1() {
+		
+		Integer id=1;
+		Optional<Plant> optional = Optional.empty();
+		Mockito.when(repository.findById(id)).thenReturn(optional);
+		Executable executable=()->service.viewPlant(id);
+		
+		Assertions.assertThrows(PlantNotFoundException.class, executable);
+	}
+	
+	/*
+	 *  Scenario: when plant object to view by id exists in store and is fetched successfully
+	 */
+	@Test
+	void test_viewById_2() {
+		
+		Integer id=2;
+		Plant fetched = mock(Plant.class);
+		Optional<Plant> optional = Optional.of(fetched);
+		Mockito.when(repository.findById(id)).thenReturn(optional);
+		Plant result = service.viewPlant(id);
+		
+		Assertions.assertNotNull(result);
+		Assertions.assertEquals(fetched, result);
+	}
+	
+	/*
+	 *  Scenario: when plant object to view by common name does not exist in store
+	 */
+	@Test
+	void test_viewByCommonName_1() {
+		
+		String commonName = "abcd";
+		Mockito.when(repository.existsByName(commonName)).thenReturn(false);
+		Executable executable =()->service.viewPlant(commonName);
+		
+		Assertions.assertThrows(PlantNotFoundException.class, executable);
+		verify(repository,never()).findByName(commonName);
+	}
+	
+	/*
+	 *  Scenario: when plant object to view by common name exists in store and is fetched successfully 
+	 */
+	@Test
+	void test_viewByCommonName_2() {
+		
+		String commonName = "abcd";
+		Plant fetched = mock(Plant.class);
+		Mockito.when(repository.existsByName(commonName)).thenReturn(true);
+		Mockito.when(repository.findByName(commonName)).thenReturn(fetched);
+		Plant result = service.viewPlant(commonName);
+		
+		Assertions.assertNotNull(result);
+		Assertions.assertEquals(fetched, result);
+		verify(repository).findByName(commonName);
+	}
+	
+	/*
+	 *  Scenario: when all the plant objects are fetched successfully
+	 */
+	@Test 
+	void test_viewAllPlants_1(){
+		
+		List<Plant> fetchedList = mock(List.class);
+		Mockito.when(repository.findAll()).thenReturn(fetchedList);
+		Mockito.when(fetchedList.isEmpty()).thenReturn(false);
+		List<Plant> resultList = service.viewAllPlants();
+		
+		Assertions.assertNotNull(resultList);
+		Assertions.assertEquals(fetchedList, resultList);
+	}
+	
+	/*
+	 *  Scenario: when plant objects doesnt exist in store and list is empty
+	 */
+	@Test
+	void test_viewAllPlants_2() {
+		
+		List<Plant> fetchedList = mock(List.class);
+		Mockito.when(repository.findAll()).thenReturn(fetchedList);
+		Mockito.when(fetchedList.isEmpty()).thenReturn(true);
+		Executable executable =()->service.viewAllPlants();
+		
+		Assertions.assertThrows(PlantNotFoundException.class,executable);
+	}
+
+	/*
+	 *  Scenario: when plant objects of specified type does not exist in store
+	 */
+	@Test
+	void test_viewPlantsByType_1() {
+		
+		String commonName="abcd";
+		List<Plant> fetchedList = mock(List.class);
+		//Mockito.when(repository.findAllByType(commonName)).thenReturn(fetchedList);
+		//Mockito.when(fetchedList.isEmpty()).thenReturn(true);
+		Executable executable =()->service.viewAllPlants();
+		
+		Assertions.assertThrows(PlantNotFoundException.class, executable);
+	}
+	
+	/*
+	 *  Scenario: when plant objects of specified type exists and fetched successfully
+	 */
+	@Test
+	void test_viewAllPlantsByType_2(){
+		
+		String commonName="abcd";
+		List<Plant> fetchedList = mock(List.class);
+		Mockito.when(repository.findAllByType(commonName)).thenReturn(fetchedList);
+		Mockito.when(fetchedList.isEmpty()).thenReturn(false);
+		List<Plant> resultList = service.viewAllPlants(commonName);
+		
+		Assertions.assertNotNull(resultList);
+		Assertions.assertEquals(fetchedList, resultList);
 	}
 }
