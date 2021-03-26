@@ -253,12 +253,12 @@ public class SeedServiceImplUnitTest {
 		String typeOfSeed = "Pineapple";
 		Mockito.doNothing().when(service).validateSeedByType(typeOfSeed);
 		List<Seed> seedList = Mockito.mock(List.class);
-		Mockito.when(repository.findAllByTypeOfSeed(typeOfSeed)).thenReturn(seedList);
+		Mockito.when(repository.findAllByTypeOfSeeds(typeOfSeed)).thenReturn(seedList);
 		Mockito.when(seedList.isEmpty()).thenReturn(false);
 		List<Seed> result = service.viewAllSeeds(typeOfSeed);
 		Assertions.assertNotNull(result);
 		Assertions.assertSame(seedList, result);
-		Mockito.verify(repository).findAllByTypeOfSeed(typeOfSeed);
+		Mockito.verify(repository).findAllByTypeOfSeeds(typeOfSeed);
 	}
 
 	/*
@@ -270,11 +270,11 @@ public class SeedServiceImplUnitTest {
 		String typeOfSeed = "apple";
 		Mockito.doNothing().when(service).validateSeedByType(typeOfSeed);
 		List<Seed> seedList = Mockito.mock(List.class);
-		Mockito.when(repository.findAllByTypeOfSeed(typeOfSeed)).thenReturn(seedList);
+		Mockito.when(repository.findAllByTypeOfSeeds(typeOfSeed)).thenReturn(seedList);
 		Mockito.when(seedList.isEmpty()).thenReturn(true);
 		Executable executable = () -> service.viewAllSeeds(typeOfSeed);
 		Assertions.assertThrows(SeedNotFoundException.class, executable);
-		Mockito.verify(repository).findAllByTypeOfSeed(typeOfSeed);
+		Mockito.verify(repository).findAllByTypeOfSeeds(typeOfSeed);
 	}
 	
 	/*
@@ -287,7 +287,7 @@ public class SeedServiceImplUnitTest {
 		Mockito.doThrow(InvalidSeedTypeException.class).when(service).validateSeedByType(typeOfSeed);
 		Executable executable = () -> service.viewAllSeeds(typeOfSeed);
 		Assertions.assertThrows(InvalidSeedTypeException.class, executable);
-		Mockito.verify(repository, Mockito.never()).findAllByTypeOfSeed(typeOfSeed);
+		Mockito.verify(repository, Mockito.never()).findAllByTypeOfSeeds(typeOfSeed);
 	}
 	
 	/*
@@ -349,5 +349,3 @@ public class SeedServiceImplUnitTest {
 		Executable executable = () -> service.validateSeedByType(typeOfSeed);
 		Assertions.assertThrows(InvalidSeedTypeException.class, executable);
 	}
-
-}

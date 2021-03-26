@@ -1,5 +1,4 @@
 package com.cg.onlineplantnursery.seed.service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -36,13 +35,16 @@ public class SeedServiceImpl implements ISeedService {
 		return seed1;
 
 	}
-
+	// Delete seed by id
+	@Transactional
+	@Override
 	public Seed deleteSeed(Seed seed) {
 		validateSeedById(seed);
 		repository.delete(seed);
 		return seed;
 	}
-
+	// View seed
+	@Override
 	public Seed viewSeed(int seedId) {
 		validateSeedId(seedId);
 		Optional<Seed> optional = repository.findById(seedId);
@@ -51,7 +53,8 @@ public class SeedServiceImpl implements ISeedService {
 		}
 		return optional.get();		
 	}
-
+	// View seed By commonName
+	@Override
 	public Seed viewSeed(String commonName) {
 		validateCommonName(commonName);
 		boolean exists = repository.existsByCommonName(commonName);
@@ -76,7 +79,7 @@ public class SeedServiceImpl implements ISeedService {
 	@Override
 	public List<Seed> viewAllSeeds(String typeOfSeed) {
 		validateSeedByType(typeOfSeed);
-		List<Seed> seedList = repository.findAllByTypeOfSeed(typeOfSeed);
+		List<Seed> seedList = repository.findAllByTypeOfSeeds(typeOfSeed);
 		if (seedList.isEmpty()) {
 			throw new SeedNotFoundException("Seedlist not found");
 		}

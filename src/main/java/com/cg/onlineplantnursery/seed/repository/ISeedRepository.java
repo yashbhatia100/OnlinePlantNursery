@@ -6,11 +6,9 @@ import com.cg.onlineplantnursery.seed.entity.Seed;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
 public interface ISeedRepository extends JpaRepository<Seed, Integer> {
 
-	
 	Seed findSeedByCommonName(String commonName);
 	boolean existsByCommonName(String commonName);
-	List<Seed> findAllByTypeOfSeed(String typeOfSeed);
+	List<Seed> findAllByTypeOfSeeds(String typeOfSeed);
 }

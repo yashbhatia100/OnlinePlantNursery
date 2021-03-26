@@ -13,5 +13,5 @@ public class OnlinePlantNurseryApplication {
 		SeedUI ui = context.getBean(SeedUI.class);
 		ui.start();
 	}
-// hello world pushed successfully.//
+
 }
