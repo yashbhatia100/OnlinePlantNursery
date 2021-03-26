@@ -7,7 +7,7 @@ import com.cg.onlineplantnursery.order.entity.Order;
 public interface IOrderService {
 	Order addOrder(Order order);
 	Order updateOrder(Order order);
-	Order deleteOrder(int orderId);
+	Order deleteOrder(Order order);
 	Order viewOrder(int  orderId);
 	List<Order> viewAllOrders();
 }
