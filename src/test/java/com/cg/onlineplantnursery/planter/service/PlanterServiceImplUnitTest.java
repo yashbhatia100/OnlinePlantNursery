@@ -238,11 +238,10 @@ class PlanterServiceImplUnitTest {
 		assertThrows(InvalidPlanterIdException.class, executable);
 		verify(planterRepository, never()).findById(id);
 	}
-	
 
 	/*
-	 * Scenario view the planter by id if the id is valid and is not in the database test case for view
-	 * planter
+	 * Scenario view the planter by id if the id is valid and is not in the database
+	 * test case for view planter
 	 */
 	@Test
 	void testViewPlanter_3() {
@@ -321,11 +320,10 @@ class PlanterServiceImplUnitTest {
 		double minCost = 100d;
 		double maxCost = 500d;
 		List<Planter> list = Mockito.mock(List.class);
-		when(planterRepository.findAllPlantersBetweenCost(minCost, maxCost)).thenReturn(list);
+		when(planterRepository.findAllPlantersBetweenCost((int) minCost, (int) maxCost)).thenReturn(list);
 		List<Planter> result = planterService.viewAllPlanters(minCost, maxCost);
 		assertNotNull(result);
 		assertEquals(list, result);
 
 	}
-
 }

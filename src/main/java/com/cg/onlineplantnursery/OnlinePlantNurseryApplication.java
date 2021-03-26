@@ -10,8 +10,8 @@ import com.cg.onlineplantnursery.planter.ui.PlanterConsoleUi;
 public class OnlinePlantNurseryApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(OnlinePlantNurseryApplication.class, args);
-		
-		PlanterConsoleUi planterUI=context.getBean(PlanterConsoleUi.class);
+
+		PlanterConsoleUi planterUI = context.getBean(PlanterConsoleUi.class);
 		planterUI.start();
 
 	}

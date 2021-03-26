@@ -53,7 +53,7 @@ public class PlanterServiceImpl implements IPlanterService {
 
 	@Override
 	public Planter viewPlanter(int planterId) {
-		
+
 		validatePlanterId(planterId);
 		Optional<Planter> optional = planterRepository.findById(planterId);
 		if (!optional.isPresent()) {
@@ -86,7 +86,6 @@ public class PlanterServiceImpl implements IPlanterService {
 
 	@Override
 	public List<Planter> viewAllPlanters(double minCost, double maxCost) {
-
 		int minCostInt = (int) minCost;
 		int maxCostInt = (int) maxCost;
 
@@ -117,7 +116,7 @@ public class PlanterServiceImpl implements IPlanterService {
 			throw new InvalidDrainageHolesException("Planter Drainage cannot be null");
 		}
 
-		if (planter.getPlanterColor().equals("")) {
+		if (planter.getPlanterColor() <= 0) {
 			throw new InvalidPlanterColorException("Planter color cannot be null");
 
 		}
@@ -145,6 +144,7 @@ public class PlanterServiceImpl implements IPlanterService {
 		}
 
 	}
+
 //validating shape
 	public void validatePlanterShape(String planterShape) {
 		if (planterShape == null || planterShape.isEmpty() || planterShape.trim().isEmpty()) {
@@ -152,13 +152,13 @@ public class PlanterServiceImpl implements IPlanterService {
 
 		}
 	}
+
 	public void validatePlanterById(Planter planter) {
-		int id=planter.getPlanterId();
-		boolean exists=planterRepository.existsById(id);
-		if(!exists) {
+		int id = planter.getPlanterId();
+		boolean exists = planterRepository.existsById(id);
+		if (!exists) {
 			throw new InvalidPlanterException("Planter does not exists");
 		}
 	}
-	
 
 }

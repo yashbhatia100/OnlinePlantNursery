@@ -12,7 +12,7 @@ public class Planter {
 	private float planterHeight;
 	private int planterCapacity;
 	private int drainageHoles;
-	private String planterColor;
+	private int planterColor;
 	private String planterShape;
 	private int planterStock;
 	private int planterCost;
@@ -55,11 +55,11 @@ public class Planter {
 		this.drainageHoles = drainageHoles;
 	}
 
-	public String getPlanterColor() {
+	public int getPlanterColor() {
 		return planterColor;
 	}
 
-	public void setPlanterColor(String planterColor) {
+	public void setPlanterColor(int planterColor) {
 		this.planterColor = planterColor;
 	}
 
@@ -93,6 +93,23 @@ public class Planter {
 				+ planterCapacity + ", drainageHoles=" + drainageHoles + ", planterColor=" + planterColor
 				+ ", planterShape=" + planterShape + ", planterStock=" + planterStock + ", planterCost=" + planterCost
 				+ "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return planterId;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || !(obj instanceof Planter)) {
+			return false;
+		}
+		Planter that = (Planter) obj;
+		return this.planterId == that.planterId;
 	}
 
 }

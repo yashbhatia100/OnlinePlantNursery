@@ -17,6 +17,6 @@ public interface IPlanterRepository extends JpaRepository<Planter, Integer> {
 	List<Planter> findAll();
 
 	@Query("from Planter where planterCost>=:minCost and planterCost<=:maxCost")
-	List<Planter> findAllPlantersBetweenCost(@Param("minCost") double minCost, @Param("maxCost") double maxCost);
+	List<Planter> findAllPlantersBetweenCost(@Param("minCost") int minCost, @Param("maxCost") int maxCost);
 
 }
