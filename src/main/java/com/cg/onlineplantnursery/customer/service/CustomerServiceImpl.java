@@ -2,30 +2,33 @@ package com.cg.onlineplantnursery.customer.service;
 
 import java.util.Optional;
 import java.util.List;
-import com.cg.onlineplantnursery.customer.repository.*;
-import com.cg.onlineplantnursery.customer.entity.Customer;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
-import com.cg.onlineplantnursery.exceptions.CustomerNotAddedException;
-import com.cg.onlineplantnursery.exceptions.CustomerNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cg.onlineplantnursery.customer.repository.ICustomerRepository;
+import com.cg.onlineplantnursery.customer.entity.Customer;
+
+import com.cg.onlineplantnursery.exceptions.*;
+
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
 	private ICustomerRepository repository;
 	
-
+    @Transactional
 	@Override
 	public Customer addCustomer(Customer customer){
 		
-		if(customer == null ) {
-			throw new CustomerNotAddedException("No Customer passed");
-		}
+		validateCustomer(customer);
 		Customer saved = repository.save(customer);
 		return saved;
 		
 	}
-	
+    
+	@Transactional
 	@Override
 	public Customer updateCustomer(Customer tenant) {
 		Integer id= tenant.getCustomerId();
@@ -36,7 +39,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		return repository.save(tenant);
 	}
 	
-		
+	@Transactional	
 	@Override
 	   public  Customer deleteCustomer(Customer tenant) {
 		   Integer id = tenant.getCustomerId();
@@ -48,9 +51,10 @@ public class CustomerServiceImpl implements ICustomerService {
 			 return null;
 			   
 		   }
-	
+	@Transactional
 	@Override
 	   public Customer viewCustomer(int customerId){
+		   validateCustomerId(customerId);
 		   Optional<Customer> optional = repository.findById(customerId);
 		   if(!optional.isPresent()) {
 			   throw new CustomerNotAddedException("No Customer passed");
@@ -58,6 +62,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		   return optional.get();
 		   }
 	
+	@Transactional
 	@Override
 	public List<Customer> viewAllCustomers(){
 		List<Customer> customerList= repository.findAll();
@@ -66,12 +71,26 @@ public class CustomerServiceImpl implements ICustomerService {
 		}
 		return customerList;
 	}
-
-
 	
+	public void validateCustomer(Customer customer) {
+		if(customer == null ) {
+			throw new CustomerNotAddedException("No Customer passed");
+		}
+		if(customer.getCustomerName()=="") {
+			throw new InvalidCustomerNameException("Name cannot be empty");
+		}
+		if(customer.getCustomerEmail()=="") {
+			throw new InvalidCustomerEmailException("Email cannot be empty");
+		}
+		if(customer.getPassword()=="") {
+			throw new InvalidCustomerPasswordException("Password cannot be empty");
+		}
+	}
+	
+	public void validateCustomerId(int id) {
+		if(id<0) {
+			throw new InvalidIdException("Invalid Customer ID passed");
+		}
+	}
 
-	
-	
-
-	
 }

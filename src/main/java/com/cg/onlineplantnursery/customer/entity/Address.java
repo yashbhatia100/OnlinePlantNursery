@@ -1,6 +1,12 @@
 package com.cg.onlineplantnursery.customer.entity;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Address {
+    @Id
+    @GeneratedValue
 	private Integer addressId;
 	private String houseNo;
 	private String colony;
@@ -8,8 +14,10 @@ public class Address {
 	private String state;
 	private int pincode;
 		
+	public Address() {
 		
-	public Address(Integer addressId, String houseNo,String colony,String city,String state,int pincode ) {
+	}
+	/*public Address(Integer addressId, String houseNo,String colony,String city,String state,int pincode ) {
 			this.addressId = addressId;
 			this.houseNo = houseNo;
 			this.colony = colony;
@@ -17,7 +25,7 @@ public class Address {
 			this.state = state;
 			this.pincode = pincode;
 			
-		}
+		}*/
 
 
 		public Integer getAddressId() {

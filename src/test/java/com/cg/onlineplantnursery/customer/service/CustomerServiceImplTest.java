@@ -37,6 +37,7 @@ public class CustomerServiceImplTest {
 	public void test_AddCustomer_1() {
 		Customer customer = mock(Customer.class);
 		Customer saved = mock(Customer.class);
+		doNothing().when(service).validateCustomer(customer);
 		when(repository.save(customer)).thenReturn(saved);
 		Customer result = service.addCustomer(customer);
 		Assertions.assertNotNull(result);
@@ -50,11 +51,13 @@ public class CustomerServiceImplTest {
 	 */
 	@Test
 	public void test_AddCustomer_2() {
-		Customer customer= null;
+		Customer customer= mock(Customer.class);
+		doThrow(CustomerNotAddedException.class).when(service).validateCustomer(customer);
 		Executable executable=()-> service.addCustomer(customer);
 		Assertions.assertThrows(CustomerNotAddedException.class,executable);
-		
+		verify(repository,never()).save(customer);
 	}
+	
 	
 	
 	/*
@@ -109,7 +112,7 @@ public class CustomerServiceImplTest {
 		//when(repository.delete(tenant)).thenReturn(null);
 		Customer result = service.deleteCustomer(tenant);
 		Assertions.assertNull(result);
-		verify(repository).delete(tenant);
+		
 	}
 	
 	@Test
@@ -148,5 +151,61 @@ public class CustomerServiceImplTest {
 		Executable executable=()->service.viewAllCustomers();
 		Assertions.assertThrows(CustomerNotFoundException.class,executable);
 	}
+	
+	/*Scenario: when no customer is added*/
+	@Test
+	void test_validateCustomer_1() {
+		Customer customer = null;
+		Executable executable = () -> service.validateCustomer(customer);
+		Assertions.assertThrows(CustomerNotAddedException.class, executable);
+		
+	}
+	
+	/*
+	 * when InvalidCustomerNameException is thrown*/
+	@Test
+	void test_validateCustomer_2() {
+		Customer customer=mock(Customer.class);
+		when(customer.getCustomerName()).thenReturn("");
+		Executable executable = () -> service.validateCustomer(customer);
+		Assertions.assertThrows(InvalidCustomerNameException.class, executable);
+		
+	}
+	
+	/*
+	 * when InvalidCustomerEmailException is thrown*/
+	@Test
+	void test_validateCustomer_3() {
+		Customer customer=mock(Customer.class);
+		when(customer.getCustomerName()).thenReturn("ggh");
+		when(customer.getCustomerEmail()).thenReturn("");
+		Executable executable = () -> service.validateCustomer(customer);
+		Assertions.assertThrows(InvalidCustomerEmailException.class, executable);
+		
+	}
+	
+	/*
+	 * when InvalidCustomerNameException is thrown*/
+	@Test
+	void test_validateCustomer_4() {
+		Customer customer=mock(Customer.class);
+		when(customer.getCustomerName()).thenReturn("ggh");
+		when(customer.getCustomerEmail()).thenReturn("abeer@gmail.com");
+		when(customer.getPassword()).thenReturn("");
+		Executable executable = () -> service.validateCustomer(customer);
+		Assertions.assertThrows(InvalidCustomerPasswordException.class, executable);
+		
+	}
+	
+	@Test
+	void test_validateCustomerId() {
+
+		Integer id = -10;
+		Executable executable = () -> service.validateCustomerId(id);
+		Assertions.assertThrows(InvalidIdException.class, executable);
+	}
+
+	
+	
 
 }
