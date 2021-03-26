@@ -73,7 +73,9 @@ public class PlanterConsoleUi {
 		planterService.deletePlanter(planter3);
 
 		System.out.println("\n************Updating the planter**********\n");
-		planterService.updatePlanter(planter2);
+		
+		
+		planter2=planterService.updatePlanter(planter2);
 
 		display(planter2);
 

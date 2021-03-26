@@ -12,14 +12,11 @@ import com.cg.onlineplantnursery.planter.entity.Planter;
 @Repository
 public interface IPlanterRepository extends JpaRepository<Planter, Integer> {
 
-	@Query("from Planter where planterShape=:planterShapeArgs")
-	List<Planter> viewPlanter(@Param("planterShapeArgs") String planterShape);
+	List<Planter> findByPlanterShape(String planterShape);
 
-	@Query("from Planter")
-	List<Planter> viewAllPlanters();
+	List<Planter> findAll();
 
 	@Query("from Planter where planterCost>=:minCost and planterCost<=:maxCost")
-	List<Planter> viewAllPlanters(@Param("minCost") double minCost, @Param("maxCost") double maxCost);
-
+	List<Planter> findAllPlantersBetweenCost(@Param("minCost") double minCost, @Param("maxCost") double maxCost);
 
 }

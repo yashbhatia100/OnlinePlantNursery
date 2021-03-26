@@ -1,6 +1,5 @@
 package com.cg.onlineplantnursery.planter.service;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -24,12 +23,17 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.cg.onlineplantnursery.exceptions.AddPlanterException;
+import com.cg.onlineplantnursery.exceptions.InvalidDrainageHolesException;
+import com.cg.onlineplantnursery.exceptions.InvalidPlanterCapacityException;
+import com.cg.onlineplantnursery.exceptions.InvalidPlanterColorException;
+import com.cg.onlineplantnursery.exceptions.InvalidPlanterCostException;
+import com.cg.onlineplantnursery.exceptions.InvalidPlanterHeightException;
+import com.cg.onlineplantnursery.exceptions.InvalidPlanterIdException;
+import com.cg.onlineplantnursery.exceptions.InvalidPlanterShapeException;
+import com.cg.onlineplantnursery.exceptions.InvalidPlanterStockException;
+import com.cg.onlineplantnursery.exceptions.PlanterNotFoundException;
 import com.cg.onlineplantnursery.planter.entity.Planter;
-import com.cg.onlineplantnursery.planter.exceptions.InvalidPlanterDataException;
-import com.cg.onlineplantnursery.planter.exceptions.InvalidPlanterException;
-import com.cg.onlineplantnursery.planter.exceptions.InvalidPlanterIdException;
-import com.cg.onlineplantnursery.planter.exceptions.PlanterDeleteException;
-import com.cg.onlineplantnursery.planter.exceptions.PlanterUpdateException;
 import com.cg.onlineplantnursery.planter.repository.IPlanterRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -48,9 +52,10 @@ class PlanterServiceImplUnitTest {
 	@Test
 	void testAddPlanter_1() {
 
-		Planter planter = null;
-		Executable executable = () -> planterService.validatePlanter(planter);
-		assertThrows(InvalidPlanterException.class, executable);
+		Planter planter = mock(Planter.class);
+		doThrow(AddPlanterException.class).when(planterService).validatePlanter(planter);
+		Executable executable = () -> planterService.addPlanter(planter);
+		assertThrows(AddPlanterException.class, executable);
 		verify(planterRepository, never()).save(planter);
 	}
 
@@ -60,45 +65,15 @@ class PlanterServiceImplUnitTest {
 
 	@Test
 	void testAddPlanter_2() {
-		
+
 		Planter planter = Mockito.mock(Planter.class);
 		Planter saved = Mockito.mock(Planter.class);
-		float planterHeight=10.0f;
-		int planterCapacity=2;
-		String PlanterColor="Red";
-		int planterCost=10;
-		int planterStock=14;
-		int drainageHoles=3;
-		String planterShape="Rectangle";
-		when(planter.getPlanterHeight()).thenReturn(planterHeight);
-		when(planter.getPlanterCapacity()).thenReturn(planterCapacity);
-		when(planter.getPlanterColor()).thenReturn(PlanterColor);
-		when(planter.getDrainageHoles()).thenReturn(drainageHoles);
-		when(planter.getPlanterStock()).thenReturn(planterStock);
-		when(planter.getPlanterCost()).thenReturn(planterCost);
-		when(planter.getPlanterShape()).thenReturn(planterShape);
-		
 		doNothing().when(planterService).validatePlanter(planter);
-		doNothing().when(planterService).validatePlanterHeight(planterHeight);
-		doNothing().when(planterService).validatePlanterCapacity(planterCapacity);
-		doNothing().when(planterService).validatePlanterColor(PlanterColor);
-		doNothing().when(planterService).validateDrainageHoles(drainageHoles);
-		doNothing().when(planterService).validatePlanterCost(planterCost);
-		doNothing().when(planterService).validatePlanterStock(planterStock);
-		doNothing().when(planterService).validatePlanterShape(planterShape);
-		
 		when(planterRepository.save(planter)).thenReturn(saved);
 		Planter result = planterService.addPlanter(planter);
 		assertNotNull(result);
 		assertEquals(saved, result);
 		verify(planterRepository).save(planter);
-		verify(planterService).validatePlanterHeight(planter.getPlanterHeight());
-		verify(planterService).validatePlanterCapacity(planter.getPlanterCapacity());
-		verify(planterService).validatePlanterColor(planter.getPlanterColor());
-		verify(planterService).validateDrainageHoles(planter.getDrainageHoles());
-		verify(planterService).validatePlanterShape(planter.getPlanterShape());
-		verify(planterService).validatePlanterCost(planter.getPlanterCost());
-		verify(planterService).validatePlanterStock(planter.getPlanterStock());
 
 	}
 
@@ -108,11 +83,10 @@ class PlanterServiceImplUnitTest {
 
 	@Test
 	void testAddPlanter_3() {
-		float planterHeight = 0.0f;
 		Planter planter = Mockito.mock(Planter.class);
-		doThrow(InvalidPlanterDataException.class).when(planterService).validatePlanterHeight(planterHeight);
+		doThrow(InvalidPlanterHeightException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
-		assertThrows(InvalidPlanterDataException.class, executable);
+		assertThrows(InvalidPlanterHeightException.class, executable);
 		verify(planterRepository, never()).save(planter);
 
 	}
@@ -123,11 +97,10 @@ class PlanterServiceImplUnitTest {
 
 	@Test
 	void testAddPlanter_4() {
-		int planterCapacity = 0;
 		Planter planter = Mockito.mock(Planter.class);
-		doThrow(InvalidPlanterDataException.class).when(planterService).validatePlanterCapacity(planterCapacity);
+		doThrow(InvalidPlanterCapacityException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
-		assertThrows(InvalidPlanterDataException.class, executable);
+		assertThrows(InvalidPlanterCapacityException.class, executable);
 		verify(planterRepository, never()).save(planter);
 
 	}
@@ -138,16 +111,13 @@ class PlanterServiceImplUnitTest {
 
 	@Test
 	void testAddPlanter_5() {
-		int drainageHoles = 0;
 		Planter planter = Mockito.mock(Planter.class);
-		doThrow(InvalidPlanterDataException.class).when(planterService).validateDrainageHoles(drainageHoles);
-		;
+		doThrow(InvalidDrainageHolesException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
-		assertThrows(InvalidPlanterDataException.class, executable);
+		assertThrows(InvalidDrainageHolesException.class, executable);
 		verify(planterRepository, never()).save(planter);
 
 	}
-	
 
 	/*
 	 * Scenario planter when planter cost is null Test case for add planter
@@ -155,41 +125,40 @@ class PlanterServiceImplUnitTest {
 
 	@Test
 	void testAddPlanter_6() {
-		int planterCost = 0;
+
 		Planter planter = Mockito.mock(Planter.class);
-		doThrow(InvalidPlanterDataException.class).when(planterService).validatePlanterCost(planterCost);
+		doThrow(InvalidPlanterCostException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
-		assertThrows(InvalidPlanterDataException.class, executable);
+		assertThrows(InvalidPlanterCostException.class, executable);
 		verify(planterRepository, never()).save(planter);
 
 	}
-	
+
 	/*
 	 * Scenario planter when planter stock is null Test case for add planter
 	 */
 
 	@Test
 	void testAddPlanter_7() {
-		int planterStock = 0;
+
 		Planter planter = Mockito.mock(Planter.class);
-		doThrow(InvalidPlanterDataException.class).when(planterService).validatePlanterStock(planterStock);
+		doThrow(InvalidPlanterStockException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
-		assertThrows(InvalidPlanterDataException.class, executable);
+		assertThrows(InvalidPlanterStockException.class, executable);
 		verify(planterRepository, never()).save(planter);
 
 	}
 
 	/*
-	 * Scenario planter when drainage holes is null Test case for add planter
+	 * Scenario planter when planter color is null Test case for add planter
 	 */
 
 	@Test
 	void testAddPlanter_8() {
-		String planterColor = null;
 		Planter planter = Mockito.mock(Planter.class);
-		doThrow(InvalidPlanterDataException.class).when(planterService).validatePlanterColor(planterColor);
+		doThrow(InvalidPlanterColorException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
-		assertThrows(InvalidPlanterDataException.class, executable);
+		assertThrows(InvalidPlanterColorException.class, executable);
 		verify(planterRepository, never()).save(planter);
 
 	}
@@ -200,28 +169,24 @@ class PlanterServiceImplUnitTest {
 
 	@Test
 	void testAddPlanter_9() {
-		String planterShape = null;
+
 		Planter planter = Mockito.mock(Planter.class);
-		doThrow(InvalidPlanterDataException.class).when(planterService).validatePlanterShape(planterShape);
+		doThrow(InvalidPlanterShapeException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
-		assertThrows(InvalidPlanterDataException.class, executable);
+		assertThrows(InvalidPlanterShapeException.class, executable);
 		verify(planterRepository, never()).save(planter);
 
 	}
-
-	
-
 
 	/*
 	 * Scenario planter is updated successfully Test case for update planter
 	 */
 	@Test
 	void testUpdatePlanter_1() {
-		int id = 10;
+
 		Planter planter = mock(Planter.class);
-		when(planter.getPlanterId()).thenReturn(id);
+		doNothing().when(planterService).validatePlanterById(planter);
 		when(planterRepository.save(planter)).thenReturn(planter);
-		when(planterRepository.existsById(id)).thenReturn(true);
 		Planter result = planterService.updatePlanter(planter);
 		assertNotNull(result);
 		assertSame(planter, result);
@@ -235,12 +200,11 @@ class PlanterServiceImplUnitTest {
 
 	@Test
 	void testUpdatePlanter_2() {
-		int id = 10;
+
 		Planter planter = mock(Planter.class);
-		when(planter.getPlanterId()).thenReturn(id);
-		when(planterRepository.existsById(id)).thenReturn(false);
+		doThrow(PlanterNotFoundException.class).when(planterService).validatePlanterById(planter);
 		Executable executable = () -> planterService.updatePlanter(planter);
-		assertThrows(PlanterUpdateException.class, executable);
+		assertThrows(PlanterNotFoundException.class, executable);
 		verify(planterRepository, never()).save(planter);
 
 	}
@@ -251,12 +215,45 @@ class PlanterServiceImplUnitTest {
 	@Test
 	void testViewPlanter_1() {
 		int id = 5;
+		doNothing().when(planterService).validatePlanterId(id);
 		Planter planter = Mockito.mock(Planter.class);
 		Optional<Planter> optional = Optional.of(planter);
 		when(planterRepository.findById(5)).thenReturn(optional);
 		Planter result = planterService.viewPlanter(id);
 		assertNotNull(result);
 		assertEquals(planter, result);
+		verify(planterRepository).findById(id);
+	}
+
+	/*
+	 * Scenario view the planter by id if the id is not valid test case for view
+	 * planter
+	 */
+	@Test
+	void testViewPlanter_2() {
+		int id = -5;
+
+		doThrow(InvalidPlanterIdException.class).when(planterService).validatePlanterId(id);
+		Executable executable = () -> planterService.viewPlanter(id);
+		assertThrows(InvalidPlanterIdException.class, executable);
+		verify(planterRepository, never()).findById(id);
+	}
+	
+
+	/*
+	 * Scenario view the planter by id if the id is valid and is not in the database test case for view
+	 * planter
+	 */
+	@Test
+	void testViewPlanter_3() {
+		int id = 75;
+		Planter planter = Mockito.mock(Planter.class);
+		doNothing().when(planterService).validatePlanterId(id);
+		Optional<Planter> optional = Optional.empty();
+		when(planterRepository.findById(id)).thenReturn(optional);
+		Executable executable = () -> planterService.viewPlanter(id);
+		assertThrows(PlanterNotFoundException.class, executable);
+		verify(planterRepository).findById(id);
 	}
 
 	/*
@@ -265,9 +262,9 @@ class PlanterServiceImplUnitTest {
 	@Test
 	void testDeletePlanter_1() {
 		Planter planter = Mockito.mock(Planter.class);
-		doNothing().when(planterService).validatePlanterId(planter);
+		doNothing().when(planterService).validatePlanterById(planter);
 		Planter result = planterService.deletePlanter(planter);
-		assertSame(planter,result);
+		assertSame(planter, result);
 		verify(planterRepository).delete(planter);
 
 	}
@@ -278,12 +275,12 @@ class PlanterServiceImplUnitTest {
 	 */
 	@Test
 	void testDeletePlanter_2() {
-	
+
 		Planter planter = Mockito.mock(Planter.class);
-		doThrow(InvalidPlanterDataException.class).when(planterService).validatePlanterId(planter);
-		
+		doThrow(PlanterNotFoundException.class).when(planterService).validatePlanterById(planter);
+
 		Executable executable = () -> planterService.deletePlanter(planter);
-		assertThrows(InvalidPlanterDataException.class, executable);
+		assertThrows(PlanterNotFoundException.class, executable);
 		verify(planterRepository, never()).delete(planter);
 
 	}
@@ -296,7 +293,7 @@ class PlanterServiceImplUnitTest {
 
 		String planterShape = "Cylinderical";
 		List<Planter> list = Mockito.mock(List.class);
-		when(planterRepository.viewPlanter(planterShape)).thenReturn(list);
+		when(planterRepository.findByPlanterShape(planterShape)).thenReturn(list);
 		List<Planter> result = planterService.viewPlanter(planterShape);
 		assertNotNull(result);
 		assertEquals(list, result);
@@ -309,7 +306,7 @@ class PlanterServiceImplUnitTest {
 	 */
 	void testViewAllPlanters_1() {
 		List<Planter> list = Mockito.mock(List.class);
-		when(planterRepository.viewAllPlanters()).thenReturn(list);
+		when(planterRepository.findAll()).thenReturn(list);
 		List<Planter> result = planterService.viewAllPlanters();
 		assertNotNull(result);
 		assertEquals(list, result);
@@ -324,7 +321,7 @@ class PlanterServiceImplUnitTest {
 		double minCost = 100d;
 		double maxCost = 500d;
 		List<Planter> list = Mockito.mock(List.class);
-		when(planterRepository.viewAllPlanters(minCost, maxCost)).thenReturn(list);
+		when(planterRepository.findAllPlantersBetweenCost(minCost, maxCost)).thenReturn(list);
 		List<Planter> result = planterService.viewAllPlanters(minCost, maxCost);
 		assertNotNull(result);
 		assertEquals(list, result);
