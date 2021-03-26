@@ -137,8 +137,8 @@ public class SeedServiceImplUnitTest {
 	}
 	
 	/*
-	 * Test: viewSeed(int plantId) 
-	 * Scenario: when plant object to view by id does not exist in store
+	 * Test: viewSeed(int seedId) 
+	 * Scenario: seed with given id does not exist 
 	 */
 	@Test
 	void testViewById_2() {
@@ -173,7 +173,7 @@ public class SeedServiceImplUnitTest {
 	@Test
 	void testViewByCommonName_1() {
 
-		String commonName = "abcd";
+		String commonName = "Pine apple";
 		Mockito.doNothing().when(service).validateCommonName(commonName);
 		Seed viewseed = Mockito.mock(Seed.class);
 		Mockito.when(repository.existsByCommonName(commonName)).thenReturn(true);
@@ -295,7 +295,7 @@ public class SeedServiceImplUnitTest {
 	 * Scenario: SeedAddException is thrown
 	 */
 	@Test
-	void testValidatePlant() {
+	void testValidateSeed() {
 		Seed seed = null;
 		Executable executable = () -> service.validateSeed(seed);
 		Assertions.assertThrows(SeedAddException.class, executable);

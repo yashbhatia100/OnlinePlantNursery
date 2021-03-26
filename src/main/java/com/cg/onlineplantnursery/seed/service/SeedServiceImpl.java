@@ -47,7 +47,7 @@ public class SeedServiceImpl implements ISeedService {
 		validateSeedId(seedId);
 		Optional<Seed> optional = repository.findById(seedId);
 		if(!optional.isPresent()) {
-			throw new SeedNotFoundException("Plant does not exist");
+			throw new SeedNotFoundException("Seed does not exist");
 		}
 		return optional.get();		
 	}
@@ -56,7 +56,7 @@ public class SeedServiceImpl implements ISeedService {
 		validateCommonName(commonName);
 		boolean exists = repository.existsByCommonName(commonName);
 		if(!exists) {
-			throw new SeedNotFoundException("Seed does not exist!");
+			throw new SeedNotFoundException("Seed does not exist");
 		}
 		return repository.findSeedByCommonName(commonName);
 	}
@@ -104,10 +104,9 @@ public class SeedServiceImpl implements ISeedService {
 	}
 	
 
-	public void validateCommonName(String commonName) {
-		
+	public void validateCommonName(String commonName) {		
 		if(commonName.equals("")) {
-			throw new InvalidSeedNameException("Plant name cannot be empty"); 
+			throw new InvalidSeedNameException("Seed name is empty"); 
 		}
 	}
 	
