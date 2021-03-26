@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.onlineplantnursery.exceptions.AddPlantException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlantCostException;
@@ -24,6 +25,7 @@ public class PlantServiceImpl implements IPlantService {
 	private IPlantRepository repository;
 	
 	// Adding a plant object to store 
+	@Transactional
 	@Override
 	public Plant addPlant(Plant plant) {
 		
@@ -32,6 +34,7 @@ public class PlantServiceImpl implements IPlantService {
 	}
 	
 	// Updating a plant object present in store
+	@Transactional
 	@Override
 	public Plant updatePlant(Plant plant) {
 		
@@ -40,6 +43,7 @@ public class PlantServiceImpl implements IPlantService {
 	}
 	
 	// Deleting a plant object from store
+	@Transactional
 	@Override
 	public Plant deletePlant(Plant plant) {
 		

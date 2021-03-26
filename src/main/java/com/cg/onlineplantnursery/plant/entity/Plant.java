@@ -96,4 +96,29 @@ public class Plant {
 	public void setPlantCost(double plantCost) {
 		this.plantCost = plantCost;
 	}
+	
+	@Override
+	public String toString() {
+		return "plantId:"+plantId+"\nplantHeight:"+plantHeight+"\nplantSpread:"+plantSpread
+				+"\ncommonName"+commonName+"\nbloomTime"+bloomTime+"\nmedicinalOrCulinaryUse"+medicinalOrCulinaryUse
+				+"\ndifficultyLevel"+difficultyLevel+"\ntemperature"+temperature+"\ntypeOfPlant"+typeOfPlant
+				+"\nplantDescription"+plantDescription+"\nplantsStock"+plantsStock+"\nplantCost"+plantCost;
+	}
+	
+	@Override
+	public int hashCode() {
+		return plantId;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		 if(obj==null || !(obj instanceof Plant)) {
+			 return false;
+		 }
+		 Plant that=(Plant)obj;
+		return this.plantId==that.plantId;
+	}
 }
