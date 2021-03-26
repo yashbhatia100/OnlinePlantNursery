@@ -1,7 +1,13 @@
 package com.cg.onlineplantnursery.seed.entity;
 
-public class Seed {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class Seed {
+	@GeneratedValue
+	@Id
 	private Integer seedId;
 
 	private String commonName;

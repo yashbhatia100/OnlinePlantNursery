@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ISeedRepository extends JpaRepository<Seed, Integer> {
 
-	List<Seed> viewAllSeeds();
-
-	List<Seed> viewAllSeeds(String typeOfSeed);
+	
+	Seed findSeedByCommonName(String commonName);
+	boolean existsByCommonName(String commonName);
+	List<Seed> findAllByTypeOfSeed(String typeOfSeed);
 }
