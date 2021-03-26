@@ -65,6 +65,7 @@ public class PlanterServiceImpl implements IPlanterService {
 
 	@Override
 	public List<Planter> viewPlanter(String planterShape) {
+		validatePlanterShape(planterShape);
 
 		List<Planter> planterList = planterRepository.findByPlanterShape(planterShape);
 		if (planterList.isEmpty()) {

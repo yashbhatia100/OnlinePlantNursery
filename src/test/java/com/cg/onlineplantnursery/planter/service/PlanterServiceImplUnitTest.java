@@ -82,7 +82,7 @@ class PlanterServiceImplUnitTest {
 	 */
 
 	@Test
-	void testAddPlanter_3() {
+	void testValidatePlanter_1() {
 		Planter planter = Mockito.mock(Planter.class);
 		doThrow(InvalidPlanterHeightException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
@@ -96,7 +96,7 @@ class PlanterServiceImplUnitTest {
 	 */
 
 	@Test
-	void testAddPlanter_4() {
+	void testValidatePlanter_2() {
 		Planter planter = Mockito.mock(Planter.class);
 		doThrow(InvalidPlanterCapacityException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
@@ -110,7 +110,7 @@ class PlanterServiceImplUnitTest {
 	 */
 
 	@Test
-	void testAddPlanter_5() {
+	void testValidatePlanter_3() {
 		Planter planter = Mockito.mock(Planter.class);
 		doThrow(InvalidDrainageHolesException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
@@ -124,7 +124,7 @@ class PlanterServiceImplUnitTest {
 	 */
 
 	@Test
-	void testAddPlanter_6() {
+	void testValidatePlanter_4() {
 
 		Planter planter = Mockito.mock(Planter.class);
 		doThrow(InvalidPlanterCostException.class).when(planterService).validatePlanter(planter);
@@ -139,7 +139,7 @@ class PlanterServiceImplUnitTest {
 	 */
 
 	@Test
-	void testAddPlanter_7() {
+	void testValidatePlanter_5() {
 
 		Planter planter = Mockito.mock(Planter.class);
 		doThrow(InvalidPlanterStockException.class).when(planterService).validatePlanter(planter);
@@ -154,7 +154,7 @@ class PlanterServiceImplUnitTest {
 	 */
 
 	@Test
-	void testAddPlanter_8() {
+	void testValidatePlanter_6() {
 		Planter planter = Mockito.mock(Planter.class);
 		doThrow(InvalidPlanterColorException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
@@ -168,7 +168,7 @@ class PlanterServiceImplUnitTest {
 	 */
 
 	@Test
-	void testAddPlanter_9() {
+	void testValidatePlanter_7() {
 
 		Planter planter = Mockito.mock(Planter.class);
 		doThrow(InvalidPlanterShapeException.class).when(planterService).validatePlanter(planter);
@@ -256,7 +256,7 @@ class PlanterServiceImplUnitTest {
 	}
 
 	/*
-	 * Scenario delete the planter test case for delete planter
+	 * Scenario delete the planter is success test case for delete planter
 	 */
 	@Test
 	void testDeletePlanter_1() {
@@ -286,12 +286,13 @@ class PlanterServiceImplUnitTest {
 
 	@Test
 	/*
-	 * Scenario find by planterShape test case for planterShape
+	 * Scenario find by planterShape  when shape is valid test case for planterShape
 	 */
 	void testViewPlanterbyShape_1() {
 
 		String planterShape = "Cylinderical";
 		List<Planter> list = Mockito.mock(List.class);
+		doNothing().when(planterService).validatePlanterShape(planterShape);
 		when(planterRepository.findByPlanterShape(planterShape)).thenReturn(list);
 		List<Planter> result = planterService.viewPlanter(planterShape);
 		assertNotNull(result);
@@ -299,6 +300,21 @@ class PlanterServiceImplUnitTest {
 
 	}
 
+	@Test
+	/*
+	 * Scenario find by planterShape when the planter shape is not valid test case for planterShape
+	 */
+	void testViewPlanterbyShape_2() {
+
+		String planterShape = "Cylinderical";
+		doThrow(InvalidPlanterShapeException.class).when(planterService).viewPlanter(planterShape);
+		Executable executable=()->planterService.viewPlanter(planterShape);
+		assertThrows(InvalidPlanterShapeException.class, executable);
+		verify(planterRepository,never()).findByPlanterShape(planterShape);
+
+	}
+	
+	
 	@Test
 	/*
 	 * Scenario find All Planters test case for viewing all planter
@@ -311,12 +327,26 @@ class PlanterServiceImplUnitTest {
 		assertEquals(list, result);
 
 	}
+	
+	@Test
+	/*
+	 * Scenario find All Planters if no planter is there
+	 *  test case for viewing all planter 
+	 */
+	void testViewAllPlanters_2() {
+		List<Planter> list = Mockito.mock(List.class);
+		when(planterRepository.findAll()).thenReturn(list);
+		when(list.isEmpty()).thenReturn(true);
+	Executable executable=()->planterService.viewAllPlanters();
+	assertThrows(PlanterNotFoundException.class, executable);
+	verify(planterRepository).findAll();
+	}
 
 	@Test
 	/*
 	 * Scenario find planters by Cost test case for view all planters by cost
 	 */
-	void testViewAllPlanters_2() {
+	void testViewAllPlantersByCost_2() {
 		double minCost = 100d;
 		double maxCost = 500d;
 		List<Planter> list = Mockito.mock(List.class);
@@ -324,6 +354,5 @@ class PlanterServiceImplUnitTest {
 		List<Planter> result = planterService.viewAllPlanters(minCost, maxCost);
 		assertNotNull(result);
 		assertEquals(list, result);
-
 	}
 }
