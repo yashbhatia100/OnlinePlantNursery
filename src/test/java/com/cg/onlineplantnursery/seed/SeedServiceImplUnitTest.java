@@ -349,3 +349,4 @@ public class SeedServiceImplUnitTest {
 		Executable executable = () -> service.validateSeedByType(typeOfSeed);
 		Assertions.assertThrows(InvalidSeedTypeException.class, executable);
 	}
+}
