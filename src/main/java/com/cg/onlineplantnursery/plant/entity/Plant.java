@@ -117,7 +117,7 @@ public class Plant {
 		if (this == obj) {
 			return true;
 		}
-		 if(obj==null || !(obj instanceof Plant)) {
+		 if(!(obj instanceof Plant)) {
 			 return false;
 		 }
 		 Plant that=(Plant)obj;

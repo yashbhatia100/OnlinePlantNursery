@@ -1,16 +1,22 @@
 package com.cg.onlineplantnursery.order.entity;
 
 import java.time.LocalDate;
-import java.util.List;
+
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.cg.onlineplantnursery.planter.entity.Planter;
+
 @Entity
+@Table(name="order_details")
 public class Order {
+	
 	@GeneratedValue
 	@Id
 	private Integer bookingOrderId;
@@ -18,7 +24,13 @@ public class Order {
 	private String transactionMode;
 	private int quantity;
 	private double totalCost;
-
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	private Set<Planter> planters;
+	
+	public Order() {
+		this.orderDate =  LocalDate.now();
+	}
 	public Integer getBookingOrderId() {
 		return bookingOrderId;
 	}

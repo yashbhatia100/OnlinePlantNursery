@@ -77,7 +77,7 @@ public class OrderServiceImpl implements IOrderService {
 		
 		List<Order> orderList = repository.findAll();
 		if (orderList.isEmpty()) {
-			return null;
+			throw new OrderIdNotFoundException("Orders not found");
 		}
 
 		return orderList;
