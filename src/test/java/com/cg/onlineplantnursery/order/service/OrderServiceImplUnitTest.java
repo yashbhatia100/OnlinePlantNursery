@@ -1,13 +1,20 @@
 package com.cg.onlineplantnursery.order.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
 import org.mockito.InjectMocks;
@@ -16,7 +23,6 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.cg.onlineplantnursery.exceptions.OrderIdNotFoundException;
 import com.cg.onlineplantnursery.exceptions.OrderUpdateException;
 import com.cg.onlineplantnursery.order.entity.Order;
 import com.cg.onlineplantnursery.order.repository.IOrderRepository;
@@ -30,7 +36,7 @@ class OrderServiceImplUnitTest {
 
 	@Spy
 	@InjectMocks
-	IOrderServiceImpl service;
+	OrderServiceImpl service;
 	
 	/*
 	 * * Scenario if the order is null Test case for addOrder
@@ -102,7 +108,7 @@ class OrderServiceImplUnitTest {
 	 * Scenario view the Order by id test case for view Order
 	 */
 	@Test
-	void testViewOrder_1() {
+	public void testViewOrder_1() {
 		int id = 5;
 		doNothing().when(service).validateBookingId(id);
 		Order order=Mockito.mock(Order.class);
@@ -116,7 +122,7 @@ class OrderServiceImplUnitTest {
 	 * Scenario delete the Order test case for delete Order
 	 */
 	@Test
-	void testDeleteOrder_1() {
+	public void testDeleteOrder_1() {
 		int id=10;
 		Order order = Mockito.mock(Order.class);
 		doNothing().when(service).validateOrder(order);
@@ -134,7 +140,7 @@ class OrderServiceImplUnitTest {
 	 * Order
 	 */
 	@Test
-	void testDeleteOrder_2() {
+	public void testDeleteOrder_2() {
 		int id=10;
 		Order order = Mockito.mock(Order.class);
 		doNothing().when(service).validateOrder(order);

@@ -14,7 +14,7 @@ import com.cg.onlineplantnursery.order.entity.Order;
 import com.cg.onlineplantnursery.order.repository.IOrderRepository;
 
 @Service
-public class IOrderServiceImpl implements IOrderService {
+public class OrderServiceImpl implements IOrderService {
 
 	@Autowired
 	IOrderRepository repository;

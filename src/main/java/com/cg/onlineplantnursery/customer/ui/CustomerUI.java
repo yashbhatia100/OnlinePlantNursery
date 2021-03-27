@@ -14,8 +14,8 @@ public class CustomerUI {
 	@Autowired
 	ICustomerService customerService;
 	
-	//@Autowired
-	//ICustomerRepository customerRepository;
+	@Autowired
+	ICustomerRepository customerRepository;
 	
 	public void start(){
 		System.out.println("adding Customer");

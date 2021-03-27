@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.onlineplantnursery.order.entity.Order;
 
+
 @Repository
 public interface IOrderRepository extends JpaRepository<Order, Integer>  {
-	
 
+	
 }
