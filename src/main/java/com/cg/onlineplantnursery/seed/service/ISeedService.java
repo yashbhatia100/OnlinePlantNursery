@@ -5,6 +5,7 @@ import java.util.List;
 import com.cg.onlineplantnursery.seed.entity.Seed;
 
 public interface ISeedService {
+	
 	Seed addSeed(Seed seed);
 
 	Seed updateSeed(Seed seed);
