@@ -22,7 +22,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.cg.onlineplantnursery.order.service.IOrderServiceImpl;
+import com.cg.onlineplantnursery.order.service.OrderServiceImpl;
 
 import antlr.collections.List;
 
@@ -40,7 +40,7 @@ public class OrderServiceImplUnitTest {
 
 	@Spy
 	@InjectMocks
-	IOrderServiceImpl service;
+	OrderServiceImpl service;
 	
 	/*
 	 * * Scenario if the order is null Test case for addOrder
@@ -90,7 +90,7 @@ public class OrderServiceImplUnitTest {
 	 * Scenario view the Order by id test case for view Order
 	 */
 	@Test
-	void testViewOrder_1() {
+	public void testViewOrder_1() {
 		int id = 5;
 		Order order=Mockito.mock(Order.class);
 		Optional<Order> optional = Optional.of(order);
@@ -103,7 +103,7 @@ public class OrderServiceImplUnitTest {
 	 * Scenario delete the Order test case for delete Order
 	 */
 	@Test
-	void testDeleteOrder_1() {
+	public void testDeleteOrder_1() {
 		int id=10;
 		Order order = Mockito.mock(Order.class);
 		doNothing().when(service).validateBookingId(id);
@@ -119,7 +119,7 @@ public class OrderServiceImplUnitTest {
 	 * Order
 	 */
 	@Test
-	void testDeleteOrder_2() {
+	public void testDeleteOrder_2() {
 		int id=10;
 		Order order = Mockito.mock(Order.class);
 		doThrow(OrderIdNotFoundException.class).when(service).validateBookingId(id);

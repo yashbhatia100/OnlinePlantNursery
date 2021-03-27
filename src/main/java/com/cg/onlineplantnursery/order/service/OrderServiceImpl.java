@@ -14,12 +14,12 @@ import com.cg.onlineplantnursery.order.entity.Order;
 import com.cg.onlineplantnursery.order.repository.IOrderRepository;
 
 @Service
-public class IOrderServiceImpl implements IOrderService {
+public class OrderServiceImpl implements IOrderService {
 
 	@Autowired
 	IOrderRepository repository;
 	
-	//@Transactional
+	@Transactional
 	@Override
 	public Order addOrder(Order order) {
   
@@ -70,7 +70,7 @@ public class IOrderServiceImpl implements IOrderService {
 	@Override
 	public List<Order> viewAllOrders() {
 		
-		List<Order> orderList = repository.viewAllOrders();
+		List<Order> orderList = repository.findAll();
 		if (orderList.isEmpty()) {
 			return null;
 		}

@@ -1,9 +1,11 @@
 package com.cg.onlineplantnursery.order.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.cg.onlineplantnursery.planter.entity.Planter;
 @Entity
@@ -14,7 +16,8 @@ public class Order {
 	private String transactionMode;
 	private int quantity;
 	private double totalCost;
-	private Planter planters;
+	@OneToMany
+	private List<Planter> planters;
 	public Integer getBookingOrderId() {
 		return bookingOrderId;
 	}
@@ -45,10 +48,10 @@ public class Order {
 	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
 	}
-	public Planter getPlanters() {
+	public List<Planter> getPlanters() {
 		return planters;
 	}
-	public void setPlanters(Planter planters) {
+	public void setPlanters(List<Planter> planters) {
 		this.planters = planters;
 	}
 	
