@@ -2,20 +2,21 @@ package com.cg.onlineplantnursery.planter.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
 import com.cg.onlineplantnursery.planter.entity.Planter;
 
-public interface IPlanterRepository {
-	Planter addPlanter(Planter planter);
+@Repository
+public interface IPlanterRepository extends JpaRepository<Planter, Integer> {
 
-	Planter updatePlanter(Planter planter);
+	List<Planter> findByPlanterShape(String planterShape);
 
-	Planter deletePlanter(Planter planter);
+	List<Planter> findAll();
 
-	Planter viewPlanter(int planterId);
+	@Query("from Planter where planterCost>=:minCost and planterCost<=:maxCost")
+	List<Planter> findAllPlantersBetweenCost(@Param("minCost") int minCost, @Param("maxCost") int maxCost);
 
-	Planter viewPlanter(String planterShape);
-
-	List<Planter> viewAllPlanters();
-
-	List<Planter> viewAllPlanters(double minCost, double maxCost);
 }
