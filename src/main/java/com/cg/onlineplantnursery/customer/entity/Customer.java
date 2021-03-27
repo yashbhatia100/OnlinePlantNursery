@@ -2,9 +2,13 @@ package com.cg.onlineplantnursery.customer.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.OneToOne;
+
 
 @Entity
 public class Customer {
+	
 	
 	@Id
 	@GeneratedValue
@@ -13,7 +17,9 @@ public class Customer {
 	private String customerEmail;
 	private String username;
 	private String password;
-	//private Address address;
+	
+	@OneToOne
+	private Address address;
 	
 	public Customer() {
 		
@@ -72,7 +78,7 @@ public class Customer {
 		this.password=password;
 	}
 	
-	/*
+	
 	public Address getAddress() {
 		return address;
 		
@@ -81,7 +87,7 @@ public class Customer {
 	public void setAddress(Address address) {
 		this.address=address;
 	}
-	*/
+	
 	
 	@Override
 	public int hashCode() {
