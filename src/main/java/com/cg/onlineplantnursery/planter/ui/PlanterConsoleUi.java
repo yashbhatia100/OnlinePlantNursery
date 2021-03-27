@@ -1,11 +1,11 @@
 package com.cg.onlineplantnursery.planter.ui;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cg.onlineplantnursery.planter.constants.PlanterColor;
 import com.cg.onlineplantnursery.planter.entity.Planter;
 import com.cg.onlineplantnursery.planter.repository.IPlanterRepository;
 import com.cg.onlineplantnursery.planter.service.IPlanterService;

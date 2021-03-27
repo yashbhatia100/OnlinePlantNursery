@@ -16,7 +16,7 @@ public class Planter {
 	private String planterShape;
 	private int planterStock;
 	private int planterCost;
-	// private Plant plants;
+	// private List of Plant plants;
 	// private Seed seeds;
 
 	public Planter() {

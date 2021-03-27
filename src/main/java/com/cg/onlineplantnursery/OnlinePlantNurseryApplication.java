@@ -13,6 +13,8 @@ public class OnlinePlantNurseryApplication {
 
 		PlanterConsoleUi planterUI = context.getBean(PlanterConsoleUi.class);
 		planterUI.start();
+		
+		
 
 	}
 
