@@ -16,4 +16,6 @@ public interface ICustomerRepository {
 	List<Customer> viewAllCustomers();
 
 	boolean validateCustomer(String userName, String password);
+	
 }
+
