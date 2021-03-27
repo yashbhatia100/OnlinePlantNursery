@@ -11,8 +11,22 @@ public class OnlinePlantNurseryApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(OnlinePlantNurseryApplication.class, args);
 
+<<<<<<< Updated upstream
 		PlanterConsoleUi planterUI = context.getBean(PlanterConsoleUi.class);
 		planterUI.start();
+=======
+		//PlantUI app1 = context.getBean(PlantUI.class);
+		//app1.start();
+		
+		PlanterConsoleUi app2 = context.getBean(PlanterConsoleUi.class);
+		app2.start();
+		
+		//CustomerUI app3 = context.getBean(CustomerUI.class);
+		//app3.start();
+		
+		//SeedUI app4 = context.getBean(SeedUI.class);
+		//app4.start();
+>>>>>>> Stashed changes
 		
 		
 
