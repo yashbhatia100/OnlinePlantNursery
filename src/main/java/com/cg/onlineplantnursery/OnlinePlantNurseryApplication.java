@@ -10,12 +10,11 @@ import com.cg.onlineplantnursery.customer.ui.CustomerUI;
 public class OnlinePlantNurseryApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(OnlinePlantNurseryApplication.class, args);
-
+		
 		CustomerUI project = context.getBean(CustomerUI.class);
 		project.start();
 		
 		
-
+		
 	}
-
 }
