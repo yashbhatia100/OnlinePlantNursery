@@ -1,5 +1,6 @@
 package com.cg.onlineplantnursery.plant.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ public class Plant {
 	private Integer plantId;
 	private Integer plantHeight;
 	private String plantSpread;
+	@Column(unique=true)
 	private String commonName;
 	private String bloomTime;
 	private String medicinalOrCulinaryUse;

@@ -3,11 +3,13 @@ package com.cg.onlineplantnursery.order.entity;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import com.cg.onlineplantnursery.planter.entity.Planter;
 @Entity
 public class Order {
+	@GeneratedValue
 	@Id
 	private Integer bookingOrderId;
 	private LocalDate orderDate;
@@ -15,6 +17,7 @@ public class Order {
 	private int quantity;
 	private double totalCost;
 	private Planter planters;
+	
 	public Integer getBookingOrderId() {
 		return bookingOrderId;
 	}
