@@ -3,7 +3,7 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cg.onlineplantnursery.customer.entity.Customer;
+import com.cg.onlineplantnursery.customer.entity.*;
 import com.cg.onlineplantnursery.customer.repository.ICustomerRepository;
 import com.cg.onlineplantnursery.customer.service.ICustomerService;
 
@@ -18,6 +18,31 @@ public class CustomerUI {
 	ICustomerRepository customerRepository;
 	
 	public void start(){
+		
+		Address address1= new Address();
+		Address address2= new Address();
+		Address address3= new Address();
+		
+		address1.setHouseNo("M8");
+		address1.setColony("Korattur");
+		address1.setCity("Chennai");
+		address1.setState("Tamil Nadu");
+		address1.setPincode(6998086);
+		
+		address2.setHouseNo("Y178");
+		address2.setColony("Anna nagar");
+		address2.setCity("Chennai");
+		address2.setState("Tamil Nadu");
+		address2.setPincode(69980342);
+		
+		address3.setHouseNo("BA3");
+		address3.setColony("Vadapalani");
+		address3.setCity("Chennai");
+		address3.setState("Tamil Nadu");
+		address3.setPincode(69982412); 
+		
+		
+		
 		System.out.println("adding Customer");
 		
 		Customer customer1 = new Customer();
@@ -29,6 +54,7 @@ public class CustomerUI {
 		customer1.setCustomerEmail("abeer@gmail.com");
 		customer1.setUsername("abeer100");
 		customer1.setPassword("abeer@100");
+		customer1.setAddress(address1);
 		
 		
 	
@@ -36,13 +62,14 @@ public class CustomerUI {
 		customer2.setCustomerEmail("abc102@gmail.com");
 		customer2.setUsername("abc102");
 		customer2.setPassword("abc@102");
+		customer2.setAddress(address2);
 		
 	
 		customer3.setCustomerName("saurabh");
 		customer3.setCustomerEmail("saurabh@gmail.com");
 		customer3.setUsername("saurabh.103");
 		customer3.setPassword("saurabh@103");
-		
+		customer3.setAddress(address3);
 		
 		customerService.addCustomer(customer1);
 		customerService.addCustomer(customer2);
@@ -77,8 +104,11 @@ public class CustomerUI {
 public void display(Customer customer) {
 	System.out.println("CustomerId: "+customer.getCustomerId()+"\ncustomer name: "+customer.getCustomerName()
 	+"\nCustomer Email: "+customer.getCustomerEmail()+"\nCustomer Username: "+customer.getUsername()
-	+"\nCustomer Password: "+customer.getPassword()
-	);
+	+"\nCustomer Password: "+customer.getPassword()+ "\nCustomer AddressId: "+ customer.getAddress().getAddressId()+"\nCustomer house no: "+ customer.getAddress().getHouseNo()
+	+"\nCustomer Colony: "+ customer.getAddress().getColony()+
+	"\nCustomer City: "+customer.getAddress().getCity()+
+	"\nCustomer State: "+ customer.getAddress().getState()+
+	"\nCustomer Pincode: "+ customer.getAddress().getPincode());
 }
 }
 
@@ -98,51 +128,4 @@ public void display(Customer customer) {
 
 
 
-/*package com.cg.onlineplantnursery.customer.ui;
 
-import com.cg.onlineplantnursery.customer.entity.*;
-import com.cg.onlineplantnursery.customer.service.ICustomerService;
-import com.cg.onlineplantnursery.customer.repository.ICustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-@Component
-public class CustomerUI {
-	@Autowired
-	ICustomerService service;
-	
-	@Autowired
-	ICustomerRepository repository;
-	
-	public void start() {
-		
-		Customer customer1=new Customer(); 
-		Customer customer2=new Customer(); 
-		
-		/*customer1.setCustomerName("Abeer");
-		customer1.setCustomerEmail("Abeer@gmail.com");
-		customer1.setUsername("Abeer123");
-		customer1.setPassword("flower");
-		
-		customer2.setCustomerName("Aahil");
-		customer2.setCustomerEmail("aahil@gmail.com");
-		customer2.setUsername("Aahil123");
-		customer2.setPassword("blahblah");
-		
-		
-		service.addCustomer(customer1);
-		service.addCustomer(customer2);
-		
-		System.out.println("customer by id");
-		Customer fetchedCustomer=service.viewCustomer(customer1.getCustomerId());
-		System.out.println("display fetched customer"+ customer1.getCustomerId());
-		display(fetchedCustomer);
-		
-		
-	}
-	
-	public void display(Customer customer) {
-		System.out.println("customer" +customer.getCustomerId());
-	}
-
-}*/
