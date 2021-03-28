@@ -14,12 +14,12 @@ import com.cg.onlineplantnursery.order.entity.Order;
 import com.cg.onlineplantnursery.order.repository.IOrderRepository;
 
 @Service
-public class IOrderServiceImpl implements IOrderService {
+public class OrderServiceImpl implements IOrderService {
 
 	@Autowired
 	IOrderRepository repository;
 	
-	//@Transactional
+	@Transactional
 	@Override
 	public Order addOrder(Order order) {
   
@@ -27,13 +27,15 @@ public class IOrderServiceImpl implements IOrderService {
     validateBookingId(order.getBookingOrderId());
     validateTransactionMode(order.getTransactionMode());
     validateQuantity(order.getQuantity());
-	return  repository.save(order);
+	return repository.save(order);
 
 	
 	}
 
+	@Transactional
 	@Override
 	public Order updateOrder(Order order) {
+		validateOrder(order);
 		Integer id=order.getBookingOrderId();
 		boolean exists= repository.existsById(id);
 		if(!exists) {
@@ -45,10 +47,13 @@ public class IOrderServiceImpl implements IOrderService {
 	
 	}
 
+	@Transactional
 	@Override
 	public Order deleteOrder(Order order) {
 		validateOrder(order);
-		boolean exists= repository.existsById(order.getBookingOrderId());
+		Integer id=order.getBookingOrderId();
+		validateBookingId(id);
+		boolean exists= repository.existsById(id);
 		if(!exists) {
 			throw new OrderUpdateException("Order id is not found for "+order.getBookingOrderId());
 		}
@@ -70,28 +75,28 @@ public class IOrderServiceImpl implements IOrderService {
 	@Override
 	public List<Order> viewAllOrders() {
 		
-		List<Order> orderList = repository.viewAllOrders();
+		List<Order> orderList = repository.findAll();
 		if (orderList.isEmpty()) {
-			return null;
+			throw new OrderIdNotFoundException("Orders not found");
 		}
 
 		return orderList;
 	}
 	
 	public void validateOrder(Order order) {
-		if (order== null) {
-			throw new OrderIdNotFoundException("Order cannot be null");
+		if (order == null) {
+			throw new OrderUpdateException("Order cannot be null");
 		}
 
 	}
-	public void validateBookingId(int bookingid) {
+	public void validateBookingId(Integer bookingid) {
 		if (bookingid<0) {
 			throw new OrderIdNotFoundException("Invalid OrderBookingID");
 		}
 		
 	}
 	public void validateTransactionMode(String TransactionMode) {
-		if (TransactionMode==null) {
+		if (TransactionMode.equals("")) {
 			throw new OrderIdNotFoundException("TransactionMode can't be null");
 		}
 	}

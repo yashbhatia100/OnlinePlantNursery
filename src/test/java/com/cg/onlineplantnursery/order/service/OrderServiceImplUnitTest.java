@@ -13,8 +13,8 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
 import org.mockito.InjectMocks;
@@ -22,17 +22,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.cg.onlineplantnursery.order.service.IOrderServiceImpl;
 
-import antlr.collections.List;
-
-import com.cg.onlineplantnursery.exceptions.OrderIdNotFoundException;
 import com.cg.onlineplantnursery.exceptions.OrderUpdateException;
 import com.cg.onlineplantnursery.order.entity.Order;
 import com.cg.onlineplantnursery.order.repository.IOrderRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class OrderServiceImplUnitTest {
+class OrderServiceImplUnitTest {
 	
 	@Mock
 	IOrderRepository repository;
@@ -40,27 +36,49 @@ public class OrderServiceImplUnitTest {
 
 	@Spy
 	@InjectMocks
-	IOrderServiceImpl service;
+	OrderServiceImpl service;
 	
 	/*
 	 * * Scenario if the order is null Test case for addOrder
 	 */
 	@Test
-	public void testAddOrder() {
-		Order order=null;
-		 Executable executable=()->service.validateOrder(order);
-		    Assertions.assertThrows(OrderUpdateException.class, executable);
-		    verify(repository,never()).save(order);
-		
-		
-		
+	void testAddOrder_1() {
+		Order order = mock(Order.class);
+		doThrow(OrderUpdateException.class).when(service).validateOrder(order);
+		Executable executable=()->service.addOrder(order);
+		Assertions.assertThrows(OrderUpdateException.class, executable);
+		verify(repository,never()).save(order);
 	}
+	
+	/*
+	 * * Scenario if the order is added
+	 */
+	@Test
+	void testAddOrder_2() {
+		Integer id=5;
+		String transactionMode="online";
+		int quantity=5;
+		Order order=Mockito.mock(Order.class);
+		Order saved = Mockito.mock(Order.class);
+		doNothing().when(service).validateOrder(order);
+		when(order.getBookingOrderId()).thenReturn(id);
+		when(order.getTransactionMode()).thenReturn(transactionMode);
+		when(order.getQuantity()).thenReturn(quantity);
+		doNothing().when(service).validateBookingId(id);
+		doNothing().when(service).validateTransactionMode(transactionMode);
+		doNothing().when(service).validateQuantity(quantity);
+		when(repository.save(order)).thenReturn(saved);
+		Order result = service.addOrder(order);
+		Assertions.assertSame(saved, result);
+		verify(repository).save(order);
+	}
+	
 	/*
 	 * Scenario Order is updated successfully Test case for update oder
 	 */
 	
 	@Test
-	public void testUpdateOrder_1() {
+	void testUpdateOrder_1() {
 	Integer id=97;
 	Order order=mock(Order.class);
 	when(order.getBookingOrderId()).thenReturn(id);
@@ -76,7 +94,7 @@ public class OrderServiceImplUnitTest {
 	 * Scenario updating order which is not in the database Test case for update
 		 */
 	@Test
-	public void testUpdateOrder_2() {
+	void testUpdateOrder_2() {
 	Integer id=97;
 	Order order=mock(Order.class);
 	when(order.getBookingOrderId()).thenReturn(id);
@@ -90,11 +108,12 @@ public class OrderServiceImplUnitTest {
 	 * Scenario view the Order by id test case for view Order
 	 */
 	@Test
-	void testViewOrder_1() {
+	public void testViewOrder_1() {
 		int id = 5;
+		doNothing().when(service).validateBookingId(id);
 		Order order=Mockito.mock(Order.class);
 		Optional<Order> optional = Optional.of(order);
-		when(repository.findById(5)).thenReturn(optional);
+		when(repository.findById(id)).thenReturn(optional);
 		Order result = service.viewOrder(id);
 		assertNotNull(result);
 		assertEquals(order, result);
@@ -103,10 +122,12 @@ public class OrderServiceImplUnitTest {
 	 * Scenario delete the Order test case for delete Order
 	 */
 	@Test
-	void testDeleteOrder_1() {
+	public void testDeleteOrder_1() {
 		int id=10;
 		Order order = Mockito.mock(Order.class);
-		doNothing().when(service).validateBookingId(id);
+		doNothing().when(service).validateOrder(order);
+		when(order.getBookingOrderId()).thenReturn(id);
+		when(repository.existsById(id)).thenReturn(true);
 		Order result = service.deleteOrder(order);
 		assertSame(order,result);
 		verify(repository).delete(order);
@@ -119,13 +140,15 @@ public class OrderServiceImplUnitTest {
 	 * Order
 	 */
 	@Test
-	void testDeleteOrder_2() {
+	public void testDeleteOrder_2() {
 		int id=10;
 		Order order = Mockito.mock(Order.class);
-		doThrow(OrderIdNotFoundException.class).when(service).validateBookingId(id);
-		
+		doNothing().when(service).validateOrder(order);
+		when(order.getBookingOrderId()).thenReturn(id);
+		doNothing().when(service).validateBookingId(id);
+		when(repository.existsById(id)).thenReturn(false);
 		Executable executable = () -> service.deleteOrder(order);
-		assertThrows(OrderIdNotFoundException.class, executable);
+		assertThrows(OrderUpdateException.class, executable);
 		verify(repository, never()).delete(order);
 
 	}
