@@ -9,9 +9,5 @@ import org.springframework.stereotype.Repository;
 
 public interface ICustomerRepository extends JpaRepository<Customer,Integer>
 {
-	//List<Customer> viewAllCustomers();
 	//boolean validateCustomer(String userName, String password);
-	/*boolean existsById(Integer id);
-	List<Customer> findAll();
-	Optional<Customer> findById(Integer id);*/
 }

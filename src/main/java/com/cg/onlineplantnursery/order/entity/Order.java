@@ -5,14 +5,15 @@ import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
-import javax.persistence.OneToMany;
 
 import javax.persistence.Table;
 
+import com.cg.onlineplantnursery.customer.entity.Customer;
 import com.cg.onlineplantnursery.planter.entity.Planter;
 
 @Entity
@@ -27,8 +28,11 @@ public class Order {
 	private int quantity;
 	private double totalCost;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	private Set<Planter> planters;
+	
+	@ManyToOne
+	private Customer customer;
 	
 	public Order() {
 		this.orderDate =  LocalDate.now();

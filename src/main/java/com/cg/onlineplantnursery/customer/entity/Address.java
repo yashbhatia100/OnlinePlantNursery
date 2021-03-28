@@ -17,16 +17,6 @@ public class Address {
 	public Address() {
 		
 	}
-	/*public Address(Integer addressId, String houseNo,String colony,String city,String state,int pincode ) {
-			this.addressId = addressId;
-			this.houseNo = houseNo;
-			this.colony = colony;
-			this.city = city;
-			this.state = state;
-			this.pincode = pincode;
-			
-		}*/
-
 
 		public Integer getAddressId() {
 			return addressId;
