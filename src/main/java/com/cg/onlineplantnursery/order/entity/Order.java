@@ -4,9 +4,12 @@ import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.cg.onlineplantnursery.planter.entity.Planter;
+
 @Entity
+@Table(name="order_details")
 public class Order {
 	@Id
 	private Integer bookingOrderId;
