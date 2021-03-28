@@ -1,18 +1,20 @@
 package com.cg.onlineplantnursery.order.entity;
 
 import java.time.LocalDate;
-
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import javax.persistence.Table;
 
+import com.cg.onlineplantnursery.customer.entity.Customer;
 import com.cg.onlineplantnursery.planter.entity.Planter;
 
 @Entity
@@ -27,9 +29,24 @@ public class Order {
 	private int quantity;
 	private double totalCost;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	private Set<Planter> planters;
+	@ManyToMany
+	private List<Planter> planters;
 	
+	@ManyToOne
+	private Customer customer;
+	
+	public List<Planter> getPlanters() {
+		return planters;
+	}
+	public void setPlanters(List<Planter> planters) {
+		this.planters = planters;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	public Order() {
 		this.orderDate =  LocalDate.now();
 	}
