@@ -1,8 +1,9 @@
 package com.cg.onlineplantnursery.planter.ui;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -79,15 +80,14 @@ public class PlanterConsoleUi {
 		plantService.addPlant(plant2);
 		plantService.addPlant(plant3);
 
-		List<Plant> plantsList1 = new ArrayList<>();
+		Set<Plant> plantsList1 = new HashSet<>();
 		plantsList1.add(plant1);
 		plantsList1.add(plant2);
-
-		List<Plant> plantsList2 = new ArrayList<>();
+		Set<Plant> plantsList2 = new HashSet<>();
 		plantsList2.add(plant2);
 		plantsList2.add(plant3);
 
-		List<Plant> plantsList3 = new ArrayList<>();
+		Set<Plant> plantsList3 = new HashSet<>();
 		plantsList3.add(plant1);
 		plantsList3.add(plant3);
 
@@ -132,15 +132,15 @@ public class PlanterConsoleUi {
 		seedService.addSeed(seed2);
 		seedService.addSeed(seed3);
 
-		List<Seed> SeedList1 = new ArrayList<>();
+		Set<Seed> SeedList1 = new HashSet<>();
 		SeedList1.add(seed1);
 		SeedList1.add(seed2);
 
-		List<Seed> SeedList2 = new ArrayList<>();
+		Set<Seed> SeedList2 = new HashSet<>();
 		SeedList2.add(seed2);
 		SeedList2.add(seed3);
 
-		List<Seed> SeedList3 = new ArrayList<>();
+		Set<Seed> SeedList3 = new HashSet<>();
 		SeedList3.add(seed1);
 		SeedList3.add(seed3);
 

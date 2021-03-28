@@ -1,22 +1,21 @@
 package com.cg.onlineplantnursery.planter.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.List;
+
 import com.cg.onlineplantnursery.plant.entity.Plant;
 import com.cg.onlineplantnursery.seed.entity.Seed;
-
 
 @Entity
 public class Planter {
 	@Id
 	@GeneratedValue
 	private Integer planterId;
-	
 
 	private float planterHeight;
 	private int planterCapacity;
@@ -25,12 +24,11 @@ public class Planter {
 	private String planterShape;
 	private int planterStock;
 	private int planterCost;
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 
-	 private List<Plant> plants;
-	@OneToMany
-	 private List<Seed> seeds;
-
+	private Set<Plant> plants;
+	@OneToMany(fetch = FetchType.EAGER)
+	private Set<Seed> seeds;
 
 	public Planter() {
 
@@ -40,19 +38,20 @@ public class Planter {
 		return planterId;
 	}
 
-	public List<Plant> getPlants() {
+	
+	public Set<Plant> getPlants() {
 		return plants;
 	}
 
-	public void setPlants(List<Plant> plants) {
+	public void setPlants(Set<Plant> plants) {
 		this.plants = plants;
 	}
 
-	public List<Seed> getSeeds() {
+	public Set<Seed> getSeeds() {
 		return seeds;
 	}
 
-	public void setSeeds(List<Seed> seeds) {
+	public void setSeeds(Set<Seed> seeds) {
 		this.seeds = seeds;
 	}
 
