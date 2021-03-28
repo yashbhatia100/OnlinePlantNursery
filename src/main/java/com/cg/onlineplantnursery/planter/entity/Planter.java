@@ -1,12 +1,12 @@
 package com.cg.onlineplantnursery.planter.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 import com.cg.onlineplantnursery.plant.entity.Plant;
 import com.cg.onlineplantnursery.seed.entity.Seed;
@@ -24,11 +24,11 @@ public class Planter {
 	private String planterShape;
 	private int planterStock;
 	private int planterCost;
-	@OneToMany(fetch = FetchType.EAGER)
 
-	private Set<Plant> plants;
-	@OneToMany(fetch = FetchType.EAGER)
-	private Set<Seed> seeds;
+	@ManyToMany
+	private List<Plant> plants;
+	@ManyToMany
+	private List<Seed> seeds;
 
 	public Planter() {
 
@@ -38,20 +38,19 @@ public class Planter {
 		return planterId;
 	}
 
-	
-	public Set<Plant> getPlants() {
+	public List<Plant> getPlants() {
 		return plants;
 	}
 
-	public void setPlants(Set<Plant> plants) {
+	public void setPlants(List<Plant> plants) {
 		this.plants = plants;
 	}
 
-	public Set<Seed> getSeeds() {
+	public List<Seed> getSeeds() {
 		return seeds;
 	}
 
-	public void setSeeds(Set<Seed> seeds) {
+	public void setSeeds(List<Seed> seeds) {
 		this.seeds = seeds;
 	}
 

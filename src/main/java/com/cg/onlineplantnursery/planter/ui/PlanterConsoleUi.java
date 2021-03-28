@@ -1,9 +1,8 @@
 package com.cg.onlineplantnursery.planter.ui;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,7 +41,7 @@ public class PlanterConsoleUi {
 
 		plant1.setPlantHeight(10);
 		plant1.setPlantSpread("50cm");
-		plant1.setCommonName("Sunflower");
+		plant1.setCommonName("Lily");
 		plant1.setBloomTime("2months");
 		plant1.setMedicinalOrCulinaryUse("Improves immunity");
 		plant1.setDifficultyLevel("Easy");
@@ -54,7 +53,7 @@ public class PlanterConsoleUi {
 
 		plant2.setPlantHeight(20);
 		plant2.setPlantSpread("40cm");
-		plant2.setCommonName("Rose");
+		plant2.setCommonName("Hibiscus");
 		plant2.setBloomTime("3months");
 		plant2.setMedicinalOrCulinaryUse("Improves taste");
 		plant2.setDifficultyLevel("Moderate");
@@ -66,7 +65,7 @@ public class PlanterConsoleUi {
 
 		plant3.setPlantHeight(1000);
 		plant3.setPlantSpread("10m");
-		plant3.setCommonName("Mango");
+		plant3.setCommonName("Jasmine");
 		plant3.setBloomTime("1year");
 		plant3.setMedicinalOrCulinaryUse("Used as fruit");
 		plant3.setDifficultyLevel("Difficult");
@@ -80,14 +79,14 @@ public class PlanterConsoleUi {
 		plantService.addPlant(plant2);
 		plantService.addPlant(plant3);
 
-		Set<Plant> plantsList1 = new HashSet<>();
+		List<Plant> plantsList1 = new ArrayList<>();
 		plantsList1.add(plant1);
 		plantsList1.add(plant2);
-		Set<Plant> plantsList2 = new HashSet<>();
+		List<Plant> plantsList2 = new ArrayList<>();
 		plantsList2.add(plant2);
 		plantsList2.add(plant3);
 
-		Set<Plant> plantsList3 = new HashSet<>();
+		List<Plant> plantsList3 = new ArrayList<>();
 		plantsList3.add(plant1);
 		plantsList3.add(plant3);
 
@@ -132,15 +131,15 @@ public class PlanterConsoleUi {
 		seedService.addSeed(seed2);
 		seedService.addSeed(seed3);
 
-		Set<Seed> SeedList1 = new HashSet<>();
+		List<Seed> SeedList1 = new ArrayList<>();
 		SeedList1.add(seed1);
 		SeedList1.add(seed2);
 
-		Set<Seed> SeedList2 = new HashSet<>();
+		List<Seed> SeedList2 = new ArrayList<>();
 		SeedList2.add(seed2);
 		SeedList2.add(seed3);
 
-		Set<Seed> SeedList3 = new HashSet<>();
+		List<Seed> SeedList3 = new ArrayList<>();
 		SeedList3.add(seed1);
 		SeedList3.add(seed3);
 
