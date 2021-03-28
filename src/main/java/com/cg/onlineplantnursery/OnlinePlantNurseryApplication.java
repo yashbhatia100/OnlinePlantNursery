@@ -19,7 +19,7 @@ public class OnlinePlantNurseryApplication {
 
 
 		
-
+/*
 		PlantUI app1 = context.getBean(PlantUI.class);
 		app1.start();
 
@@ -32,7 +32,7 @@ public class OnlinePlantNurseryApplication {
 		
 		SeedUI app4 = context.getBean(SeedUI.class);
 		app4.start();
-		
+		*/
 
 		
 		OrderUi app5=context.getBean(OrderUi.class);
