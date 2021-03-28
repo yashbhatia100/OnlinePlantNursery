@@ -15,19 +15,7 @@ import com.cg.onlineplantnursery.seed.ui.SeedUI;
 public class OnlinePlantNurseryApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(OnlinePlantNurseryApplication.class, args);
-<<<<<<< HEAD
-<<<<<<< HEAD
-		
-=======
-/*
->>>>>>> order
-=======
 
-
-
-		
-/*
->>>>>>> c826249be67ea28ac869921de46dbabfc770586f
 		PlantUI app1 = context.getBean(PlantUI.class);
 		app1.start();
 
@@ -40,23 +28,9 @@ public class OnlinePlantNurseryApplication {
 		
 		SeedUI app4 = context.getBean(SeedUI.class);
 		app4.start();
-<<<<<<< HEAD
-		
-<<<<<<< HEAD
-=======
-=======
-		*/
-
->>>>>>> c826249be67ea28ac869921de46dbabfc770586f
-		
+	
 		OrderUi app5=context.getBean(OrderUi.class);
 		app5.start();
-		
-<<<<<<< HEAD
->>>>>>> order
-=======
-		
 
->>>>>>> c826249be67ea28ac869921de46dbabfc770586f
 	}
 }
