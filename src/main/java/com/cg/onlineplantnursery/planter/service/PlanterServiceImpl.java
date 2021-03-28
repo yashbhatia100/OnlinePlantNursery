@@ -37,12 +37,14 @@ public class PlanterServiceImpl implements IPlanterService {
 		return saved;
 	}
 
+	@Transactional
 	@Override
 	public Planter updatePlanter(Planter planter) {
 		validatePlanterById(planter);
 		return planterRepository.save(planter);
 	}
 
+	@Transactional
 	@Override
 	public Planter deletePlanter(Planter planter) {
 		validatePlanterById(planter);
