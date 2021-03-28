@@ -39,7 +39,8 @@ public class CustomerUI {
 		address3.setColony("Vadapalani");
 		address3.setCity("Chennai");
 		address3.setState("Tamil Nadu");
-		address3.setPincode(69982412);
+		address3.setPincode(69982412); 
+		
 		
 		
 		System.out.println("adding Customer");
@@ -103,8 +104,11 @@ public class CustomerUI {
 public void display(Customer customer) {
 	System.out.println("CustomerId: "+customer.getCustomerId()+"\ncustomer name: "+customer.getCustomerName()
 	+"\nCustomer Email: "+customer.getCustomerEmail()+"\nCustomer Username: "+customer.getUsername()
-	+"\nCustomer Password: "+customer.getPassword()
-	);
+	+"\nCustomer Password: "+customer.getPassword()+ "\nCustomer AddressId: "+ customer.getAddress().getAddressId()+"\nCustomer house no: "+ customer.getAddress().getHouseNo()
+	+"\nCustomer Colony: "+ customer.getAddress().getColony()+
+	"\nCustomer City: "+customer.getAddress().getCity()+
+	"\nCustomer State: "+ customer.getAddress().getState()+
+	"\nCustomer Pincode: "+ customer.getAddress().getPincode());
 }
 }
 
@@ -124,51 +128,4 @@ public void display(Customer customer) {
 
 
 
-/*package com.cg.onlineplantnursery.customer.ui;
 
-import com.cg.onlineplantnursery.customer.entity.*;
-import com.cg.onlineplantnursery.customer.service.ICustomerService;
-import com.cg.onlineplantnursery.customer.repository.ICustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-@Component
-public class CustomerUI {
-	@Autowired
-	ICustomerService service;
-	
-	@Autowired
-	ICustomerRepository repository;
-	
-	public void start() {
-		
-		Customer customer1=new Customer(); 
-		Customer customer2=new Customer(); 
-		
-		/*customer1.setCustomerName("Abeer");
-		customer1.setCustomerEmail("Abeer@gmail.com");
-		customer1.setUsername("Abeer123");
-		customer1.setPassword("flower");
-		
-		customer2.setCustomerName("Aahil");
-		customer2.setCustomerEmail("aahil@gmail.com");
-		customer2.setUsername("Aahil123");
-		customer2.setPassword("blahblah");
-		
-		
-		service.addCustomer(customer1);
-		service.addCustomer(customer2);
-		
-		System.out.println("customer by id");
-		Customer fetchedCustomer=service.viewCustomer(customer1.getCustomerId());
-		System.out.println("display fetched customer"+ customer1.getCustomerId());
-		display(fetchedCustomer);
-		
-		
-	}
-	
-	public void display(Customer customer) {
-		System.out.println("customer" +customer.getCustomerId());
-	}
-
-}*/

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cg.onlineplantnursery.customer.repository.IAddressRepository;
 import com.cg.onlineplantnursery.customer.repository.ICustomerRepository;
 import com.cg.onlineplantnursery.customer.entity.Customer;
 
@@ -18,11 +19,15 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
 	private ICustomerRepository repository;
 	
+	@Autowired
+	private IAddressRepository addressRepository;
+	
     @Transactional
 	@Override
 	public Customer addCustomer(Customer customer){
 		
 		validateCustomer(customer);
+		addressRepository.save(customer.getAddress());
 		Customer saved = repository.save(customer);
 		return saved;
 		
