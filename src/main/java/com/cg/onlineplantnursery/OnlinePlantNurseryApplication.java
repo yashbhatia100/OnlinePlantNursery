@@ -10,13 +10,19 @@ import com.cg.onlineplantnursery.plant.ui.PlantUI;
 import com.cg.onlineplantnursery.planter.ui.PlanterConsoleUi;
 import com.cg.onlineplantnursery.seed.ui.SeedUI;
 
+
 @SpringBootApplication
 public class OnlinePlantNurseryApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(OnlinePlantNurseryApplication.class, args);
-/*
+
+
+
+		
+
 		PlantUI app1 = context.getBean(PlantUI.class);
 		app1.start();
+
 		
 		PlanterConsoleUi app2 = context.getBean(PlanterConsoleUi.class);
 		app2.start();
@@ -27,11 +33,12 @@ public class OnlinePlantNurseryApplication {
 		SeedUI app4 = context.getBean(SeedUI.class);
 		app4.start();
 		
+
 		
 		OrderUi app5=context.getBean(OrderUi.class);
 		app5.start();
-		*/
 		
-	}
+		
 
+	}
 }

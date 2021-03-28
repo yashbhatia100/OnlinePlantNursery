@@ -25,6 +25,10 @@ public class CustomerServiceImplTest {
 	@Mock
 	private ICustomerRepository repository;
 	
+	@Mock
+	private IAddressRepository addressRepository;
+	
+	
 	@Spy
 	@InjectMocks
 	CustomerServiceImpl service;	

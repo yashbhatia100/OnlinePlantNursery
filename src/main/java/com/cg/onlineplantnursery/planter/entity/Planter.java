@@ -3,9 +3,10 @@ package com.cg.onlineplantnursery.planter.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 import com.cg.onlineplantnursery.plant.entity.Plant;
 import com.cg.onlineplantnursery.seed.entity.Seed;
@@ -15,6 +16,7 @@ public class Planter {
 	@Id
 	@GeneratedValue
 	private Integer planterId;
+
 	private float planterHeight;
 	private int planterCapacity;
 	private int drainageHoles;
@@ -22,10 +24,11 @@ public class Planter {
 	private String planterShape;
 	private int planterStock;
 	private int planterCost;
-	@OneToMany
-	 private List<Plant> plants;
-	@OneToMany
-	 private List<Seed> seeds;
+
+	@ManyToMany
+	private List<Plant> plants;
+	@ManyToMany
+	private List<Seed> seeds;
 
 	public Planter() {
 
