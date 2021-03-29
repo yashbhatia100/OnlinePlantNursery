@@ -39,12 +39,8 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerUtil util;
 	
-	@Autowired
-	private ICustomerRepository customerRepository;
-	
-	
 	@GetMapping(value= "/viewCustomer/{id}")
-	public CustomerDetails fetchCustomerDetails(@PathVariable Integer customerId) {
+	public CustomerDetails fetchCustomerDetails(@PathVariable("id") Integer customerId) {
 	    //Customer customer= new Customer();
 		//customerService.viewCustomer(id);
 		Customer customer = customerService.viewCustomer(customerId);
@@ -83,7 +79,6 @@ public class CustomerRestController {
 	 public CustomerDetails changeName(@RequestBody ChangeCustomerNameRequest requestData) {
 		    Integer customerId=requestData.getId();
 		    Customer customer=customerService.viewCustomer(customerId);
-		    customer.setCustomerId(requestData.getId());
 		    customer.setCustomerName(requestData.getCustomerName());
 		    customerService.updateCustomer(customer);
 	        CustomerDetails details=util.toDetails(customer);
@@ -96,7 +91,6 @@ public class CustomerRestController {
 	 public CustomerDetails changeEmail(@RequestBody ChangeCustomerEmailRequest requestData) {
 		    Integer id=requestData.getId();
 		    Customer customer=customerService.viewCustomer(id);
-		    customer.setCustomerId(requestData.getId());
 		    customer.setCustomerEmail(requestData.getCustomerEmail());
 		    customerService.updateCustomer(customer);
 	        CustomerDetails details=util.toDetails(customer);
@@ -106,23 +100,20 @@ public class CustomerRestController {
 	 @ResponseStatus(HttpStatus.GONE)
 	 @DeleteMapping("/delete")
 	 public String deleteCustomer(@RequestBody DeleteCustomerRequest requestData){
-		// Customer customer = customerService.viewCustomer(requestData.getId());
 		 Integer id=requestData.getId();
 		 Customer customer = customerService.viewCustomer(id);
-		 
 		 customerService.deleteCustomer(customer);
-		 //CustomerDetails details = util.toDetails(customer);
-		 return "Customer with id" + id+ "is deleted";
+		 return "Customer with id" + id + " is deleted";
 	    }
-}
 
-	/* @GetMapping("/allCustomerDetails")
+
+	 @GetMapping("/allCustomerDetails")
 	 public List<CustomerDetails> allCustomerDetails(){
 		 
-		 List<Customer> list = customerService.ViewAllCustomer(id);
-	        List<CustomerDetails>details=util.toDetails(list);
+		 List<Customer> list = customerService.viewAllCustomers();
+	        List<CustomerDetails>details=util.toDetailList(list);
 	        return details ;
 		 
-	 }*/
+	 }
 
-
+}

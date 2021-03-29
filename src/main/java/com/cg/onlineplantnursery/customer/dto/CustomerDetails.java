@@ -7,7 +7,6 @@ public class CustomerDetails {
 	private String customerName;
 	private String customerEmail;
 	private String username;
-	private String password;
 	private Integer addressId;
 	private String houseNo;
 	private String colony;
@@ -57,15 +56,7 @@ public class CustomerDetails {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
-
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
+	
 	public Integer getAddressId() {
 		return addressId;
 	}

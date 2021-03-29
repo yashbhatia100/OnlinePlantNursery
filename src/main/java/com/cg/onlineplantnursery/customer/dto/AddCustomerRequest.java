@@ -5,7 +5,6 @@ public class AddCustomerRequest {
 	private String customerEmail;
 	private String username;
 	private String password;
-	private Integer addressId;
 	private String houseNo;
 	private String colony;
 	private String city;
@@ -51,14 +50,6 @@ public class AddCustomerRequest {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Integer getAddressId() {
-		return addressId;
-	}
-
-	public void setAddressId(Integer addressId) {
-		this.addressId = addressId;
 	}
 
 	public String getHouseNo() {
