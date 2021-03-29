@@ -1,5 +1,8 @@
 package com.cg.onlineplantnursery.planter.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.cg.onlineplantnursery.planter.dto.PlanterDetails;
@@ -22,4 +25,15 @@ public class PlanterUtil {
 
 	}
 
+	public List<PlanterDetails> toDetailsList(List<Planter>planters){
+		List<PlanterDetails>desired=new ArrayList<>();
+		for(Planter planter:planters) {
+			PlanterDetails details=toDetails(planter);
+		desired.add(details);
+		}
+			
+		return desired;
+		
+	}
+	
 }

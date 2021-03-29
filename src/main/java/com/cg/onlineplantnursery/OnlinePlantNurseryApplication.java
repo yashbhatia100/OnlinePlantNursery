@@ -17,7 +17,6 @@ public class OnlinePlantNurseryApplication {
 		
 		PlantUI app1 = context.getBean(PlantUI.class);
 		app1.start();
-
 		
 		PlanterConsoleUi app2 = context.getBean(PlanterConsoleUi.class);
 		app2.start();
