@@ -94,7 +94,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	
 	public void validateCustomerId(int id) {
 		if(id<0) {
-			throw new InvalidIdException("Invalid Customer ID passed");
+			throw new InvalidCustomerIdException("Invalid Customer ID passed");
 		}
 	}
 
