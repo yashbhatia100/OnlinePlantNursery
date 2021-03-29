@@ -1,22 +1,34 @@
 package com.cg.onlineplantnursery.planter.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlineplantnursery.planter.dto.AddPlanterRequest;
+import com.cg.onlineplantnursery.planter.dto.DeletePlanterRequest;
 import com.cg.onlineplantnursery.planter.dto.PlanterDetails;
+import com.cg.onlineplantnursery.planter.dto.UpdatePlanterCapacityRequest;
+import com.cg.onlineplantnursery.planter.dto.UpdatePlanterColorRequest;
+import com.cg.onlineplantnursery.planter.dto.UpdatePlanterCostRequest;
+import com.cg.onlineplantnursery.planter.dto.UpdatePlanterDrainageHolesRequest;
+import com.cg.onlineplantnursery.planter.dto.UpdatePlanterHeightRequest;
+import com.cg.onlineplantnursery.planter.dto.UpdatePlanterShapeRequest;
+import com.cg.onlineplantnursery.planter.dto.UpdatePlanterStockRequest;
 import com.cg.onlineplantnursery.planter.entity.Planter;
+import com.cg.onlineplantnursery.planter.repository.IPlanterRepository;
 import com.cg.onlineplantnursery.planter.service.IPlanterService;
 import com.cg.onlineplantnursery.planter.util.PlanterUtil;
 
@@ -29,6 +41,9 @@ public class PlanterRestController {
 
 	@Autowired
 	private PlanterUtil util;
+
+	@Autowired
+	private IPlanterRepository planterRepository;
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/add")
@@ -70,14 +85,79 @@ public class PlanterRestController {
 		return desired;
 
 	}
-	
-	@GetMapping("/viewAllByplanterCost")
-	public List<PlanterDetails> findAllPlannterByCost(@PathVariable("minCost") int minCost,@PathVariable("maxCost") int maxCost) {
+
+	@GetMapping("/viewAllByplanterCost/{minCost}/{maxCost}")
+	public List<PlanterDetails> findAllPlannterByCost(@PathVariable("minCost") int minCost,
+			@PathVariable("maxCost") int maxCost) {
 
 		List<Planter> plantersList = planterService.viewAllPlanters(minCost, maxCost);
 		List<PlanterDetails> desired = util.toDetailsList(plantersList);
 		return desired;
 
+	}
+
+	@DeleteMapping("/Delete")
+	public String delete(@RequestBody DeletePlanterRequest requestData) {
+		Planter planter=planterService.viewPlanter(requestData.getPlanterId());
+		planterService.deletePlanter(planter);
+		return "planter is deleted for the " + requestData.getPlanterId();
+
+	}
+
+	@PutMapping("/UpdatePlanterHeight")
+	public PlanterDetails updatePlanterHeight(@RequestBody UpdatePlanterHeightRequest requestData) {
+		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
+		planter.setPlanterHeight(requestData.getPlanterHeight());
+		planterService.updatePlanter(planter);
+		return util.toDetails(planter);
+	}
+
+	@PutMapping("/UpdatePlanterCapacity")
+	public PlanterDetails updatePlanterCapacity(@RequestBody UpdatePlanterCapacityRequest requestData) {
+		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
+		planter.setPlanterCapacity(requestData.getPlanterCapacity());
+		planterService.updatePlanter(planter);
+		return util.toDetails(planter);
+	}
+
+	@PutMapping("/UpdatePlanterDrainageHoles")
+	public PlanterDetails updateDrainageHoles(@RequestBody UpdatePlanterDrainageHolesRequest requestData) {
+		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
+		planter.setDrainageHoles(requestData.getDrainageHoles());
+		planterService.updatePlanter(planter);
+		return util.toDetails(planter);
+	}
+
+	@PutMapping("/UpdatePlanterColor")
+	public PlanterDetails updatePlanterColor(@RequestBody UpdatePlanterColorRequest requestData) {
+		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
+		planter.setPlanterColor(requestData.getPlanterColor());
+		planterService.updatePlanter(planter);
+		return util.toDetails(planter);
+	}
+
+	@PutMapping("/UpdatePlanterShape")
+	public PlanterDetails updatePlanterShape(@RequestBody UpdatePlanterShapeRequest requestData) {
+		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
+		planter.setPlanterShape(requestData.getPlanterShape());
+		planterService.updatePlanter(planter);
+		return util.toDetails(planter);
+	}
+
+	@PutMapping("/UpdatePlanterStock")
+	public PlanterDetails updatePlanterStock(@RequestBody UpdatePlanterStockRequest requestData) {
+		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
+		planter.setPlanterStock(requestData.getPlanterStock());
+		planterService.updatePlanter(planter);
+		return util.toDetails(planter);
+	}
+
+	@PutMapping("/UpdatePlanterCost")
+	public PlanterDetails updatePlanterCost(@RequestBody UpdatePlanterCostRequest requestData) {
+		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
+		planter.setPlanterCost(requestData.getPlanterCost());
+		planterService.updatePlanter(planter);
+		return util.toDetails(planter);
 	}
 
 }

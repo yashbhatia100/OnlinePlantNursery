@@ -24,7 +24,7 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.cg.onlineplantnursery.exceptions.AddPlanterException;
-import com.cg.onlineplantnursery.exceptions.InvalidDrainageHolesException;
+import com.cg.onlineplantnursery.exceptions.InvalidPlanterDrainageHolesException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterCapacityException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterColorException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterCostException;
@@ -112,9 +112,9 @@ class PlanterServiceImplUnitTest {
 	@Test
 	void testValidatePlanter_3() {
 		Planter planter = Mockito.mock(Planter.class);
-		doThrow(InvalidDrainageHolesException.class).when(planterService).validatePlanter(planter);
+		doThrow(InvalidPlanterDrainageHolesException.class).when(planterService).validatePlanter(planter);
 		Executable executable = () -> planterService.addPlanter(planter);
-		assertThrows(InvalidDrainageHolesException.class, executable);
+		assertThrows(InvalidPlanterDrainageHolesException.class, executable);
 		verify(planterRepository, never()).save(planter);
 
 	}

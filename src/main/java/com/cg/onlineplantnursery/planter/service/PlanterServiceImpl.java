@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.onlineplantnursery.exceptions.AddPlanterException;
-import com.cg.onlineplantnursery.exceptions.InvalidDrainageHolesException;
+import com.cg.onlineplantnursery.exceptions.InvalidPlanterDrainageHolesException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterCapacityException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterColorException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterCostException;
@@ -116,7 +116,7 @@ public class PlanterServiceImpl implements IPlanterService {
 		}
 
 		if (planter.getDrainageHoles() <= 0) {
-			throw new InvalidDrainageHolesException("Planter Drainage cannot be null");
+			throw new InvalidPlanterDrainageHolesException("Planter Drainage cannot be null");
 		}
 
 		if (planter.getPlanterColor() <= 0) {
