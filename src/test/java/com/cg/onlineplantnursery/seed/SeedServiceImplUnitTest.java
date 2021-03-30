@@ -30,8 +30,8 @@ public class SeedServiceImplUnitTest {
 	SeedServiceImpl service;
 
 	/*
-	 * Test : addSeed  
-	 * success scenario: seed added
+	 * Test : addSeed(seed)
+	 * Success scenario: seed added
 	 */
 	@Test
 	public void testAddSeed_1() {
@@ -47,7 +47,7 @@ public class SeedServiceImplUnitTest {
 	}
 
 	/*
-	 * Test : addSeed 
+	 * Test : addSeed(seed)
 	 * Scenario: seed is null
 	 */
 	@Test
@@ -63,8 +63,8 @@ public class SeedServiceImplUnitTest {
 	}
 
 	/*
-	 * Test : updateSeed  
-	 * success scenario: seed is updated
+	 * Test : updateSeed(seed)
+	 * Success scenario: seed is updated
 	 */
 	@Test
 	public void testUpdateSeed_1() {
@@ -79,7 +79,7 @@ public class SeedServiceImplUnitTest {
 	}
 
 	/*
-	 * Test : updateSeed 
+	 * Test : updateSeed(seed) 
 	 * Scenario: seed id does not exist
 	 */
 	@Test
@@ -93,8 +93,8 @@ public class SeedServiceImplUnitTest {
 	}
 
 	/*
-	 * Test : deleteSeed 
-	 * Scenario: seed exists is deleted
+	 * Test : deleteSeed(seed)
+	 * Success scenario: seed exists is deleted
 	 */
 	@Test
 	void testDeleteSeed_1() {
@@ -106,7 +106,7 @@ public class SeedServiceImplUnitTest {
 	}
 
 	/*
-	 * Test : deleteSeed 
+	 * Test : deleteSeed(seed)
 	 * Scenario: seed id not found to delete seed
 	 */
 	@Test
@@ -120,7 +120,7 @@ public class SeedServiceImplUnitTest {
 
 	/*
 	 * Test: viewSeed(int seedId) 
-	 * Scenario: seed exists and viewed
+	 * Success scenario: seed exists and viewed
 	 */
 	@Test
 	void testViewById_1() {
@@ -135,10 +135,10 @@ public class SeedServiceImplUnitTest {
 		Assertions.assertSame(viewseed, result);
 		Mockito.verify(repository).findById(id);
 	}
-	
+
 	/*
 	 * Test: viewSeed(int seedId) 
-	 * Scenario: seed with given id does not exist 
+	 * Scenario: seed with given id does not exist
 	 */
 	@Test
 	void testViewById_2() {
@@ -147,15 +147,15 @@ public class SeedServiceImplUnitTest {
 		Mockito.doNothing().when(service).validateSeedId(id);
 		Optional<Seed> optional = Optional.empty();
 		Mockito.when(repository.findById(id)).thenReturn(optional);
-		
+
 		Executable executable = () -> service.viewSeed(id);
 		Assertions.assertThrows(SeedNotFoundException.class, executable);
 		Mockito.verify(repository).findById(id);
 	}
-	
+
 	/*
 	 * Test: viewSeed(int seedId) 
-	 * Scenario: invalid id found 
+	 * Scenario: invalid id found
 	 */
 	@Test
 	void testViewById_3() {
@@ -165,10 +165,10 @@ public class SeedServiceImplUnitTest {
 		Assertions.assertThrows(InvalidSeedIdException.class, executable);
 		Mockito.verify(repository, Mockito.never()).findById(id);
 	}
-	
+
 	/*
 	 * Test: viewSeed(String commonName) 
-	 * Scenario: seed exists and viewed 
+	 * Success scenario: seed exists and viewed
 	 */
 	@Test
 	void testViewByCommonName_1() {
@@ -184,10 +184,10 @@ public class SeedServiceImplUnitTest {
 		Mockito.verify(repository).existsByCommonName(commonName);
 		Mockito.verify(repository).findSeedByCommonName(commonName);
 	}
-	
+
 	/*
 	 * Test: viewSeed(String commonName) 
-	 * Scenario: common name of seed does not exist 
+	 * Scenario: common name of seed does not exist
 	 */
 	@Test
 	void testViewByCommonName_2() {
@@ -200,7 +200,7 @@ public class SeedServiceImplUnitTest {
 		Mockito.verify(repository).existsByCommonName(commonName);
 		Mockito.verify(repository, Mockito.never()).findSeedByCommonName(commonName);
 	}
-	
+
 	/*
 	 * Test: viewSeed(String commonName) 
 	 * Scenario: commonName of seed is null
@@ -216,8 +216,8 @@ public class SeedServiceImplUnitTest {
 	}
 
 	/*
-	 * Test : viewAllSeed()
-	 * success scenario: all seeds are viewed
+	 * Test : viewAllSeed() 
+	 * Success scenario: all seeds are viewed
 	 */
 	@Test
 	public void testViewAllSeeds_1() {
@@ -231,8 +231,8 @@ public class SeedServiceImplUnitTest {
 	}
 
 	/*
-	 * Test : viewAllSeed()
-	 * scenario: seedList does not exist
+	 * Test : viewAllSeed() 
+	 * Scenario: seedList does not exist
 	 */
 	@Test
 	public void testViewAllSeeds_2() {
@@ -244,39 +244,39 @@ public class SeedServiceImplUnitTest {
 		Mockito.verify(repository).findAll();
 	}
 
-	/* 
+	/*
 	 * Test: viewAllSeed(String typeOfSeed) 
-	 * success scenario: all seeds of typeOfSeed viewed
+	 * Success scenario: all seeds of typeOfSeeds viewed
 	 */
 	@Test
 	public void testViewAllSeedsByType_1() {
-		String typeOfSeed = "Pineapple";
-		Mockito.doNothing().when(service).validateSeedByType(typeOfSeed);
+		String typeOfSeeds = "Pineapple";
+		Mockito.doNothing().when(service).validateSeedByType(typeOfSeeds);
 		List<Seed> seedList = Mockito.mock(List.class);
-		Mockito.when(repository.findAllByTypeOfSeeds(typeOfSeed)).thenReturn(seedList);
+		Mockito.when(repository.findAllByTypeOfSeeds(typeOfSeeds)).thenReturn(seedList);
 		Mockito.when(seedList.isEmpty()).thenReturn(false);
-		List<Seed> result = service.viewAllSeeds(typeOfSeed);
+		List<Seed> result = service.viewAllSeeds(typeOfSeeds);
 		Assertions.assertNotNull(result);
 		Assertions.assertSame(seedList, result);
-		Mockito.verify(repository).findAllByTypeOfSeeds(typeOfSeed);
+		Mockito.verify(repository).findAllByTypeOfSeeds(typeOfSeeds);
 	}
 
 	/*
 	 * Test: viewAllSeed(String typeOfSeed) 
-	 * scenario: when seedList is empty
+	 * Scenario: when seedList is empty
 	 */
 	@Test
 	public void testViewAllBySeedsType_2() {
-		String typeOfSeed = "apple";
-		Mockito.doNothing().when(service).validateSeedByType(typeOfSeed);
+		String typeOfSeeds = "apple";
+		Mockito.doNothing().when(service).validateSeedByType(typeOfSeeds);
 		List<Seed> seedList = Mockito.mock(List.class);
-		Mockito.when(repository.findAllByTypeOfSeeds(typeOfSeed)).thenReturn(seedList);
+		Mockito.when(repository.findAllByTypeOfSeeds(typeOfSeeds)).thenReturn(seedList);
 		Mockito.when(seedList.isEmpty()).thenReturn(true);
-		Executable executable = () -> service.viewAllSeeds(typeOfSeed);
+		Executable executable = () -> service.viewAllSeeds(typeOfSeeds);
 		Assertions.assertThrows(SeedNotFoundException.class, executable);
-		Mockito.verify(repository).findAllByTypeOfSeeds(typeOfSeed);
+		Mockito.verify(repository).findAllByTypeOfSeeds(typeOfSeeds);
 	}
-	
+
 	/*
 	 * Test: viewAllSeed(String typeOfSeed) 
 	 * Scenario: typeOfSeed is null
@@ -289,22 +289,18 @@ public class SeedServiceImplUnitTest {
 		Assertions.assertThrows(InvalidSeedTypeException.class, executable);
 		Mockito.verify(repository, Mockito.never()).findAllByTypeOfSeeds(typeOfSeed);
 	}
-	
+
 	/*
 	 * Test: validateSeed(Seed seed) 
 	 * Scenario: SeedAddException is thrown
 	 */
 	@Test
-	void testValidateSeed() {
+	void testValidateSeed_1() {
 		Seed seed = null;
 		Executable executable = () -> service.validateSeed(seed);
 		Assertions.assertThrows(SeedAddException.class, executable);
 	}
-
-	/*
-	 * Test: validateSeedById(Seed seed) 
-	 * Scenario: SeedNotFoundException is thrown
-	 */
+	
 	@Test
 	void testValidateSeedById() {
 		Integer id = 1;
@@ -315,7 +311,7 @@ public class SeedServiceImplUnitTest {
 		Assertions.assertThrows(SeedNotFoundException.class, executable);
 		Mockito.verify(repository).existsById(id);
 	}
-	
+
 	/*
 	 * Test: validateSeedId(Integer id) 
 	 * Scenario: InvalidSeedIdException is thrown
@@ -328,8 +324,8 @@ public class SeedServiceImplUnitTest {
 	}
 	
 	/*
-	 * Test: validateCommonName(String commonName)
-	 * Scenario: InvalidSeedNameException is thrown
+	 * Test: validateCommonName(String commonName) 
+	 * Scenario:InvalidSeedNameException is thrown
 	 */
 	@Test
 	void testValidateCommonName() {
@@ -339,8 +335,8 @@ public class SeedServiceImplUnitTest {
 	}
 
 	/*
-	 * Test : validateSeedByType(String typeOfSeed)
-	 * Scenario: InvalidSeedTypeException is thrown
+	 * Test : validateSeedByType(String typeOfSeed) 
+	 * Scenario:InvalidSeedTypeException is thrown
 	 */
 	@Test
 	void testValidateSeedByType() {

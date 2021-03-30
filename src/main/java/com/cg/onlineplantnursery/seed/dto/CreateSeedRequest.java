@@ -1,15 +1,6 @@
-package com.cg.onlineplantnursery.seed.entity;
+package com.cg.onlineplantnursery.seed.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
-public class Seed {
-	@GeneratedValue
-	@Id
-	private Integer seedId;
-
+public class CreateSeedRequest {
 	private String commonName;
 	private String bloomTime;
 	private String watering;
@@ -20,14 +11,6 @@ public class Seed {
 	private Integer seedsStock;
 	private double seedsCost;
 	private Integer seedsPerPacket;
-
-	public Integer getSeedId() {
-		return seedId;
-	}
-
-	public void setSeedId(Integer seedId) {
-		this.seedId = seedId;
-	}
 
 	public String getCommonName() {
 		return commonName;
@@ -107,31 +90,6 @@ public class Seed {
 
 	public void setSeedsPerPacket(Integer seedsPerPacket) {
 		this.seedsPerPacket = seedsPerPacket;
-	}
-
-	@Override
-	public String toString() {
-		return "Seed [seedId=" + seedId + ", commonName=" + commonName + ", bloomTime=" + bloomTime + ", watering="
-				+ watering + ", difficultyLevel=" + difficultyLevel + ", temparature=" + temparature + ", typeOfSeeds="
-				+ typeOfSeeds + ", seedsDescription=" + seedsDescription + ", seedsStock=" + seedsStock + ", seedsCost="
-				+ seedsCost + ", seedsPerPacket=" + seedsPerPacket + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return seedId;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null || !(obj instanceof Seed)) {
-			return false;
-		}
-		Seed that = (Seed) obj;
-		return this.seedId == that.seedId;
 	}
 
 }

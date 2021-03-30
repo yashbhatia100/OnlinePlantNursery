@@ -1,4 +1,5 @@
 package com.cg.onlineplantnursery.seed.service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +17,9 @@ public class SeedServiceImpl implements ISeedService {
 	@Autowired
 	private ISeedRepository repository;
 
-	// Add seed
+	/*
+	 * add seed object
+	 */
 	@Transactional
 	@Override
 	public Seed addSeed(Seed seed) {
@@ -26,7 +29,9 @@ public class SeedServiceImpl implements ISeedService {
 
 	}
 
-	// Update seed by id
+	/*
+	 * update seed object
+	 */
 	@Transactional
 	@Override
 	public Seed updateSeed(Seed seed) {
@@ -35,7 +40,10 @@ public class SeedServiceImpl implements ISeedService {
 		return seed1;
 
 	}
-	// Delete seed by id
+
+	/*
+	 * delete seed object
+	 */
 	@Transactional
 	@Override
 	public Seed deleteSeed(Seed seed) {
@@ -43,28 +51,36 @@ public class SeedServiceImpl implements ISeedService {
 		repository.delete(seed);
 		return seed;
 	}
-	// View seed
+
+	/*
+	 * view seed object by seedId
+	 */
 	@Override
 	public Seed viewSeed(int seedId) {
 		validateSeedId(seedId);
 		Optional<Seed> optional = repository.findById(seedId);
-		if(!optional.isPresent()) {
+		if (!optional.isPresent()) {
 			throw new SeedNotFoundException("Seed does not exist");
 		}
-		return optional.get();		
+		return optional.get();
 	}
-	// View seed By commonName
+
+	/*
+	 * view seed object by commonName
+	 */
 	@Override
 	public Seed viewSeed(String commonName) {
 		validateCommonName(commonName);
 		boolean exists = repository.existsByCommonName(commonName);
-		if(!exists) {
+		if (!exists) {
 			throw new SeedNotFoundException("Seed does not exist");
 		}
 		return repository.findSeedByCommonName(commonName);
 	}
 
-	// View all seeds
+	/*
+	 * view all seed objects
+	 */
 	@Override
 	public List<Seed> viewAllSeeds() {
 		List<Seed> seedList = repository.findAll();
@@ -75,49 +91,49 @@ public class SeedServiceImpl implements ISeedService {
 		return seedList;
 	}
 
-	// View all seeds of typeOfSeed
+	/*
+	 * view all seed objects by typeOfSeeds
+	 */
 	@Override
-	public List<Seed> viewAllSeeds(String typeOfSeed) {
-		validateSeedByType(typeOfSeed);
-		List<Seed> seedList = repository.findAllByTypeOfSeeds(typeOfSeed);
+	public List<Seed> viewAllSeeds(String typeOfSeeds) {
+		validateSeedByType(typeOfSeeds);
+		List<Seed> seedList = repository.findAllByTypeOfSeeds(typeOfSeeds);
 		if (seedList.isEmpty()) {
 			throw new SeedNotFoundException("Seedlist not found");
 		}
 		return seedList;
 	}
-	
+
 	public void validateSeed(Seed seed) {
 		if (seed == null) {
 			throw new SeedAddException("Null seed");
 		}
 	}
-	
+
 	public void validateSeedById(Seed seed) {
-	Integer id = seed.getSeedId();
-	boolean exists = repository.existsById(id);
-	if (!exists) {
-		throw new SeedNotFoundException("Seed does not exists for id=" + id);
+		Integer id = seed.getSeedId();
+		boolean exists = repository.existsById(id);
+		if (!exists) {
+			throw new SeedNotFoundException("Seed does not exists for id=" + id);
+		}
 	}
-	}
-	
+
 	public void validateSeedId(Integer id) {
-		if(id<0) {
+		if (id < 0) {
 			throw new InvalidSeedIdException("invalid seed id");
 		}
 	}
-	
 
-	public void validateCommonName(String commonName) {		
-		if(commonName.equals("")) {
-			throw new InvalidSeedNameException("Seed name is empty"); 
+	public void validateCommonName(String commonName) {
+		if (commonName.equals("")) {
+			throw new InvalidSeedNameException("Seed name is empty");
 		}
 	}
-	
-	public void validateSeedByType(String typeOfSeed) {
-		if(typeOfSeed.equals("")) {
+
+	public void validateSeedByType(String typeOfSeeds) {
+		if (typeOfSeeds.equals("")) {
 			throw new InvalidSeedTypeException("Seed type is empty ");
 		}
 	}
-	
-	
+
 }
