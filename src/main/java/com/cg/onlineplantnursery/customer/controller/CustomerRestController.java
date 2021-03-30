@@ -49,6 +49,7 @@ public class CustomerRestController {
 		
 		
 	}
+	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/addCustomer")
 	public CustomerDetails addCustomer(@RequestBody AddCustomerRequest requestData) {
@@ -76,7 +77,7 @@ public class CustomerRestController {
 	
 	
 	 @PutMapping("/changeCustomerName")
-	 public CustomerDetails changeName(@RequestBody ChangeCustomerNameRequest requestData) {
+	 public CustomerDetails changeCustomerName(@RequestBody ChangeCustomerNameRequest requestData) {
 		    Integer customerId=requestData.getId();
 		    Customer customer=customerService.viewCustomer(customerId);
 		    customer.setCustomerName(requestData.getCustomerName());
@@ -88,7 +89,7 @@ public class CustomerRestController {
 	 
 	 
 	 @PutMapping("/changeCustomerEmail")
-	 public CustomerDetails changeEmail(@RequestBody ChangeCustomerEmailRequest requestData) {
+	 public CustomerDetails changeCustomerEmail(@RequestBody ChangeCustomerEmailRequest requestData) {
 		    Integer id=requestData.getId();
 		    Customer customer=customerService.viewCustomer(id);
 		    customer.setCustomerEmail(requestData.getCustomerEmail());
