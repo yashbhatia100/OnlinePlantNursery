@@ -1,19 +1,20 @@
 package com.cg.onlineplantnursery.customer.dto;
 
 public class ChangeCustomerPasswordRequest {
-	private int CustomerId;
-public int getCustomerId() {
-	return CustomerId;
-}
-public void setCustomerId(int customerId) {
-	this.CustomerId = customerId;
-}
-private String password;
-public String getPassword() {
-	return password;
-}
-public void setPassword(String password) {
-	this.password = password;
-}
+	private int customerId;
+	private String password;
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
 
 }
