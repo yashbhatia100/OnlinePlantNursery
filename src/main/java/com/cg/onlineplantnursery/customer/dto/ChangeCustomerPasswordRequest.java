@@ -6,7 +6,7 @@ public int getCustomerId() {
 	return CustomerId;
 }
 public void setCustomerId(int customerId) {
-	CustomerId = customerId;
+	this.CustomerId = customerId;
 }
 private String password;
 public String getPassword() {
