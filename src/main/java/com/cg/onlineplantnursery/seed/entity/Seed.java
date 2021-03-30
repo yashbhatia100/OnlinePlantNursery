@@ -116,5 +116,20 @@ public class Seed {
 				+ typeOfSeeds + ", seedsDescription=" + seedsDescription + ", seedsStock=" + seedsStock + ", seedsCost="
 				+ seedsCost + ", seedsPerPacket=" + seedsPerPacket + "]";
 	}
+	@Override
+	public int hashCode() {
+		return seedId;
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		 if(!(obj instanceof Seed)) {
+			 return false;
+		 }
+		 Seed that=(Seed)obj;
+		return this.seedId==that.seedId;
+	}
 }
