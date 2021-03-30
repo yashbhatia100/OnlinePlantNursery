@@ -35,6 +35,12 @@ public class Order {
 	@ManyToOne
 	private Customer customer;
 	
+	public Order() {
+		this.orderDate =  LocalDate.now();
+		this.quantity = 0;
+		this.totalCost = 0.0;
+	}
+	
 	public List<Planter> getPlanters() {
 		return planters;
 	}
@@ -47,9 +53,7 @@ public class Order {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	public Order() {
-		this.orderDate =  LocalDate.now();
-	}
+
 	public Integer getBookingOrderId() {
 		return bookingOrderId;
 	}
