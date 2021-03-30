@@ -47,7 +47,7 @@ public class PlanterRestController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/add")
-	public String addPlanter(@RequestBody AddPlanterRequest requestData) {
+	public PlanterDetails addPlanter(@RequestBody AddPlanterRequest requestData) {
 		Planter planter = new Planter();
 		planter.setDrainageHoles(requestData.getDrainageHoles());
 		planter.setPlanterCapacity(requestData.getPlanterCapacity());
@@ -56,8 +56,9 @@ public class PlanterRestController {
 		planter.setPlanterShape(requestData.getPlanterShape());
 		planter.setPlanterCost(requestData.getPlanterCost());
 		planter.setPlanterStock(requestData.getPlanterStock());
-		planterService.addPlanter(planter);
-		return "planter is created with " + planter.getPlanterId();
+		Planter saved =planterService.addPlanter(planter);
+		PlanterDetails details=util.toDetails(saved);
+		return details;
 
 	}
 
