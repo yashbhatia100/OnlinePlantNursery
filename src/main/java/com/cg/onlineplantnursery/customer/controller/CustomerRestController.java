@@ -13,8 +13,10 @@ import org.springframework.validation.annotation.Validated;
 
 
 import com.cg.onlineplantnursery.customer.dto.AddCustomerRequest;
+import com.cg.onlineplantnursery.customer.dto.ChangeCustomerAddressRequest;
 import com.cg.onlineplantnursery.customer.dto.ChangeCustomerEmailRequest;
 import com.cg.onlineplantnursery.customer.dto.ChangeCustomerNameRequest;
+import com.cg.onlineplantnursery.customer.dto.ChangeCustomerPasswordRequest;
 import com.cg.onlineplantnursery.customer.dto.CustomerDetails;
 import com.cg.onlineplantnursery.customer.dto.DeleteCustomerRequest;
 import com.cg.onlineplantnursery.customer.entity.Address;
@@ -96,6 +98,29 @@ public class CustomerRestController {
 	        CustomerDetails details=util.toDetails(customer);
 	        return details;
 	 }
+	 @PutMapping("/changeCustomerPassword")
+	 public CustomerDetails changePassword(@RequestBody ChangeCustomerPasswordRequest requestData) {
+		  Integer id=requestData.getCustomerId();
+		    Customer customer=customerService.viewCustomer(id);
+		    customer.setPassword(requestData.getPassword());
+		    customerService.updateCustomer(customer);
+		    CustomerDetails details=util.toDetails(customer);
+		    return details;
+	 }
+	 @PutMapping("/changeCustomerAddress")
+	 public CustomerDetails changeAddress(@RequestBody ChangeCustomerAddressRequest requestData) {
+		  Integer id=requestData.getCustomerId();
+		    Customer customer=customerService.viewCustomer(id);	
+		   customer.getAddress().setHouseNo(requestData.getHouseNo());
+		   customer.getAddress().setColony(requestData.getColony());
+		   customer.getAddress().setCity(requestData.getCity());
+		   customer.getAddress().setState(requestData.getState());
+		   customer.getAddress().setPincode(requestData.getPincode());
+		   customerService.updateCustomer(customer);
+		   CustomerDetails details = util.toDetails(customer);
+		   return details;
+		   
+		   }
 	    
 	 @ResponseStatus(HttpStatus.GONE)
 	 @DeleteMapping("/delete")
