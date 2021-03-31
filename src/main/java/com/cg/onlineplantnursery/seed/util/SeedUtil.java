@@ -9,11 +9,6 @@ import com.cg.onlineplantnursery.seed.entity.Seed;
 @Component
 public class SeedUtil {
 
-	public Seed newSeed() {
-		return new Seed();
-
-	}
-
 	public SeedDetails toDetails(Seed seed) {
 		SeedDetails details = new SeedDetails();
 		details.setSeedId(seed.getSeedId());
