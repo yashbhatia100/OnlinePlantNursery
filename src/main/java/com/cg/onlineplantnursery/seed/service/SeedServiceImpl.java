@@ -108,6 +108,18 @@ public class SeedServiceImpl implements ISeedService {
 		if (seed == null) {
 			throw new SeedAddException("Null seed");
 		}
+		if(seed.getCommonName().equals("")) {
+			throw new InvalidSeedNameException("Seed name cannot be empty");
+		}
+		if(seed.getTypeOfSeeds().equals("")) {
+			throw new InvalidSeedTypeException("Seed type cannot be empty");
+		}
+		if(seed.getSeedsCost()<0) {
+			throw new InvalidSeedsCostException("Seed cost must be greater than 0");
+		}
+		if(seed.getSeedsStock()<0) {
+			throw new InvalidSeedsStockException("Seed cost must be greater than 0");
+		}
 	}
 
 	public void validateSeedById(Seed seed) {

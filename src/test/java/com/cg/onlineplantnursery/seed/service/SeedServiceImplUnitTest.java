@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.onlineplantnursery.seed.repository.ISeedRepository;
-import com.cg.onlineplantnursery.seed.service.SeedServiceImpl;
 import com.cg.onlineplantnursery.seed.entity.Seed;
 import com.cg.onlineplantnursery.exceptions.*;
 
@@ -301,6 +300,65 @@ public class SeedServiceImplUnitTest {
 		Assertions.assertThrows(SeedAddException.class, executable);
 	}
 	
+	/*
+	 * Test: validateSeed(Seed seed) 
+	 * Scenario: InvalidSeedNameException is thrown
+	 */
+	@Test
+	void testValidateSeed_2() {
+		Seed seed = Mockito.mock(Seed.class);
+		Mockito.when(seed.getCommonName()).thenReturn("");
+		Executable executable = () -> service.validateSeed(seed);
+		Assertions.assertThrows(InvalidSeedNameException.class, executable);
+	}
+	
+	/*
+	 * Test: validateSeed(Seed seed) 
+	 * Scenario: InvalidSeedTypeException is thrown
+	 */
+	@Test
+	void testValidateSeed_3() {
+		Seed seed = Mockito.mock(Seed.class);
+		Mockito.when(seed.getCommonName()).thenReturn("Mango Seed");
+		Mockito.when(seed.getTypeOfSeeds()).thenReturn("");
+		Executable executable = () -> service.validateSeed(seed);
+		Assertions.assertThrows(InvalidSeedTypeException.class, executable);
+	}
+	
+	/*
+	 * Test: validateSeed(Seed seed) 
+	 * Scenario: InvalidSeedsCostException is thrown
+	 */
+	@Test
+	void testValidateSeed_4() {
+		Seed seed = Mockito.mock(Seed.class);
+		Mockito.when(seed.getCommonName()).thenReturn("Mango Seed");
+		Mockito.when(seed.getTypeOfSeeds()).thenReturn("Round");
+		Mockito.when(seed.getSeedsCost()).thenReturn(-1D);
+		Executable executable = () -> service.validateSeed(seed);
+		Assertions.assertThrows(InvalidSeedsCostException.class, executable);
+	}
+	
+	/*
+	 * Test: validateSeed(Seed seed) 
+	 * Scenario: InvalidSeedsStockException is thrown
+	 */
+	@Test
+	void testValidateSeed_5() {
+		Seed seed = Mockito.mock(Seed.class);
+		Mockito.when(seed.getCommonName()).thenReturn("Mango Seed");
+		Mockito.when(seed.getTypeOfSeeds()).thenReturn("Round");
+		Mockito.when(seed.getSeedsCost()).thenReturn(10D);
+		Mockito.when(seed.getSeedsStock()).thenReturn(-1);
+		Executable executable = () -> service.validateSeed(seed);
+		Assertions.assertThrows(InvalidSeedsStockException.class, executable);
+	}
+	
+	
+	/*
+	 * Test: validateSeedById(Seed seed)
+	 * Scenario: SeedNotFoundException is thrown
+	 */
 	@Test
 	void testValidateSeedById() {
 		Integer id = 1;
