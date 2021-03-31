@@ -98,8 +98,8 @@ public class OrderUi {
 		planter1.setPlanterShape("Cylinderical");
 		planter1.setPlanterStock(10);
 		planter1.setPlanterCost(150);
-		planter1.setPlants(plantsList1);
-		planter1.setSeeds(SeedList1);
+		planter1.setPlant(plant1);
+		planter1.setSeed(seed1);
 		List<Planter> planterList1=new ArrayList<>();
 		planterList1.add(planter1);
 		
@@ -116,7 +116,7 @@ public class OrderUi {
 		order1.setTransactionMode("online");
 		order1.setTotalCost(1000);
 		order1.setCustomer(customer1);
-		order1.setPlanters(planterList1);
+		order1.setPlanter(planter1);
 		
 		
 		
@@ -149,10 +149,10 @@ public class OrderUi {
 	}
 	
 	public void display(Order order) {
-		List<Planter> planters=order.getPlanters();
-		Planter planter=order.getPlanters().get(0);
-		Plant plant=planter.getPlants().get(0);
-		Seed seed=planter.getSeeds().get(0);
+		//List<Planter> planters=order.getPlanters();
+		Planter planter=order.getPlanter();
+		Plant plant=planter.getPlant();
+		Seed seed=planter.getSeed();
 		System.out.println("orderId: "+order.getBookingOrderId()+"\n order Quantity: "+order.getQuantity()
 							+"\nTotal cost: "+order.getTotalCost()+"\n Transaction mode: "+order.getTransactionMode()
 							+"\norder Time: "+order.getOrderDate()+"\n PlanterId -"+planter.getPlanterId()+

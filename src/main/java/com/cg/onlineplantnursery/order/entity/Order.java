@@ -2,6 +2,7 @@ package com.cg.onlineplantnursery.order.entity;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -15,7 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.cg.onlineplantnursery.customer.entity.Customer;
+import com.cg.onlineplantnursery.plant.entity.Plant;
 import com.cg.onlineplantnursery.planter.entity.Planter;
+import com.cg.onlineplantnursery.seed.entity.Seed;
 
 @Entity
 @Table(name="order_details")
@@ -28,25 +31,28 @@ public class Order {
 	private String transactionMode;
 	private int quantity;
 	private double totalCost;
-	
-	@ManyToMany
-	private List<Planter> planters;
-	
+
+	@ManyToOne
+	private Planter planter;
+
 	@ManyToOne
 	private Customer customer;
-	
-	public List<Planter> getPlanters() {
-		return planters;
+
+	public Planter getPlanter() {
+		return planter;
 	}
-	public void setPlanters(List<Planter> planters) {
-		this.planters = planters;
+
+	public void setPlanter(Planter planter) {
+		this.planter = planter;
 	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
 	public Order() {
 		this.orderDate =  LocalDate.now();
 	}
@@ -80,5 +86,19 @@ public class Order {
 	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
 	}
-	
+
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Order order = (Order) o;
+		return Objects.equals(bookingOrderId, order.bookingOrderId);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(bookingOrderId);
+	}
 }

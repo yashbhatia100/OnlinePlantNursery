@@ -154,8 +154,8 @@ public class PlanterConsoleUi {
 		planter1.setPlanterShape("Cylinderical");
 		planter1.setPlanterStock(10);
 		planter1.setPlanterCost(150);
-		planter1.setPlants(plantsList1);
-		planter1.setSeeds(SeedList1);
+		planter1.setPlant(plant1);
+		planter1.setSeed(seed1);
 
 		planter2.setPlanterheight(11.0f);
 		planter2.setPlanterCapacity(15);
@@ -164,8 +164,8 @@ public class PlanterConsoleUi {
 		planter2.setPlanterShape("Square");
 		planter2.setPlanterStock(12);
 		planter2.setPlanterCost(400);
-		planter2.setPlants(plantsList2);
-		planter2.setSeeds(SeedList2);
+		planter2.setPlant(plant2);
+		planter2.setSeed(seed2);
 
 		planter3.setPlanterheight(12.0f);
 		planter3.setPlanterCapacity(20);
@@ -174,8 +174,8 @@ public class PlanterConsoleUi {
 		planter3.setPlanterShape("Rectangular");
 		planter3.setPlanterStock(14);
 		planter3.setPlanterCost(300);
-		planter3.setPlants(plantsList3);
-		planter3.setSeeds(SeedList3);
+		planter3.setPlant(plant3);
+		planter3.setSeed(seed3);
 
 		planterService.addPlanter(planter1);
 		planterService.addPlanter(planter2);

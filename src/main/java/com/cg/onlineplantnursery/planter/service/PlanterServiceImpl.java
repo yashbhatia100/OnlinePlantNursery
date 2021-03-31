@@ -26,13 +26,12 @@ import com.cg.onlineplantnursery.planter.repository.IPlanterRepository;
 public class PlanterServiceImpl implements IPlanterService {
 
 	@Autowired
-	IPlanterRepository planterRepository;
+	private IPlanterRepository planterRepository;
 
 	@Transactional
 	@Override
 	public Planter addPlanter(Planter planter) {
 		validatePlanter(planter);
-
 		Planter saved = planterRepository.save(planter);
 		return saved;
 	}
