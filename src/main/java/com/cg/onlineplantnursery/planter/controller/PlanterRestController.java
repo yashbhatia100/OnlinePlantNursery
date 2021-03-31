@@ -1,7 +1,6 @@
 package com.cg.onlineplantnursery.planter.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.constraints.NotBlank;
 
@@ -28,7 +27,6 @@ import com.cg.onlineplantnursery.planter.dto.UpdatePlanterHeightRequest;
 import com.cg.onlineplantnursery.planter.dto.UpdatePlanterShapeRequest;
 import com.cg.onlineplantnursery.planter.dto.UpdatePlanterStockRequest;
 import com.cg.onlineplantnursery.planter.entity.Planter;
-import com.cg.onlineplantnursery.planter.repository.IPlanterRepository;
 import com.cg.onlineplantnursery.planter.service.IPlanterService;
 import com.cg.onlineplantnursery.planter.util.PlanterUtil;
 
@@ -42,8 +40,7 @@ public class PlanterRestController {
 	@Autowired
 	private PlanterUtil util;
 
-	@Autowired
-	private IPlanterRepository planterRepository;
+	
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/add")

@@ -1,11 +1,9 @@
 package com.cg.onlineplantnursery.planter.entity;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import com.cg.onlineplantnursery.plant.entity.Plant;
 import com.cg.onlineplantnursery.seed.entity.Seed;
@@ -24,10 +22,10 @@ public class Planter {
 	private int planterStock;
 	private int planterCost;
 
-	@ManyToMany
-	private List<Plant> plants;
-	@ManyToMany
-	private List<Seed> seeds;
+	@ManyToOne
+	private Plant plant;
+	@ManyToOne
+	private Seed seed;
 
 	public Planter() {
 
@@ -37,20 +35,20 @@ public class Planter {
 		return planterId;
 	}
 
-	public List<Plant> getPlants() {
-		return plants;
+	public Plant getPlant() {
+		return plant;
 	}
 
-	public void setPlants(List<Plant> plants) {
-		this.plants = plants;
+	public void setPlant(Plant plant) {
+		this.plant = plant;
 	}
 
-	public List<Seed> getSeeds() {
-		return seeds;
+	public Seed getSeed() {
+		return seed;
 	}
 
-	public void setSeeds(List<Seed> seeds) {
-		this.seeds = seeds;
+	public void setSeed(Seed seed) {
+		this.seed = seed;
 	}
 
 	public void setPlanterHeight(float planterHeight) {
@@ -117,12 +115,14 @@ public class Planter {
 		this.planterCost = planterCost;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "Planter Details [planterId=" + planterId + ", planterheight=" + planterHeight + ", planterCapacity="
+		return "Planter [planterId=" + planterId + ", planterHeight=" + planterHeight + ", planterCapacity="
 				+ planterCapacity + ", drainageHoles=" + drainageHoles + ", planterColor=" + planterColor
 				+ ", planterShape=" + planterShape + ", planterStock=" + planterStock + ", planterCost=" + planterCost
-				+ "]";
+				+ ", plant=" + plant + ", seed=" + seed + "]";
 	}
 
 	@Override
