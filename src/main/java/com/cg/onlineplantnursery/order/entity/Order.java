@@ -1,12 +1,11 @@
 package com.cg.onlineplantnursery.order.entity;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -24,19 +23,21 @@ public class Order {
 	private String transactionMode;
 	private int quantity;
 	private double totalCost;
-	
-	@ManyToMany
-	private List<Planter> planters;
-	
+
+	@ManyToOne
+	private Planter planter;
+
 	@ManyToOne
 	private Customer customer;
-	
-	public List<Planter> getPlanters() {
-		return planters;
+
+	public Planter getPlanter() {
+		return planter;
 	}
-	public void setPlanters(List<Planter> planters) {
-		this.planters = planters;
+
+	public void setPlanter(Planter planter) {
+		this.planter = planter;
 	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -78,5 +79,19 @@ public class Order {
 	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
 	}
-	
+
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Order order = (Order) o;
+		return Objects.equals(bookingOrderId, order.bookingOrderId);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(bookingOrderId);
+	}
 }

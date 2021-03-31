@@ -136,8 +136,12 @@ public class PlanterConsoleUi {
 		planter1.setPlanterCost(150);
 		planter1.setPlant(plant1);
 		planter1.setSeed(seed1);
+<<<<<<< HEAD:src/main/java/com/cg/onlineplantnursery/ui/PlanterConsoleUi.java
 		
 		
+=======
+
+>>>>>>> ae11b566e3f8431b8590e82125e00258995099ec:src/main/java/com/cg/onlineplantnursery/planter/ui/PlanterConsoleUi.java
 		planter2.setPlanterheight(11.0f);
 		planter2.setPlanterCapacity(15);
 		planter2.setDrainageHoles(2);

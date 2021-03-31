@@ -1,5 +1,6 @@
 package com.cg.onlineplantnursery.planter.entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,6 +25,7 @@ public class Planter {
 
 	@ManyToOne
 	private Plant plant;
+	
 	@ManyToOne
 	private Seed seed;
 
