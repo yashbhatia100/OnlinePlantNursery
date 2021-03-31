@@ -37,7 +37,7 @@ public class SeedRestController {
 	private SeedUtil util;
 
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping("/addseed")
+	@PostMapping("/add")
 	public SeedDetails addSeed(@RequestBody CreateSeedRequest requestData) {
 		Seed seed = new Seed();
 		seed.setCommonName(requestData.getCommonName());
@@ -57,7 +57,7 @@ public class SeedRestController {
 	}
 
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	@PutMapping(value = "/changeseedname")
+	@PutMapping(value = "/changename")
 	public SeedDetails updateSeedCommonName(@RequestBody ChangeCommonNameRequest requestData) {
 		Seed fetched = service.viewSeed(requestData.getSeedId());
 		fetched.setCommonName(requestData.getCommonName());
@@ -67,7 +67,7 @@ public class SeedRestController {
 	}
 
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	@PutMapping(value = "/changeSeedsCost")
+	@PutMapping(value = "/changecost")
 	public SeedDetails updateSeedsCost(@RequestBody ChangeSeedsCostRequest requestData) {
 		Seed fetched = service.viewSeed(requestData.getSeedId());
 		fetched.setSeedsCost(requestData.getSeedsCost());
@@ -77,7 +77,7 @@ public class SeedRestController {
 	}
 
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	@PutMapping(value = "/changeSeedsStock")
+	@PutMapping(value = "/changestock")
 	public SeedDetails updateSeedsStock(@RequestBody ChangeSeedsStockRequest requestData) {
 		Seed fetched = service.viewSeed(requestData.getSeedId());
 		fetched.setSeedsStock(requestData.getSeedsStock());
@@ -87,7 +87,7 @@ public class SeedRestController {
 	}
 	
 	@ResponseStatus(HttpStatus.GONE)
-	@DeleteMapping(value = "/deleteSeed")
+	@DeleteMapping(value = "/delete")
 	public String deleteSeed(@RequestBody DeleteSeedRequest requestData) {
 		Seed fetched = service.viewSeed(requestData.getSeedId());
 		service.deleteSeed(fetched);
@@ -95,7 +95,7 @@ public class SeedRestController {
 	}
 
 	@ResponseStatus(HttpStatus.FOUND)
-	@GetMapping(value = "/byseedId/{seedId}")
+	@GetMapping(value = "/fetch/byid/{seedId}")
 	public SeedDetails fetchSeedById(@PathVariable("seedId") Integer seedId) {
 		Seed seed = service.viewSeed(seedId);
 		SeedDetails details = util.toDetails(seed);
@@ -103,7 +103,7 @@ public class SeedRestController {
 	}
 
 	@ResponseStatus(HttpStatus.FOUND)
-	@GetMapping(value = "/viewByCommonName/{commonName}")
+	@GetMapping(value = "/fetch/bycommonname/{commonName}")
 	public SeedDetails fetchSeedByName(@PathVariable("commonName") @NotBlank String commonName) {
 		Seed seed = service.viewSeed(commonName);
 		SeedDetails details = util.toDetails(seed);
@@ -111,7 +111,7 @@ public class SeedRestController {
 	}
 
 	@ResponseStatus(HttpStatus.FOUND)
-	@GetMapping(value = "/viewAll")
+	@GetMapping(value = "/fetch")
 	public List<SeedDetails> fetchAllSeeds() {
 		List<Seed> seedList = service.viewAllSeeds();
 		List<SeedDetails> desired = util.toDetailsList(seedList);
@@ -119,7 +119,7 @@ public class SeedRestController {
 	}
 
 	@ResponseStatus(HttpStatus.FOUND)
-	@GetMapping(value = "/viewAllByTypeOfSeeds/{typeOfSeeds}")
+	@GetMapping(value = "/fetch/bytype/{typeOfSeeds}")
 	public List<SeedDetails> fetchAllSeedsByType(@PathVariable("typeOfSeeds") String typeOfSeeds) {
 		List<Seed> seedList = service.viewAllSeeds(typeOfSeeds);
 		List<SeedDetails> desired = util.toDetailsList(seedList);

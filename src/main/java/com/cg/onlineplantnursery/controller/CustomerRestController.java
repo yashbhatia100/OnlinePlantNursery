@@ -36,10 +36,8 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerUtil util;
 
-	@GetMapping(value = "/viewCustomer/{id}")
+	@GetMapping(value = "/fetch/byid/{id}")
 	public CustomerDetails fetchCustomerDetails(@PathVariable("id") Integer customerId) {
-		// Customer customer= new Customer();
-		// customerService.viewCustomer(id);
 		Customer customer = customerService.viewCustomer(customerId);
 		CustomerDetails details = util.toDetails(customer);
 		return details;
@@ -47,7 +45,7 @@ public class CustomerRestController {
 	}
 
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping("/addCustomer")
+	@PostMapping("/add")
 	public CustomerDetails addCustomer(@RequestBody AddCustomerRequest requestData) {
 		Address address = new Address();
 
@@ -71,7 +69,7 @@ public class CustomerRestController {
 
 	}
 
-	@PutMapping("/changeCustomerName")
+	@PutMapping("/changename")
 	public CustomerDetails changeCustomerName(@RequestBody ChangeCustomerNameRequest requestData) {
 		Integer customerId = requestData.getId();
 		Customer customer = customerService.viewCustomer(customerId);
@@ -82,7 +80,7 @@ public class CustomerRestController {
 
 	}
 
-	@PutMapping("/changeCustomerEmail")
+	@PutMapping("/changeemail")
 	public CustomerDetails changeCustomerEmail(@RequestBody ChangeCustomerEmailRequest requestData) {
 		Integer id = requestData.getId();
 		Customer customer = customerService.viewCustomer(id);
@@ -92,7 +90,7 @@ public class CustomerRestController {
 		return details;
 	}
 
-	@PutMapping("/changeCustomerPassword")
+	@PutMapping("/changepassword")
 	public CustomerDetails changeCustomerPassword(@RequestBody ChangeCustomerPasswordRequest requestData) {
 		Integer id = requestData.getCustomerId();
 		Customer customer = customerService.viewCustomer(id);
@@ -102,7 +100,7 @@ public class CustomerRestController {
 		return details;
 	}
 
-	@PutMapping("/changeCustomerAddress")
+	@PutMapping("/changeaddress")
 	public CustomerDetails changeCustomerAddress(@RequestBody ChangeCustomerAddressRequest requestData) {
 		Integer id = requestData.getCustomerId();
 		Customer customer = customerService.viewCustomer(id);
@@ -126,7 +124,7 @@ public class CustomerRestController {
 		return "Customer with id" + id + " is deleted";
 	}
 
-	@GetMapping("/allCustomerDetails")
+	@GetMapping("/fetch")
 	public List<CustomerDetails> allCustomerDetails() {
 
 		List<Customer> list = customerService.viewAllCustomers();

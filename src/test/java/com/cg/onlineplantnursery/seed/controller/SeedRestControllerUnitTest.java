@@ -18,7 +18,6 @@ import com.cg.onlineplantnursery.dto.ChangeSeedsStockRequest;
 import com.cg.onlineplantnursery.dto.CreateSeedRequest;
 import com.cg.onlineplantnursery.dto.DeleteSeedRequest;
 import com.cg.onlineplantnursery.dto.SeedDetails;
-import com.cg.onlineplantnursery.seed.dto.*;
 import com.cg.onlineplantnursery.seed.entity.Seed;
 import com.cg.onlineplantnursery.seed.service.ISeedService;
 import com.cg.onlineplantnursery.util.SeedUtil;

@@ -68,7 +68,7 @@ public class PlanterRestController {
 	 * Call: planterService.viewPlanter() and util.toDetails()
 	 */
 
-	@GetMapping("/findbyid/{id}")
+	@GetMapping("/fetch/byid/{id}")
 	public PlanterDetails viewPlanterById(@PathVariable int id) {
 		return util.toDetails(planterService.viewPlanter(id));
 	}
@@ -80,7 +80,7 @@ public class PlanterRestController {
 
 	
 
-	@GetMapping("/findbyPlanterShape/{planterShape}")
+	@GetMapping("/fetch/byshape/{planterShape}")
 	public List<PlanterDetails> viewPlannterByplanterShape(
 			@PathVariable("planterShape") @NotBlank String planterShape) {
 
@@ -97,7 +97,7 @@ public class PlanterRestController {
 	 */
 
 
-	@GetMapping("/viewAll")
+	@GetMapping("/fetch")
 	public List<PlanterDetails> findAllPlannter() {
 
 		List<Planter> plantersList = planterService.viewAllPlanters();
@@ -112,7 +112,7 @@ public class PlanterRestController {
 	 */
 
 	
-	@GetMapping("/viewAllByplanterCost/{minCost}/{maxCost}")
+	@GetMapping("/fetch/bycost/{minCost}/{maxCost}")
 	public List<PlanterDetails> findAllPlannterByCost(@PathVariable("minCost") int minCost,
 			@PathVariable("maxCost") int maxCost) {
 
@@ -128,7 +128,7 @@ public class PlanterRestController {
 	 */
 
 
-	@DeleteMapping("/Delete")
+	@DeleteMapping("/delete")
 	public String delete(@RequestBody DeletePlanterRequest requestData) {
 		Planter planter=planterService.viewPlanter(requestData.getPlanterId());
 		planterService.deletePlanter(planter);
@@ -142,7 +142,7 @@ public class PlanterRestController {
 	 */
 
 
-	@PutMapping("/UpdatePlanterHeight")
+	@PutMapping("/updateheight")
 	public PlanterDetails updatePlanterHeight(@RequestBody UpdatePlanterHeightRequest requestData) {
 		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
 		planter.setPlanterHeight(requestData.getPlanterHeight());
@@ -155,7 +155,7 @@ public class PlanterRestController {
 	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
 	 */
 
-	@PutMapping("/UpdatePlanterCapacity")
+	@PutMapping("/updatecapacity")
 	public PlanterDetails updatePlanterCapacity(@RequestBody UpdatePlanterCapacityRequest requestData) {
 		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
 		planter.setPlanterCapacity(requestData.getPlanterCapacity());
@@ -168,7 +168,7 @@ public class PlanterRestController {
 	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
 	 */
 
-	@PutMapping("/UpdatePlanterDrainageHoles")
+	@PutMapping("/updatedrainageholes")
 	public PlanterDetails updateDrainageHoles(@RequestBody UpdatePlanterDrainageHolesRequest requestData) {
 		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
 		planter.setDrainageHoles(requestData.getDrainageHoles());
@@ -181,7 +181,7 @@ public class PlanterRestController {
 	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
 	 */
 
-	@PutMapping("/UpdatePlanterColor")
+	@PutMapping("/updatecolor")
 	public PlanterDetails updatePlanterColor(@RequestBody UpdatePlanterColorRequest requestData) {
 		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
 		planter.setPlanterColor(requestData.getPlanterColor());
@@ -194,7 +194,7 @@ public class PlanterRestController {
 	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
 	 */
 
-	@PutMapping("/UpdatePlanterShape")
+	@PutMapping("/updateshape")
 	public PlanterDetails updatePlanterShape(@RequestBody UpdatePlanterShapeRequest requestData) {
 		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
 		planter.setPlanterShape(requestData.getPlanterShape());
@@ -207,7 +207,7 @@ public class PlanterRestController {
 	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
 	 */
 
-	@PutMapping("/UpdatePlanterStock")
+	@PutMapping("/updatestock")
 	public PlanterDetails updatePlanterStock(@RequestBody UpdatePlanterStockRequest requestData) {
 		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
 		planter.setPlanterStock(requestData.getPlanterStock());
@@ -220,7 +220,7 @@ public class PlanterRestController {
 	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
 	 */
 	
-	@PutMapping("/UpdatePlanterCost")
+	@PutMapping("/updatecost")
 	public PlanterDetails updatePlanterCost(@RequestBody UpdatePlanterCostRequest requestData) {
 		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
 		planter.setPlanterCost(requestData.getPlanterCost());
