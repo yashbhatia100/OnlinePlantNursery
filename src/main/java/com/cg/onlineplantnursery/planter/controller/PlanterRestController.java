@@ -40,7 +40,10 @@ public class PlanterRestController {
 	@Autowired
 	private PlanterUtil util;
 
-	
+	/*
+	 * Rest controller for adding the planter object to database
+	 * Call: planterService.addPlanter() and util.toDetails()
+	 */
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/add")
@@ -58,11 +61,24 @@ public class PlanterRestController {
 		return details;
 
 	}
+	
+	
+	/*
+	 * Rest controller for fetching the planter by id
+	 * Call: planterService.viewPlanter() and util.toDetails()
+	 */
 
 	@GetMapping("/findbyid/{id}")
 	public PlanterDetails viewPlanterById(@PathVariable int id) {
 		return util.toDetails(planterService.viewPlanter(id));
 	}
+	
+	/*
+	 * Rest controller for fetching the planter by PlanterShape
+	 * Call:planterService.viewPlanter() and util.toDetails()
+	 */
+
+	
 
 	@GetMapping("/findbyPlanterShape/{planterShape}")
 	public List<PlanterDetails> viewPlannterByplanterShape(
@@ -74,6 +90,12 @@ public class PlanterRestController {
 		return desired;
 
 	}
+	
+	/*
+	 * Rest controller for viewing  the planter from the database
+	 * Call: planterService.viewAllPlanters() and util.toDetails()
+	 */
+
 
 	@GetMapping("/viewAll")
 	public List<PlanterDetails> findAllPlannter() {
@@ -84,6 +106,12 @@ public class PlanterRestController {
 
 	}
 
+	/*
+	 * Rest controller for fetching the planter by id
+	 * Call:planterService.viewPlanter(minCost,maxCost) and util.toDetails()
+	 */
+
+	
 	@GetMapping("/viewAllByplanterCost/{minCost}/{maxCost}")
 	public List<PlanterDetails> findAllPlannterByCost(@PathVariable("minCost") int minCost,
 			@PathVariable("maxCost") int maxCost) {
@@ -93,6 +121,12 @@ public class PlanterRestController {
 		return desired;
 
 	}
+	
+	/*
+	 * Rest controller for fetching the planter by id
+	 * Call: planterService.viewPlanter() and planterService.deltePlanter  and util.toDetails()
+	 */
+
 
 	@DeleteMapping("/Delete")
 	public String delete(@RequestBody DeletePlanterRequest requestData) {
@@ -101,6 +135,12 @@ public class PlanterRestController {
 		return "planter is deleted for the " + requestData.getPlanterId();
 
 	}
+	
+	/*
+	 * Rest controller for fetching the planter by id
+	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
+	 */
+
 
 	@PutMapping("/UpdatePlanterHeight")
 	public PlanterDetails updatePlanterHeight(@RequestBody UpdatePlanterHeightRequest requestData) {
@@ -109,6 +149,11 @@ public class PlanterRestController {
 		planterService.updatePlanter(planter);
 		return util.toDetails(planter);
 	}
+	
+	/*
+	 * Rest controller for fetching the planter by id
+	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
+	 */
 
 	@PutMapping("/UpdatePlanterCapacity")
 	public PlanterDetails updatePlanterCapacity(@RequestBody UpdatePlanterCapacityRequest requestData) {
@@ -117,6 +162,11 @@ public class PlanterRestController {
 		planterService.updatePlanter(planter);
 		return util.toDetails(planter);
 	}
+	
+	/*
+	 * Rest controller for fetching the planter by id
+	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
+	 */
 
 	@PutMapping("/UpdatePlanterDrainageHoles")
 	public PlanterDetails updateDrainageHoles(@RequestBody UpdatePlanterDrainageHolesRequest requestData) {
@@ -125,6 +175,11 @@ public class PlanterRestController {
 		planterService.updatePlanter(planter);
 		return util.toDetails(planter);
 	}
+	
+	/*
+	 * Rest controller for fetching the planter by id
+	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
+	 */
 
 	@PutMapping("/UpdatePlanterColor")
 	public PlanterDetails updatePlanterColor(@RequestBody UpdatePlanterColorRequest requestData) {
@@ -133,6 +188,11 @@ public class PlanterRestController {
 		planterService.updatePlanter(planter);
 		return util.toDetails(planter);
 	}
+	
+	/*
+	 * Rest controller for fetching the planter by id
+	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
+	 */
 
 	@PutMapping("/UpdatePlanterShape")
 	public PlanterDetails updatePlanterShape(@RequestBody UpdatePlanterShapeRequest requestData) {
@@ -141,6 +201,11 @@ public class PlanterRestController {
 		planterService.updatePlanter(planter);
 		return util.toDetails(planter);
 	}
+	
+	/*
+	 * Rest controller for fetching the planter by id
+	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
+	 */
 
 	@PutMapping("/UpdatePlanterStock")
 	public PlanterDetails updatePlanterStock(@RequestBody UpdatePlanterStockRequest requestData) {
@@ -150,6 +215,11 @@ public class PlanterRestController {
 		return util.toDetails(planter);
 	}
 
+	/*
+	 * Rest controller for fetching the planter by id
+	 * Call: planterService.viewPlanter() and planterService.updatePlanter and util.toDetails()
+	 */
+	
 	@PutMapping("/UpdatePlanterCost")
 	public PlanterDetails updatePlanterCost(@RequestBody UpdatePlanterCostRequest requestData) {
 		Planter planter = planterService.viewPlanter(requestData.getPlanterId());
