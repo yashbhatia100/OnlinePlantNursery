@@ -10,7 +10,6 @@ import com.cg.onlineplantnursery.exceptions.*;
 @RestControllerAdvice
 public class CentralizedExceptionHandler {
 
-
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(SeedNotFoundException.class)
 	public String handleSeedNotFound(SeedNotFoundException e) {
@@ -20,6 +19,18 @@ public class CentralizedExceptionHandler {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(InvalidSeedIdException.class)
 	public String handleInvalidSeedId(InvalidSeedIdException e) {
+		return e.getMessage();
+	}
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(InvalidSeedsCostException.class)
+	public String handleInvalidSeedsCost(InvalidSeedsCostException e) {
+		return e.getMessage();
+	}
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(InvalidSeedsStockException.class)
+	public String handleInvalidSeedsStock(InvalidSeedsStockException e) {
 		return e.getMessage();
 	}
 
