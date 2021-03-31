@@ -104,7 +104,7 @@ public class SeedUI {
 				+ seed.getBloomTime() + "\nwatering: " + seed.getWatering() + "\ndifficultyLevel: "
 				+ seed.getDifficultyLevel() + "\ntemperature: " + seed.getTemparature() + "\ntypeOfSeeds: "
 				+ seed.getTypeOfSeeds() + "\nseedsDescription: " + seed.getSeedsDescription() + "\nseedsStock: "
-				+ seed.getSeedsStock() + "\nseedsCost: " + seed.getSeedsCost());
+				+ seed.getSeedsStock() + "\nseedsCost: " + seed.getSeedsCost() + "\nseedsPerPacket: " + seed.getSeedsPerPacket());
 
 		System.out.println(
 				"\n*******************************************************************************************************\n");
