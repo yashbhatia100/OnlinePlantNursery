@@ -1,4 +1,4 @@
-package com.cg.onlineplantnursery.order.dto;
+package com.cg.onlineplantnursery.dto;
 
 public class UpdateOrderTotalcostRequest {
 	private Integer bookingOrderId;

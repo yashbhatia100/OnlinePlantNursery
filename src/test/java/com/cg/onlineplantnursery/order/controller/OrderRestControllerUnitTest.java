@@ -5,8 +5,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,55 +13,61 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.cg.onlineplantnursery.order.dto.AddOrderRequest;
-import com.cg.onlineplantnursery.order.dto.DeleteOrderRequest;
-import com.cg.onlineplantnursery.order.dto.OrderDetails;
-import com.cg.onlineplantnursery.order.dto.UpdateOrderQuantityRequest;
-import com.cg.onlineplantnursery.order.dto.UpdateOrderTotalcostRequest;
+import com.cg.onlineplantnursery.controller.OrderRestController;
+import com.cg.onlineplantnursery.dto.AddOrderRequest;
+import com.cg.onlineplantnursery.dto.DeleteOrderRequest;
+import com.cg.onlineplantnursery.dto.OrderDetails;
+import com.cg.onlineplantnursery.dto.UpdateOrderQuantityRequest;
+import com.cg.onlineplantnursery.dto.UpdateOrderTotalcostRequest;
 import com.cg.onlineplantnursery.order.entity.Order;
 import com.cg.onlineplantnursery.order.service.IOrderService;
-import com.cg.onlineplantnursery.order.util.OrderUtility;
-
-
+import com.cg.onlineplantnursery.planter.entity.Planter;
+import com.cg.onlineplantnursery.planter.service.IPlanterService;
+import com.cg.onlineplantnursery.util.OrderUtility;
 
 @ExtendWith(MockitoExtension.class)
 class PlantRestControllerUnitTest {
 
 	@Mock
 	IOrderService service;
-	
+
+	@Mock
+	IPlanterService planterservice;
+
 	@Mock
 	OrderUtility util;
-	
+
 	@Spy
 	@InjectMocks
 	OrderRestController controller;
-	
+
 	/*
-	 * To Test: addOrder()
-	 * Scenario: Order object is added successfully
-	 * Input: mock AddOrderRequest object and order object.
-	 * Expectation: service.addOrder() and util.toDetails() are called. 
+	 * To Test: addOrder() Scenario: Order object is added successfully Input: mock
+	 * AddOrderRequest object and order object. Expectation: service.addOrder() and
+	 * util.toDetails() are called.
 	 */
 	@Test
 	void test_addOrder() {
+		int id = 20;
 		AddOrderRequest request = mock(AddOrderRequest.class);
 		Order saved = mock(Order.class);
+		Planter planter = mock(Planter.class);
+		when(request.getPlanterId()).thenReturn(id);
+		when(planterservice.viewPlanter(request.getPlanterId())).thenReturn(planter);
 		when(service.addOrder(any(Order.class))).thenReturn(saved);
 		OrderDetails details = mock(OrderDetails.class);
 		when(util.toDetails(saved)).thenReturn(details);
 		OrderDetails result = controller.addPlanterOrder(request);
 		Assertions.assertNotNull(result);
-		Assertions.assertSame(details, result);	
+		Assertions.assertSame(details, result);
 		verify(service).addOrder(any(Order.class));
 		verify(util).toDetails(saved);
 	}
-	
+
 	/*
-	 * To Test: deleteOrder()
-	 * Scenario: Order object is deleted successfully
-	 * Input: mock DeleteOrderRequest object and Order object.
-	 * Expectation: service.viewOrder() and service.deleteOrder() are called. 
+	 * To Test: deleteOrder() Scenario: Order object is deleted successfully Input:
+	 * mock DeleteOrderRequest object and Order object. Expectation:
+	 * service.viewOrder() and service.deleteOrder() are called.
 	 */
 	@Test
 	void test_deletePlant() {
@@ -76,12 +80,11 @@ class PlantRestControllerUnitTest {
 		verify(service).viewOrder(id);
 		verify(service).deleteOrder(order);
 	}
-	
+
 	/*
-	 * To Test: updateOrderQuantity()
-	 * Scenario: Order object is updated successfully
-	 * Input: mock UpdateOrderQuantityRequest object and Order object.
-	 * Expectation: service.viewOrder(), service.updateOrder() and util.toDetails() are called. 
+	 * To Test: updateOrderQuantity() Scenario: Order object is updated successfully
+	 * Input: mock UpdateOrderQuantityRequest object and Order object. Expectation:
+	 * service.viewOrder(), service.updateOrder() and util.toDetails() are called.
 	 */
 	@Test
 	void test_updateOrderQuantity() {
@@ -101,12 +104,12 @@ class PlantRestControllerUnitTest {
 		verify(service).updateOrder(order);
 		verify(util).toDetails(order);
 	}
-	
+
 	/*
-	 * To Test: updateOrderTotalcost()
-	 * Scenario: Order object is updated successfully
-	 * Input: mock UpdateOrderTotalCostRequest object and Order object.
-	 * Expectation: service.viewOrder(), service.updateOrder() and util.toDetails() are called. 
+	 * To Test: updateOrderTotalcost() Scenario: Order object is updated
+	 * successfully Input: mock UpdateOrderTotalCostRequest object and Order object.
+	 * Expectation: service.viewOrder(), service.updateOrder() and util.toDetails()
+	 * are called.
 	 */
 	@Test
 	void test_updateOrderTotalcost() {
@@ -126,7 +129,5 @@ class PlantRestControllerUnitTest {
 		verify(service).updateOrder(order);
 		verify(util).toDetails(order);
 	}
-
-	
 
 }

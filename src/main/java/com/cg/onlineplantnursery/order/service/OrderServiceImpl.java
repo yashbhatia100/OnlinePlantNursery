@@ -108,7 +108,6 @@ public class OrderServiceImpl implements IOrderService {
         if (order == null) {
             throw new OrderUpdateException("Order cannot be null");
         }
-        validateBookingId(order.getBookingOrderId());
         validateTransactionMode(order.getTransactionMode());
         validateQuantity(order.getQuantity());
 

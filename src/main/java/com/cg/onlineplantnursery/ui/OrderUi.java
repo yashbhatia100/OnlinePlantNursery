@@ -1,8 +1,9 @@
 
 
-package com.cg.onlineplantnursery.order.ui;
+package com.cg.onlineplantnursery.ui;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,9 +19,6 @@ import com.cg.onlineplantnursery.planter.entity.Planter;
 import com.cg.onlineplantnursery.planter.service.IPlanterService;
 import com.cg.onlineplantnursery.seed.entity.Seed;
 import com.cg.onlineplantnursery.seed.service.ISeedService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Component
@@ -77,7 +75,7 @@ public class OrderUi {
 		Plant plant1 = new Plant();
 		plant1.setPlantHeight(10);
 		plant1.setPlantSpread("50cm");
-		plant1.setCommonName("Lily");
+		plant1.setCommonName("Lotus");
 		plant1.setBloomTime("2months");
 		plant1.setMedicinalOrCulinaryUse("Improves immunity");
 		plant1.setDifficultyLevel("Easy");
@@ -110,12 +108,8 @@ public class OrderUi {
 		
 		Order order1=new Order();
 		
-		
-		order1.setBookingOrderId(1);
-		order1.setOrderDate(LocalDate.of(2021, 03, 27));
 		order1.setQuantity(10);
 		order1.setTransactionMode("online");
-		order1.setTotalCost(1000);
 		order1.setCustomer(customer1);
 		order1.setPlanter(planter1);
 		
@@ -128,7 +122,7 @@ public class OrderUi {
 		display(order1);
 		
 		
-		order1.setQuantity(19);
+		order1.setTransactionMode("COD");
 		
 		
 		orderService.updateOrder(order1);
@@ -138,19 +132,10 @@ public class OrderUi {
 		
 		System.out.println("\n********************* Updated Order in database *********************\n");
 		display(fetchOrder1);
-		
-		
-		
-		
-		List<Order> allOrders = orderService.viewAllOrders();
-		
-		for(Order order:allOrders) {
-			display(order);
-		}	
 	}
 	
 	public void display(Order order) {
-		//List<Planter> planters=order.getPlanters();
+		
 		Planter planter=order.getPlanter();
 		Plant plant=planter.getPlant();
 		Seed seed=planter.getSeed();

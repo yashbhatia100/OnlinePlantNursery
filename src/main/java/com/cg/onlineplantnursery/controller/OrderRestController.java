@@ -1,12 +1,19 @@
-package com.cg.onlineplantnursery.order.controller;
+package com.cg.onlineplantnursery.controller;
 
 import java.util.List;
 
+import com.cg.onlineplantnursery.dto.AddOrderRequest;
+import com.cg.onlineplantnursery.dto.DeleteOrderRequest;
+import com.cg.onlineplantnursery.dto.OrderDetails;
+import com.cg.onlineplantnursery.dto.UpdateOrderQuantityRequest;
+import com.cg.onlineplantnursery.dto.UpdateOrderTotalcostRequest;
 import com.cg.onlineplantnursery.order.dto.*;
 import com.cg.onlineplantnursery.plant.service.IPlantService;
 import com.cg.onlineplantnursery.planter.entity.Planter;
 import com.cg.onlineplantnursery.planter.service.IPlanterService;
 import com.cg.onlineplantnursery.seed.service.ISeedService;
+import com.cg.onlineplantnursery.util.OrderUtility;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +28,6 @@ import org.springframework.http.HttpStatus;
 
 import com.cg.onlineplantnursery.order.entity.Order;
 import com.cg.onlineplantnursery.order.service.IOrderService;
-import com.cg.onlineplantnursery.order.util.OrderUtility;
 
 @RequestMapping("/orders")
 @RestController
@@ -48,7 +54,6 @@ public class OrderRestController {
         Order order = new Order();
         order.setQuantity(requestData.getQuantity());
         order.setTransactionMode(requestData.getTransactionMode());
-        order.setQuantity(requestData.getQuantity());
         order.setPlanter(planter);
         Order saved = orderService.addOrder(order);
         OrderDetails details = util.toDetails(saved);

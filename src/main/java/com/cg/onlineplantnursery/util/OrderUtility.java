@@ -1,16 +1,15 @@
-package com.cg.onlineplantnursery.order.util;
+package com.cg.onlineplantnursery.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cg.onlineplantnursery.commonutil.DateUtil;
+import com.cg.onlineplantnursery.dto.OrderDetails;
 import com.cg.onlineplantnursery.plant.entity.Plant;
 import com.cg.onlineplantnursery.planter.entity.Planter;
 import com.cg.onlineplantnursery.seed.entity.Seed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cg.onlineplantnursery.order.dto.OrderDetails;
 import com.cg.onlineplantnursery.order.entity.Order;
 
 @Component
