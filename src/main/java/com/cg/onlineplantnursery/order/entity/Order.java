@@ -35,12 +35,6 @@ public class Order {
 	@ManyToOne
 	private Customer customer;
 	
-	public Order() {
-		this.orderDate =  LocalDate.now();
-		this.quantity = 0;
-		this.totalCost = 0.0;
-	}
-	
 	public List<Planter> getPlanters() {
 		return planters;
 	}

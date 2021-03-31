@@ -33,8 +33,12 @@ public class PlantRestController {
 	@Autowired
 	private PlantUtility util;
 	
+	/*
+	 * Rest controller for adding a plant object to database
+	 * Calls : service.addPlant() and util.toDetails()
+	 */
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping("/addplant")
+	@PostMapping("/add")
 	public PlantDetails addPlant(@RequestBody AddPlantRequest requestBody) {
 		
 		Plant plant = new Plant();
@@ -55,8 +59,12 @@ public class PlantRestController {
 		return details;
 	}
 	
+	/*
+	 * Rest controller for deleting a plant object from database
+	 * Calls : service.viewPlant() and service.deletePlant()
+	 */
 	@ResponseStatus(HttpStatus.GONE)
-	@DeleteMapping("/deleteplant")
+	@DeleteMapping("/delete")
 	public String deletePlant(@RequestBody DeletePlantRequest requestBody) {
 		
 		Integer plantId = requestBody.getPlantId();
@@ -65,8 +73,12 @@ public class PlantRestController {
 		return "Plant with id "+plantId+" is deleted.";
 	}
 	
+	/*
+	 * Rest controller for updating a plant object price in database
+	 * Calls : service.viewPlant(), service.updatePlant() and util.toDetails()
+	 */
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	@PutMapping("/updateplantprice")
+	@PutMapping("/updateprice")
 	public PlantDetails updatePlantPrice(@RequestBody UpdatePlantPriceRequest requestBody) {
 		
 		Integer plantId = requestBody.getPlantId();
@@ -77,8 +89,12 @@ public class PlantRestController {
 		return details;
 	}
 	
+	/*
+	 * Rest controller for updating a plant object stock in database
+	 * Calls : service.viewPlant(), service.updatePlant() and util.toDetails()
+	 */
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	@PutMapping("/updateplantstock")
+	@PutMapping("/updatestock")
 	public PlantDetails updatePlantStock(@RequestBody UpdatePlantStockRequest requestBody) {
 		
 		Integer plantId = requestBody.getPlantId();
@@ -89,8 +105,12 @@ public class PlantRestController {
 		return details;
 	}
 	
+	/*
+	 * Rest controller for fetching a plant object from database by ID
+	 * Calls : service.viewPlant() and util.toDetails()
+	 */
 	@ResponseStatus(HttpStatus.FOUND)
-	@GetMapping("/viewplantbyid/{id}")
+	@GetMapping("/fetch/byid/{id}")
 	public PlantDetails fetchById(@PathVariable("id") Integer plantId ) {
 		
 		Plant plant = service.viewPlant(plantId);
@@ -98,8 +118,12 @@ public class PlantRestController {
 		return details;
 	}
 	
+	/*
+	 * Rest controller for fetching a plant object from database by Name
+	 * Calls : service.viewPlant() and util.toDetails()
+	 */
 	@ResponseStatus(HttpStatus.FOUND)
-	@GetMapping("/viewplantbyname/{name}")
+	@GetMapping("/fetch/byname/{name}")
 	public PlantDetails fetchByName(@PathVariable("name") String commonName ) {
 		
 		Plant plant = service.viewPlant(commonName);
@@ -107,8 +131,12 @@ public class PlantRestController {
 		return details;
 	}
 	
+	/*
+	 * Rest controller for fetching all plant objects from database by Type
+	 * Calls : service.viewAllPlants() and util.toDetailList()
+	 */
 	@ResponseStatus(HttpStatus.FOUND)
-	@GetMapping("/viewplantsbytype/{type}")
+	@GetMapping("/fetch/bytype/{type}")
 	public List<PlantDetails> fetchAllByType(@PathVariable("type") String typeOfPlant ) {
 		
 		List<Plant> plantList = service.viewAllPlants(typeOfPlant);
@@ -116,8 +144,12 @@ public class PlantRestController {
 		return desiredList;
 	}
 	
+	/*
+	 * Rest controller for fetching all plant objects from database
+	 * Calls : service.viewAllPlants() and util.toDetailList()
+	 */
 	@ResponseStatus(HttpStatus.FOUND)
-	@GetMapping("/viewallplants")
+	@GetMapping("/fetch")
 	public List<PlantDetails> fetchAll() {
 		
 		List<Plant> plantList = service.viewAllPlants();

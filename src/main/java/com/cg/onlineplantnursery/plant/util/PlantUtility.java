@@ -11,6 +11,7 @@ import com.cg.onlineplantnursery.plant.entity.Plant;
 @Component
 public class PlantUtility {
 
+	//converting Plant entity object to PlantDetails DTO object
 	public PlantDetails toDetails(Plant plant) {
 		
 		PlantDetails details = new PlantDetails();
@@ -29,6 +30,7 @@ public class PlantUtility {
 		return details;
 	}
 	
+	//converting a List of Plant entity objects to a List of PlantDetails DTO objects
 	public List<PlantDetails> toDetailList (List<Plant> plantList){
 		
 		List<PlantDetails> desiredList = new ArrayList<>();

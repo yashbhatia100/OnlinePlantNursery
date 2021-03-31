@@ -24,17 +24,11 @@ public class OrderServiceImpl implements IOrderService {
 	@Override
 	public Order addOrder(Order order) {
   
-	double planterCost = 0.0;
-	double plantCost = 0.0;
-	double seedCost = 0.0;
     validateOrder(order);
     validateBookingId(order.getBookingOrderId());
     validateTransactionMode(order.getTransactionMode());
     validateQuantity(order.getQuantity());
-    List<Planter> planterList = order.getPlanters();
-    for(Planter planter: planterList) {
-    	planterCost+=planter.getPlanterCost();
-    }
+  
 	return repository.save(order);
 	}
 

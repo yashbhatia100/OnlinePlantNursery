@@ -1,6 +1,9 @@
 package com.cg.onlineplantnursery.plant.controller;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.List;
 
@@ -34,6 +37,12 @@ class PlantRestControllerUnitTest {
 	@InjectMocks
 	PlantRestController controller;
 	
+	/*
+	 * To Test: addPlant()
+	 * Scenario: Plant object is added successfully
+	 * Input: mock AddPlantRequest object and Plant object.
+	 * Expectation: service.addPlant() and util.toDetails() are called. 
+	 */
 	@Test
 	void test_addPlant() {
 		AddPlantRequest request = mock(AddPlantRequest.class);
@@ -48,6 +57,12 @@ class PlantRestControllerUnitTest {
 		verify(util).toDetails(saved);
 	}
 	
+	/*
+	 * To Test: deletePlant()
+	 * Scenario: Plant object is deleted successfully
+	 * Input: mock DeletePlantRequest object and Plant object.
+	 * Expectation: service.viewPlant() and service.deletePlant() are called. 
+	 */
 	@Test
 	void test_deletePlant() {
 		Integer id = 1;
@@ -56,9 +71,16 @@ class PlantRestControllerUnitTest {
 		when(request.getPlantId()).thenReturn(id);
 		when(service.viewPlant(id)).thenReturn(plant);
 		controller.deletePlant(request);
+		verify(service).viewPlant(id);
 		verify(service).deletePlant(plant);
 	}
 	
+	/*
+	 * To Test: updatePlantPrice()
+	 * Scenario: Plant object is updated successfully
+	 * Input: mock UpdatePlantPriceRequest object and Plant object.
+	 * Expectation: service.viewPlant(), service.updatePlant() and util.toDetails() are called. 
+	 */
 	@Test
 	void test_updatePlantPrice() {
 		Integer id = 1;
@@ -78,6 +100,12 @@ class PlantRestControllerUnitTest {
 		verify(util).toDetails(plant);
 	}
 	
+	/*
+	 * To Test: updatePlantStock()
+	 * Scenario: Plant object is updated successfully
+	 * Input: mock UpdatePlantStockRequest object and Plant object.
+	 * Expectation: service.viewPlant(), service.updatePlant() and util.toDetails() are called. 
+	 */
 	@Test
 	void test_updatePlantStock() {
 		Integer id = 1;
@@ -97,6 +125,12 @@ class PlantRestControllerUnitTest {
 		verify(util).toDetails(plant);
 	}
 	
+	/*
+	 * To Test: fetchById()
+	 * Scenario: Plant object is fetched successfully
+	 * Input: mock Plant object.
+	 * Expectation: service.viewPlant() and util.toDetails() are called. 
+	 */
 	@Test
 	void test_fetchById() {
 		Integer id = 1;
@@ -111,6 +145,12 @@ class PlantRestControllerUnitTest {
 		verify(util).toDetails(plant);
 	}
 	
+	/*
+	 * To Test: fetchByName()
+	 * Scenario: Plant object is fetched successfully
+	 * Input: mock Plant object.
+	 * Expectation: service.viewPlant() and util.toDetails() are called. 
+	 */
 	@Test
 	void test_fetchByName() {
 		String commonName = "abc";
@@ -125,6 +165,12 @@ class PlantRestControllerUnitTest {
 		verify(util).toDetails(plant);
 	}
 	
+	/*
+	 * To Test: fetchAllByType()
+	 * Scenario: Plant objects are fetched successfully
+	 * Input: mock List<Plant> object.
+	 * Expectation: service.viewAllPlants() and util.toDetailList() are called. 
+	 */
 	@Test
 	void test_fetchAllByType() {
 		String typeOfPlant = "xyz";
@@ -139,6 +185,12 @@ class PlantRestControllerUnitTest {
 		verify(util).toDetailList(plantList);
 	}
 	
+	/*
+	 * To Test: fetchAll()
+	 * Scenario: Plant objects are fetched successfully
+	 * Input: mock List<Plant> object.
+	 * Expectation: service.viewAllPlants() and util.toDetailList() are called. 
+	 */
 	@Test
 	void test_fetchAll() {
 		List<Plant> plantList = mock(List.class);

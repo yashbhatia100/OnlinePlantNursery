@@ -26,6 +26,7 @@ public class Plant {
 	
 	public Plant() {}
 	
+	//getter and setter methods
 	public Integer getPlantId() {
 		return plantId;
 	}
