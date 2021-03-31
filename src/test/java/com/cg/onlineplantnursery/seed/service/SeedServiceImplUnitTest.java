@@ -1,4 +1,4 @@
-package com.cg.onlineplantnursery.seed;
+package com.cg.onlineplantnursery.seed.service;
 
 import java.util.List;
 import java.util.Optional;
