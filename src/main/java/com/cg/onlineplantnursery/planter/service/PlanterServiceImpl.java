@@ -3,16 +3,14 @@ package com.cg.onlineplantnursery.planter.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.onlineplantnursery.exceptions.AddPlanterException;
-import com.cg.onlineplantnursery.exceptions.InvalidDrainageHolesException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterCapacityException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterColorException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterCostException;
+import com.cg.onlineplantnursery.exceptions.InvalidPlanterDrainageHolesException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterHeightException;
 import com.cg.onlineplantnursery.exceptions.InvalidPlanterIdException;
@@ -28,7 +26,15 @@ public class PlanterServiceImpl implements IPlanterService {
 	@Autowired
 	IPlanterRepository planterRepository;
 
-	@Transactional
+	/**
+	 *
+	 *  saves Planter in the database after validation
+	 *
+	 * @param planter is Planter
+	 * @return saved Planter
+	 */
+	
+	
 	@Override
 	public Planter addPlanter(Planter planter) {
 		validatePlanter(planter);
@@ -37,14 +43,28 @@ public class PlanterServiceImpl implements IPlanterService {
 		return saved;
 	}
 
-	@Transactional
+	/**
+	 *
+	 *  Updating Planter in the database after validation by Id
+	 *
+	 * @param planter is Planter
+	 * @return updated Planter
+	 */
+	
 	@Override
 	public Planter updatePlanter(Planter planter) {
 		validatePlanterById(planter);
 		return planterRepository.save(planter);
 	}
 
-	@Transactional
+	/**
+	 *
+	 *  Deleting Planter in the database after validation by Id
+	 *
+	 * @param planter is Planter
+	 * @return Planter
+	 */
+	
 	@Override
 	public Planter deletePlanter(Planter planter) {
 		validatePlanterById(planter);
@@ -53,6 +73,14 @@ public class PlanterServiceImpl implements IPlanterService {
 
 	}
 
+	/**
+	 *
+	 *  Finding Planter in the database after validation by Id
+	 *
+	 * @param planter Id
+	 * @return Planter
+	 */
+	
 	@Override
 	public Planter viewPlanter(int planterId) {
 
@@ -65,6 +93,16 @@ public class PlanterServiceImpl implements IPlanterService {
 		return optional.get();
 	}
 
+	/**
+	 *
+	 *  Finding Planter in the database after validation by Planter Shape
+	 *
+	 * @param planter Shape
+	 * @return Planter List
+	 */
+	
+	
+	
 	@Override
 	public List<Planter> viewPlanter(String planterShape) {
 		validatePlanterShape(planterShape);
@@ -77,6 +115,14 @@ public class PlanterServiceImpl implements IPlanterService {
 		return planterList;
 
 	}
+	
+	
+	/**
+	 *
+	 *  Finding  All the Planter in the database
+	 *
+	 * @return Planter List
+	 */
 
 	@Override
 	public List<Planter> viewAllPlanters() {
@@ -86,7 +132,13 @@ public class PlanterServiceImpl implements IPlanterService {
 		}
 		return planterList;
 	}
-
+	/**
+	 *
+	 *  Finding  All the Planter in the database by providing Cost range
+	 *@param minCost and maxCost
+	 * @return Planter List
+	 */
+	
 	@Override
 	public List<Planter> viewAllPlanters(double minCost, double maxCost) {
 		int minCostInt = (int) minCost;
@@ -116,7 +168,7 @@ public class PlanterServiceImpl implements IPlanterService {
 		}
 
 		if (planter.getDrainageHoles() <= 0) {
-			throw new InvalidDrainageHolesException("Planter Drainage cannot be null");
+			throw new InvalidPlanterDrainageHolesException("Planter Drainage cannot be null");
 		}
 
 		if (planter.getPlanterColor() <= 0) {
@@ -155,7 +207,7 @@ public class PlanterServiceImpl implements IPlanterService {
 
 		}
 	}
-
+//Validating the planter by Id
 	public void validatePlanterById(Planter planter) {
 		int id = planter.getPlanterId();
 		boolean exists = planterRepository.existsById(id);
