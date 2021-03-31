@@ -8,9 +8,9 @@ public class CreateSeedRequest {
 	private String temparature;
 	private String typeOfSeeds;
 	private String seedsDescription;
-	private Integer seedsStock;
+	private int seedsStock;
 	private double seedsCost;
-	private Integer seedsPerPacket;
+	private int seedsPerPacket;
 
 	public String getCommonName() {
 		return commonName;
@@ -68,11 +68,11 @@ public class CreateSeedRequest {
 		this.seedsDescription = seedsDescription;
 	}
 
-	public Integer getSeedsStock() {
+	public int getSeedsStock() {
 		return seedsStock;
 	}
 
-	public void setSeedsStock(Integer seedsStock) {
+	public void setSeedsStock(int seedsStock) {
 		this.seedsStock = seedsStock;
 	}
 
@@ -84,11 +84,11 @@ public class CreateSeedRequest {
 		this.seedsCost = seedsCost;
 	}
 
-	public Integer getSeedsPerPacket() {
+	public int getSeedsPerPacket() {
 		return seedsPerPacket;
 	}
 
-	public void setSeedsPerPacket(Integer seedsPerPacket) {
+	public void setSeedsPerPacket(int seedsPerPacket) {
 		this.seedsPerPacket = seedsPerPacket;
 	}
 
