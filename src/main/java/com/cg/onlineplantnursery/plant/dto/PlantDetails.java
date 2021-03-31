@@ -1,19 +1,9 @@
-package com.cg.onlineplantnursery.plant.entity;
+package com.cg.onlineplantnursery.plant.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+public class PlantDetails {
 
-@Entity
-public class Plant {
-	
-	@GeneratedValue
-	@Id
-	private Integer plantId;
 	private Integer plantHeight;
 	private String plantSpread;
-	@Column(unique=true)
 	private String commonName;
 	private String bloomTime;
 	private String medicinalOrCulinaryUse;
@@ -23,16 +13,8 @@ public class Plant {
 	private String plantDescription;
 	private Integer plantsStock;
 	private double plantCost;
+
 	
-	public Plant() {}
-	
-	//getter and setter methods
-	public Integer getPlantId() {
-		return plantId;
-	}
-	public void setPlantId(Integer plantId) {
-		this.plantId = plantId;
-	}
 	public Integer getPlantHeight() {
 		return plantHeight;
 	}
@@ -72,8 +54,8 @@ public class Plant {
 	public String getTemperature() {
 		return temperature;
 	}
-	public void setTemperature(String temparature) {
-		this.temperature = temparature;
+	public void setTemperature(String temperature) {
+		this.temperature = temperature;
 	}
 	public String getTypeOfPlant() {
 		return typeOfPlant;
@@ -98,30 +80,5 @@ public class Plant {
 	}
 	public void setPlantCost(double plantCost) {
 		this.plantCost = plantCost;
-	}
-	
-	@Override
-	public String toString() {
-		return "plantId:"+plantId+"\nplantHeight:"+plantHeight+"\nplantSpread:"+plantSpread
-				+"\ncommonName"+commonName+"\nbloomTime"+bloomTime+"\nmedicinalOrCulinaryUse"+medicinalOrCulinaryUse
-				+"\ndifficultyLevel"+difficultyLevel+"\ntemperature"+temperature+"\ntypeOfPlant"+typeOfPlant
-				+"\nplantDescription"+plantDescription+"\nplantsStock"+plantsStock+"\nplantCost"+plantCost;
-	}
-	
-	@Override
-	public int hashCode() {
-		return plantId;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		 if(!(obj instanceof Plant)) {
-			 return false;
-		 }
-		 Plant that=(Plant)obj;
-		return this.plantId==that.plantId;
 	}
 }

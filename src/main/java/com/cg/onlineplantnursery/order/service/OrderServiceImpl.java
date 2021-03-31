@@ -12,6 +12,7 @@ import com.cg.onlineplantnursery.exceptions.OrderIdNotFoundException;
 import com.cg.onlineplantnursery.exceptions.OrderUpdateException;
 import com.cg.onlineplantnursery.order.entity.Order;
 import com.cg.onlineplantnursery.order.repository.IOrderRepository;
+import com.cg.onlineplantnursery.planter.entity.Planter;
 
 @Service
 public class OrderServiceImpl implements IOrderService {
@@ -27,9 +28,8 @@ public class OrderServiceImpl implements IOrderService {
     validateBookingId(order.getBookingOrderId());
     validateTransactionMode(order.getTransactionMode());
     validateQuantity(order.getQuantity());
+  
 	return repository.save(order);
-
-	
 	}
 
 	@Transactional
