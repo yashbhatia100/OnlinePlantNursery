@@ -1,14 +1,7 @@
-package com.cg.onlineplantnursery.seed.entity;
+package com.cg.onlineplantnursery.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
-public class Seed {
-	@GeneratedValue
-	@Id
-	private Integer seedId;
+public class SeedDetails {
+	private int seedId;
 
 	private String commonName;
 	private String bloomTime;
@@ -17,15 +10,15 @@ public class Seed {
 	private String temparature;
 	private String typeOfSeeds;
 	private String seedsDescription;
-	private Integer seedsStock;
+	private int seedsStock;
 	private double seedsCost;
-	private Integer seedsPerPacket;
+	private int seedsPerPacket;
 
-	public Integer getSeedId() {
+	public int getSeedId() {
 		return seedId;
 	}
 
-	public void setSeedId(Integer seedId) {
+	public void setSeedId(int seedId) {
 		this.seedId = seedId;
 	}
 
@@ -85,11 +78,11 @@ public class Seed {
 		this.seedsDescription = seedsDescription;
 	}
 
-	public Integer getSeedsStock() {
+	public int getSeedsStock() {
 		return seedsStock;
 	}
 
-	public void setSeedsStock(Integer seedsStock) {
+	public void setSeedsStock(int seedsStock) {
 		this.seedsStock = seedsStock;
 	}
 
@@ -101,37 +94,12 @@ public class Seed {
 		this.seedsCost = seedsCost;
 	}
 
-	public Integer getSeedsPerPacket() {
+	public int getSeedsPerPacket() {
 		return seedsPerPacket;
 	}
 
-	public void setSeedsPerPacket(Integer seedsPerPacket) {
+	public void setSeedsPerPacket(int seedsPerPacket) {
 		this.seedsPerPacket = seedsPerPacket;
-	}
-
-	@Override
-	public String toString() {
-		return "Seed [seedId=" + seedId + ", commonName=" + commonName + ", bloomTime=" + bloomTime + ", watering="
-				+ watering + ", difficultyLevel=" + difficultyLevel + ", temparature=" + temparature + ", typeOfSeeds="
-				+ typeOfSeeds + ", seedsDescription=" + seedsDescription + ", seedsStock=" + seedsStock + ", seedsCost="
-				+ seedsCost + ", seedsPerPacket=" + seedsPerPacket + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return seedId;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null || !(obj instanceof Seed)) {
-			return false;
-		}
-		Seed that = (Seed) obj;
-		return this.seedId == that.seedId;
 	}
 
 }

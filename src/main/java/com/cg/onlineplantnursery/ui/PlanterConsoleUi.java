@@ -1,6 +1,5 @@
-package com.cg.onlineplantnursery.planter.ui;
+package com.cg.onlineplantnursery.ui;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -79,16 +78,7 @@ public class PlanterConsoleUi {
 		plantService.addPlant(plant2);
 		plantService.addPlant(plant3);
 
-		List<Plant> plantsList1 = new ArrayList<>();
-		plantsList1.add(plant1);
-		plantsList1.add(plant2);
-		List<Plant> plantsList2 = new ArrayList<>();
-		plantsList2.add(plant2);
-		plantsList2.add(plant3);
-
-		List<Plant> plantsList3 = new ArrayList<>();
-		plantsList3.add(plant1);
-		plantsList3.add(plant3);
+	
 
 		Seed seed1 = new Seed();
 		Seed seed2 = new Seed();
@@ -131,17 +121,7 @@ public class PlanterConsoleUi {
 		seedService.addSeed(seed2);
 		seedService.addSeed(seed3);
 
-		List<Seed> SeedList1 = new ArrayList<>();
-		SeedList1.add(seed1);
-		SeedList1.add(seed2);
-
-		List<Seed> SeedList2 = new ArrayList<>();
-		SeedList2.add(seed2);
-		SeedList2.add(seed3);
-
-		List<Seed> SeedList3 = new ArrayList<>();
-		SeedList3.add(seed1);
-		SeedList3.add(seed3);
+		
 
 		Planter planter1 = new Planter();
 		Planter planter2 = new Planter();
@@ -154,9 +134,10 @@ public class PlanterConsoleUi {
 		planter1.setPlanterShape("Cylinderical");
 		planter1.setPlanterStock(10);
 		planter1.setPlanterCost(150);
-		planter1.setPlants(plantsList1);
-		planter1.setSeeds(SeedList1);
-
+		planter1.setPlant(plant1);
+		planter1.setSeed(seed1);
+		
+		
 		planter2.setPlanterheight(11.0f);
 		planter2.setPlanterCapacity(15);
 		planter2.setDrainageHoles(2);
@@ -164,8 +145,8 @@ public class PlanterConsoleUi {
 		planter2.setPlanterShape("Square");
 		planter2.setPlanterStock(12);
 		planter2.setPlanterCost(400);
-		planter2.setPlants(plantsList2);
-		planter2.setSeeds(SeedList2);
+		planter2.setPlant(plant2);
+		planter2.setSeed(seed2);
 
 		planter3.setPlanterheight(12.0f);
 		planter3.setPlanterCapacity(20);
@@ -174,8 +155,8 @@ public class PlanterConsoleUi {
 		planter3.setPlanterShape("Rectangular");
 		planter3.setPlanterStock(14);
 		planter3.setPlanterCost(300);
-		planter3.setPlants(plantsList3);
-		planter3.setSeeds(SeedList3);
+		planter3.setPlant(plant3);
+		planter3.setSeed(seed3);
 
 		planterService.addPlanter(planter1);
 		planterService.addPlanter(planter2);

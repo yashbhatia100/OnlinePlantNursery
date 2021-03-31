@@ -1,19 +1,9 @@
-package com.cg.onlineplantnursery.plant.entity;
+package com.cg.onlineplantnursery.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+public class AddPlantRequest {
 
-@Entity
-public class Plant {
-	
-	@GeneratedValue
-	@Id
-	private Integer plantId;
 	private Integer plantHeight;
 	private String plantSpread;
-	@Column(unique=true)
 	private String commonName;
 	private String bloomTime;
 	private String medicinalOrCulinaryUse;
@@ -24,14 +14,19 @@ public class Plant {
 	private Integer plantsStock;
 	private double plantCost;
 	
-	public Plant() {}
 	
-	//getter and setter methods
-	public Integer getPlantId() {
-		return plantId;
+	public Integer getPlantsStock() {
+		return plantsStock;
 	}
-	public void setPlantId(Integer plantId) {
-		this.plantId = plantId;
+	public void setPlantsStock(Integer plantsStock) {
+		this.plantsStock = plantsStock;
+	}
+	
+	public double getPlantCost() {
+		return plantCost;
+	}
+	public void setPlantCost(double plantCost) {
+		this.plantCost = plantCost;
 	}
 	public Integer getPlantHeight() {
 		return plantHeight;
@@ -72,8 +67,8 @@ public class Plant {
 	public String getTemperature() {
 		return temperature;
 	}
-	public void setTemperature(String temparature) {
-		this.temperature = temparature;
+	public void setTemperature(String temperature) {
+		this.temperature = temperature;
 	}
 	public String getTypeOfPlant() {
 		return typeOfPlant;
@@ -87,41 +82,6 @@ public class Plant {
 	public void setPlantDescription(String plantDescription) {
 		this.plantDescription = plantDescription;
 	}
-	public Integer getPlantsStock() {
-		return plantsStock;
-	}
-	public void setPlantsStock(Integer plantsStock) {
-		this.plantsStock = plantsStock;
-	}
-	public double getPlantCost() {
-		return plantCost;
-	}
-	public void setPlantCost(double plantCost) {
-		this.plantCost = plantCost;
-	}
 	
-	@Override
-	public String toString() {
-		return "plantId:"+plantId+"\nplantHeight:"+plantHeight+"\nplantSpread:"+plantSpread
-				+"\ncommonName"+commonName+"\nbloomTime"+bloomTime+"\nmedicinalOrCulinaryUse"+medicinalOrCulinaryUse
-				+"\ndifficultyLevel"+difficultyLevel+"\ntemperature"+temperature+"\ntypeOfPlant"+typeOfPlant
-				+"\nplantDescription"+plantDescription+"\nplantsStock"+plantsStock+"\nplantCost"+plantCost;
-	}
 	
-	@Override
-	public int hashCode() {
-		return plantId;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		 if(!(obj instanceof Plant)) {
-			 return false;
-		 }
-		 Plant that=(Plant)obj;
-		return this.plantId==that.plantId;
-	}
 }

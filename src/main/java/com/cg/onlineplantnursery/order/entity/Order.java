@@ -2,19 +2,12 @@ package com.cg.onlineplantnursery.order.entity;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-<<<<<<< HEAD
-
-=======
-import javax.persistence.OneToMany;
->>>>>>> 6c342a122c1f67d9111805f4a59f4d6e6e35991e
-
 import javax.persistence.Table;
 
 import com.cg.onlineplantnursery.customer.entity.Customer;
@@ -54,6 +47,7 @@ public class Order {
 	public Order() {
 		this.orderDate =  LocalDate.now();
 	}
+
 	public Integer getBookingOrderId() {
 		return bookingOrderId;
 	}

@@ -1,4 +1,4 @@
-package com.cg.onlineplantnursery.plant.ui;
+package com.cg.onlineplantnursery.ui;
 
 import java.util.List;
 

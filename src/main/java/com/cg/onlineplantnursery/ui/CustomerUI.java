@@ -1,4 +1,4 @@
-package com.cg.onlineplantnursery.customer.ui;
+package com.cg.onlineplantnursery.ui;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
