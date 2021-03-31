@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.onlineplantnursery.customer.repository.IAddressRepository;
 import com.cg.onlineplantnursery.customer.repository.ICustomerRepository;
+import com.cg.onlineplantnursery.customer.entity.Address;
 import com.cg.onlineplantnursery.customer.entity.Customer;
 
 import com.cg.onlineplantnursery.exceptions.*;
@@ -41,6 +42,9 @@ public class CustomerServiceImpl implements ICustomerService {
 		if (!exists) {
 			throw new CustomerNotFoundException("Customer not found");
 		}
+		
+		addressRepository.save(tenant.getAddress());
+		
 		return repository.save(tenant);
 	}
 	
@@ -94,7 +98,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	
 	public void validateCustomerId(int id) {
 		if(id<0) {
-			throw new InvalidIdException("Invalid Customer ID passed");
+			throw new InvalidCustomerIdException("Invalid Customer ID passed");
 		}
 	}
 

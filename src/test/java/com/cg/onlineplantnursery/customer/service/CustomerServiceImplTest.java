@@ -206,7 +206,7 @@ public class CustomerServiceImplTest {
 
 		Integer id = -10;
 		Executable executable = () -> service.validateCustomerId(id);
-		Assertions.assertThrows(InvalidIdException.class, executable);
+		Assertions.assertThrows(InvalidCustomerIdException.class, executable);
 	}
 
 	
