@@ -36,6 +36,10 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerUtil util;
 
+	/*
+	 * Rest controller for fetching a Customer object from database
+	 * Call: customerService.viewCustomer() and util.toDetails()
+	 */
 	@GetMapping(value = "/fetch/byid/{id}")
 	public CustomerDetails fetchCustomerDetails(@PathVariable("id") Integer customerId) {
 		Customer customer = customerService.viewCustomer(customerId);
@@ -44,6 +48,10 @@ public class CustomerRestController {
 
 	}
 
+	/*
+	 * Rest controller for adding a Customer object to database
+	 * Call: customerService.addCustomer() and util.toDetails()
+	 */
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/add")
 	public CustomerDetails addCustomer(@RequestBody AddCustomerRequest requestData) {
@@ -69,6 +77,10 @@ public class CustomerRestController {
 
 	}
 
+	/*
+	 * Rest controller for updating a Customer object name in database
+	 * Call: customerService.viewCustomer(), customerService.updateCustomer() and util.toDetails()
+	 */
 	@PutMapping("/changename")
 	public CustomerDetails changeCustomerName(@RequestBody ChangeCustomerNameRequest requestData) {
 		Integer customerId = requestData.getId();
@@ -80,6 +92,10 @@ public class CustomerRestController {
 
 	}
 
+	/*
+	 * Rest controller for updating a Customer object email in database
+	 * Call: customerService.viewCustomer(), customerService.updateCustomer() and util.toDetails()
+	 */
 	@PutMapping("/changeemail")
 	public CustomerDetails changeCustomerEmail(@RequestBody ChangeCustomerEmailRequest requestData) {
 		Integer id = requestData.getId();
@@ -90,6 +106,10 @@ public class CustomerRestController {
 		return details;
 	}
 
+	/*
+	 * Rest controller for updating a Customer object password in database
+	 * Call: customerService.viewCustomer(), customerService.updateCustomer() and util.toDetails()
+	 */
 	@PutMapping("/changepassword")
 	public CustomerDetails changeCustomerPassword(@RequestBody ChangeCustomerPasswordRequest requestData) {
 		Integer id = requestData.getCustomerId();
@@ -100,6 +120,10 @@ public class CustomerRestController {
 		return details;
 	}
 
+	/*
+	 * Rest controller for updating a Customer object address in database
+	 * Call: customerService.viewCustomer(), customerService.updateCustomer() and util.toDetails()
+	 */
 	@PutMapping("/changeaddress")
 	public CustomerDetails changeCustomerAddress(@RequestBody ChangeCustomerAddressRequest requestData) {
 		Integer id = requestData.getCustomerId();
@@ -115,6 +139,10 @@ public class CustomerRestController {
 
 	}
 
+	/*
+	 * Rest controller for deleting a Customer object from database
+	 * Call: customerService.viewCustomer() and customerService.deleteCustomer()
+	 */
 	@ResponseStatus(HttpStatus.GONE)
 	@DeleteMapping("/delete")
 	public String deleteCustomer(@RequestBody DeleteCustomerRequest requestData) {
@@ -124,6 +152,10 @@ public class CustomerRestController {
 		return "Customer with id" + id + " is deleted";
 	}
 
+	/*
+	 * Rest controller for fetching all Customer objects from database
+	 * Call: customerService.viewAllCustomers(), and util.toDetails()
+	 */
 	@GetMapping("/fetch")
 	public List<CustomerDetails> allCustomerDetails() {
 

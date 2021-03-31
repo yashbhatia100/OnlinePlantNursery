@@ -32,21 +32,27 @@ public class OrderServiceImpl implements IOrderService {
         LocalDate currentDate = currentDate();
         order.setOrderDate(currentDate);
         Planter planter = order.getPlanter();
-        if (planter.getPlant() != null) {
+        if (planter.getPlant() != null && planter.getSeed()==null) {
             Plant plant = planter.getPlant();
             int quantity = order.getQuantity();
             double totalCost = quantity * (planter.getPlanterCost() + plant.getPlantCost());
             order.setTotalCost(totalCost);
-            order=repository.save(order);
-            return order;
         }
-        Seed seed = planter.getSeed();
-        int quantity = order.getQuantity();
-        double totalCost = quantity * (planter.getPlanterCost() + seed.getSeedsCost());
-        order.setTotalCost(totalCost);
+        else if(planter.getSeed() != null && planter.getPlant()==null) {
+	        Seed seed = planter.getSeed();
+	        int quantity = order.getQuantity();
+	        double totalCost = quantity * (planter.getPlanterCost() + seed.getSeedsCost());
+	        order.setTotalCost(totalCost);
+        }
+        else {
+        	Plant plant = planter.getPlant();
+        	Seed seed = planter.getSeed();
+        	int quantity = order.getQuantity();
+        	double totalCost = quantity * (planter.getPlanterCost() + plant.getPlantCost() + seed.getSeedsCost());
+        	order.setTotalCost(totalCost);
+        }
         order=repository.save(order);
         return order;
-
     }
 
     @Transactional
@@ -57,6 +63,26 @@ public class OrderServiceImpl implements IOrderService {
         boolean exists = repository.existsById(id);
         if (!exists) {
             throw new OrderUpdateException("Order id is not found for " + id);
+        }
+        Planter planter = order.getPlanter();
+        if (planter.getPlant() != null && planter.getSeed()==null) {
+            Plant plant = planter.getPlant();
+            int quantity = order.getQuantity();
+            double totalCost = quantity * (planter.getPlanterCost() + plant.getPlantCost());
+            order.setTotalCost(totalCost);
+        }
+        else if(planter.getSeed() != null && planter.getPlant()==null) {
+	        Seed seed = planter.getSeed();
+	        int quantity = order.getQuantity();
+	        double totalCost = quantity * (planter.getPlanterCost() + seed.getSeedsCost());
+	        order.setTotalCost(totalCost);
+        }
+        else {
+        	Plant plant = planter.getPlant();
+        	Seed seed = planter.getSeed();
+        	int quantity = order.getQuantity();
+        	double totalCost = quantity * (planter.getPlanterCost() + plant.getPlantCost() + seed.getSeedsCost());
+        	order.setTotalCost(totalCost);
         }
 
         Order saved = repository.save(order);

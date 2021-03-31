@@ -68,6 +68,7 @@ class OrderServiceImplUnitTest {
 		when(order.getPlanter()).thenReturn(planter);
 		Plant plant = Mockito.mock(Plant.class);
 		when(planter.getPlant()).thenReturn(plant);
+		when(planter.getSeed()).thenReturn(null);
 		when(order.getQuantity()).thenReturn(2);
 		when(planter.getPlanterCost()).thenReturn(100);
 		when(plant.getPlantCost()).thenReturn(200.0);
@@ -85,12 +86,18 @@ class OrderServiceImplUnitTest {
 	void testUpdateOrder_1() {
 		int id = 97;
 		Order order = mock(Order.class);
+		Planter planter = mock(Planter.class);
+		Plant plant = mock(Plant.class);
 		doNothing().when(service).validateOrder(order);
-
 		when(order.getBookingOrderId()).thenReturn(id);
 		when(repository.save(order)).thenReturn(order);
 		when(repository.existsById(id)).thenReturn(true);
-
+		when(order.getPlanter()).thenReturn(planter);
+		when(planter.getPlant()).thenReturn(plant);
+		when(planter.getSeed()).thenReturn(null);
+		when(order.getQuantity()).thenReturn(2);
+		when(planter.getPlanterCost()).thenReturn(100);
+		when(plant.getPlantCost()).thenReturn(200.0);
 		Order result = service.updateOrder(order);
 		assertNotNull(result);
 		assertSame(order, result);
@@ -114,7 +121,7 @@ class OrderServiceImplUnitTest {
 	 * Scenario view the Order by id test case for view Order
 	 */
 	@Test
-	public void testViewOrder_1() {
+	void testViewOrder_1() {
 		int id = 5;
 		doNothing().when(service).validateBookingId(id);
 		Order order = Mockito.mock(Order.class);
@@ -129,7 +136,7 @@ class OrderServiceImplUnitTest {
 	 * Scenario delete the Order test case for delete Order
 	 */
 	@Test
-	public void testDeleteOrder_1() {
+	void testDeleteOrder_1() {
 		int id = 10;
 		Order order = Mockito.mock(Order.class);
 		doNothing().when(service).validateOrder(order);
@@ -145,7 +152,7 @@ class OrderServiceImplUnitTest {
 	 * Scenario deleting the Order when it does not exist test case for delete Order
 	 */
 	@Test
-	public void testDeleteOrder_2() {
+	void testDeleteOrder_2() {
 		int id = 10;
 		Order order = Mockito.mock(Order.class);
 		doNothing().when(service).validateOrder(order);

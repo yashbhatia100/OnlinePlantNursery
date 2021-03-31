@@ -42,6 +42,10 @@ class CustomerRestControllerUnitTest {
 	@InjectMocks
 	CustomerRestController controller;
 	
+	/*
+	 * To Test: fetchCustomerDetails()
+	 * Scenario: when customer is successfully added
+	 */
 	@Test
 	 void test_fetchCustomerDetails_1() {
 		Integer id=7;
@@ -50,12 +54,16 @@ class CustomerRestControllerUnitTest {
 		when(customerService.viewCustomer(id)).thenReturn(customer);
 		when(util.toDetails(customer)).thenReturn(customerDetails);
 		CustomerDetails result=controller.fetchCustomerDetails(id);
-		assertSame(customerDetails,result);//CustomerDetails==result
+		assertSame(customerDetails,result);
 		verify(customerService).viewCustomer(id);
 		verify(util).toDetails(customer);
 		
 	}
 	
+	/*
+	 * To Test: changeCustomerName()
+	 * Scenario: when customer name is updated added
+	 */
 	@Test
 	void test_changeCustomerName_1() {
 		Integer id=5;
@@ -76,6 +84,10 @@ class CustomerRestControllerUnitTest {
 		
 		}
 	
+	/*
+	 * To Test: changeCustomerEmail()
+	 * Scenario: when customer email is updated added
+	 */
 	@Test
 	void test_changeCustomerEmail_1() {
 		Integer id=9;
@@ -93,13 +105,12 @@ class CustomerRestControllerUnitTest {
 		verify(customerService).viewCustomer(id);
 		verify(customerService).updateCustomer(customer);
 		verify(util).toDetails(customer);
-		
-		
-		
-	
 	}
 	
-	
+	/*
+	 * To Test: deleteCustomer()
+	 * Scenario: when customer is deleted successfully
+	 */
 	@Test
 	void test_deleteCustomer_1() {
 		Integer id=2;
@@ -110,8 +121,13 @@ class CustomerRestControllerUnitTest {
 		controller.deleteCustomer(request);
 		verify(customerService).deleteCustomer(customer);
 	}
+	
+	/*
+	 * To Test: addCustomer()
+	 * Scenario: when customer is added successfully
+	 */
 	@Test
-	public void test_AddCustomerRequest() {
+	void test_AddCustomerRequest() {
 		AddCustomerRequest request = mock(AddCustomerRequest.class);
 		Customer saved = mock(Customer.class);
 		when(customerService.addCustomer(any(Customer.class))).thenReturn(saved);
@@ -124,8 +140,12 @@ class CustomerRestControllerUnitTest {
 		verify(util).toDetails(any(Customer.class));
 	}
 
+	/*
+	 * To Test: changeCustomerPassword()
+	 * Scenario: when customer password is updated successfully
+	 */
 	@Test
-	public void test_changeCustomerPasswordRequest() {
+	void test_changeCustomerPasswordRequest() {
 		Integer id = 1;
 		ChangeCustomerPasswordRequest request = mock(ChangeCustomerPasswordRequest.class);
 		Customer customer = mock(Customer.class);
@@ -144,8 +164,12 @@ class CustomerRestControllerUnitTest {
 
 	}
 
+	/*
+	 * To Test: changeCustomerAddress()
+	 * Scenario: when customer address is updated successfully
+	 */
 	@Test
-	public void test_changeCustomerAddressRequest() {
+	void test_changeCustomerAddressRequest() {
 		Integer id = 5;
 		ChangeCustomerAddressRequest request = mock(ChangeCustomerAddressRequest.class);
 		Customer customer = mock(Customer.class);
@@ -166,8 +190,12 @@ class CustomerRestControllerUnitTest {
 
 	}
 
+	/*
+	 * To Test: allCustomerDetails()
+	 * Scenario: when all customer objects are fetched successfully
+	 */
 	@Test
-	public void test_allCustomerDetails() {
+	void test_allCustomerDetails() {
 
 		List<Customer> customerList = mock(List.class);
 		when(customerService.viewAllCustomers()).thenReturn(customerList);

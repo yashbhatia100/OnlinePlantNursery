@@ -123,6 +123,7 @@ public class OrderUi {
 		
 		
 		order1.setTransactionMode("COD");
+		order1.setQuantity(20);
 		
 		
 		orderService.updateOrder(order1);
@@ -139,10 +140,10 @@ public class OrderUi {
 		Planter planter=order.getPlanter();
 		Plant plant=planter.getPlant();
 		Seed seed=planter.getSeed();
-		System.out.println("orderId: "+order.getBookingOrderId()+"\n order Quantity: "+order.getQuantity()
-							+"\nTotal cost: "+order.getTotalCost()+"\n Transaction mode: "+order.getTransactionMode()
-							+"\norder Time: "+order.getOrderDate()+"\n PlanterId -"+planter.getPlanterId()+
-							"\n plant Name- "+plant.getCommonName()+"\n Seed name -"+seed.getCommonName());
+		System.out.println("orderId: "+order.getBookingOrderId()+"\norder Quantity: "+order.getQuantity()
+							+"\nTotal cost: "+order.getTotalCost()+"\nTransaction mode: "+order.getTransactionMode()
+							+"\norder Time: "+order.getOrderDate()+"\nPlanterId -"+planter.getPlanterId()+
+							"\nplant Name- "+plant.getCommonName()+"\nSeed name -"+seed.getCommonName());
 		
 		System.out.println("------------------------------------------------------");
 	}

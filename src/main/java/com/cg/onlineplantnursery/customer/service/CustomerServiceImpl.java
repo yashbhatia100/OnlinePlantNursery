@@ -23,6 +23,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
 	private IAddressRepository addressRepository;
 	
+	// For adding a Customer object 
     @Transactional
 	@Override
 	public Customer addCustomer(Customer customer){
@@ -34,6 +35,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		
 	}
     
+    // For updating a Customer object
 	@Transactional
 	@Override
 	public Customer updateCustomer(Customer tenant) {
@@ -48,6 +50,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		return repository.save(tenant);
 	}
 	
+	// For deleting a Customer object
 	@Transactional	
 	@Override
 	   public  Customer deleteCustomer(Customer tenant) {
@@ -60,6 +63,8 @@ public class CustomerServiceImpl implements ICustomerService {
 			 return null;
 			   
 		   }
+	
+	// To view a customer object by Id
 	@Transactional
 	@Override
 	   public Customer viewCustomer(int customerId){
@@ -71,6 +76,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		   return optional.get();
 		   }
 	
+	// To view all customer objects
 	@Transactional
 	@Override
 	public List<Customer> viewAllCustomers(){
@@ -81,6 +87,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		return customerList;
 	}
 	
+	// to validate if a Customer object is null or its name, email or password is empty
 	public void validateCustomer(Customer customer) {
 		if(customer == null ) {
 			throw new CustomerNotAddedException("No Customer passed");
@@ -96,6 +103,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		}
 	}
 	
+	// to validate if a Customer id is valid or not
 	public void validateCustomerId(int id) {
 		if(id<0) {
 			throw new InvalidCustomerIdException("Invalid Customer ID passed");

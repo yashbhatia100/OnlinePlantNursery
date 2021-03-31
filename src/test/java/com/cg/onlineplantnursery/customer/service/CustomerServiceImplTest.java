@@ -20,7 +20,7 @@ import com.cg.onlineplantnursery.exceptions.*;
 import org.junit.jupiter.api.Assertions;
 
 @ExtendWith(MockitoExtension.class)
-public class CustomerServiceImplTest {
+class CustomerServiceImplTest {
 	
 	@Mock
 	private ICustomerRepository repository;
@@ -34,11 +34,11 @@ public class CustomerServiceImplTest {
 	CustomerServiceImpl service;	
 
 	/*
+	 * To Test: addCustomer()
 	 * Scenario: when customer is successfully added
 	 */
-	
 	@Test
-	public void test_AddCustomer_1() {
+	void test_AddCustomer_1() {
 		Customer customer = mock(Customer.class);
 		Customer saved = mock(Customer.class);
 		doNothing().when(service).validateCustomer(customer);
@@ -51,10 +51,11 @@ public class CustomerServiceImplTest {
 }
 	
 	/*
+	 * To Test: addCustomer()
 	 * Scenario: when customer is null
 	 */
 	@Test
-	public void test_AddCustomer_2() {
+	void test_AddCustomer_2() {
 		Customer customer= mock(Customer.class);
 		doThrow(CustomerNotAddedException.class).when(service).validateCustomer(customer);
 		Executable executable=()-> service.addCustomer(customer);
@@ -65,9 +66,11 @@ public class CustomerServiceImplTest {
 	
 	
 	/*
-	 Scenario: when customer is updated successfully*/
+	 * To Test: updateCustomer()
+	 * Scenario: when customer is updated successfully
+	 */
 	@Test
-	public void test_updateCustomer_1(){
+	void test_updateCustomer_1(){
 		Integer id=5;
 		Customer tenant=mock(Customer.class);
 		when(tenant.getCustomerId()).thenReturn(id);
@@ -81,9 +84,11 @@ public class CustomerServiceImplTest {
 		}
 	
 	/*
-	 * Scenario: when customer doesn't exist*/
+	 * To Test: updateCustomer()
+	 * Scenario: when customer doesn't exist
+	 */
 	@Test
-	public void test_updateCustomer_2() {
+	void test_updateCustomer_2() {
 		Integer id=6;
 		Customer tenant=mock (Customer.class);
 		when(tenant.getCustomerId()).thenReturn(id);
@@ -93,10 +98,12 @@ public class CustomerServiceImplTest {
 		verify(repository,never()).save(tenant);
 	}
 	
-	
-	
+	/*
+	 * To Test: deleteCustomer()
+	 * Scenario: when customer doesn't exist
+	 */
 	@Test
-	public void test_deleteCustomer_1() {
+	void test_deleteCustomer_1() {
 		Integer id = 1;
 		Customer tenant = mock(Customer.class);
 		when(tenant.getCustomerId()).thenReturn(id);
@@ -107,20 +114,27 @@ public class CustomerServiceImplTest {
 		verify(repository,never()).delete(tenant);
 	}
 	
+	/*
+	 * To Test: deleteCustomer()
+	 * Scenario: when customer object is deleted successfully
+	 */
 	@Test
-	public void test_deleteCustomer_2() {
+	void test_deleteCustomer_2() {
 		Integer id =2;
 		Customer tenant = mock(Customer.class);
 		when(tenant.getCustomerId()).thenReturn(id);
 		when(repository.existsById(id)).thenReturn(true);
-		//when(repository.delete(tenant)).thenReturn(null);
 		Customer result = service.deleteCustomer(tenant);
 		Assertions.assertNull(result);
 		
 	}
 	
+	/*
+	 * To Test: viewCustomer()
+	 * Scenario: when customer object is fetched successfully
+	 */
 	@Test
-	public void test_viewCustomerid_1() {
+	void test_viewCustomerid_1() {
 		Integer id =3;
 		Customer customer =mock(Customer.class);
 		Optional<Customer> optional = Optional.of(customer);
@@ -132,8 +146,9 @@ public class CustomerServiceImplTest {
 	}
 	
 	/*
-	 * Scenario: when all customers are viewed
-	 * */
+	 * To Test: viewAllCustomers()
+	 * Scenario: when all customer objects are fetched 
+	 */
 	@Test
 	void test_ViewAllCustomers_1(){
 		List<Customer>list=mock(List.class);
@@ -146,8 +161,9 @@ public class CustomerServiceImplTest {
 
 	@Test
 	/*
+	 * To Test: viewAllCustomers()
 	 * Scenario: when list is empty
-	 * */
+	 */
 	void test_ViewAllCustomers_2(){
 		List<Customer>list=mock(List.class);
 		when (repository.findAll()).thenReturn(list);
@@ -156,7 +172,10 @@ public class CustomerServiceImplTest {
 		Assertions.assertThrows(CustomerNotFoundException.class,executable);
 	}
 	
-	/*Scenario: when no customer is added*/
+	/*
+	 * To test: validateCustomer()
+	 * Scenario: when no customer is added
+	 */
 	@Test
 	void test_validateCustomer_1() {
 		Customer customer = null;
@@ -166,7 +185,9 @@ public class CustomerServiceImplTest {
 	}
 	
 	/*
-	 * when InvalidCustomerNameException is thrown*/
+	 * To test: validateCustomer()
+	 * when InvalidCustomerNameException is thrown
+	 */
 	@Test
 	void test_validateCustomer_2() {
 		Customer customer=mock(Customer.class);
@@ -177,7 +198,9 @@ public class CustomerServiceImplTest {
 	}
 	
 	/*
-	 * when InvalidCustomerEmailException is thrown*/
+	 * To test: validateCustomer()
+	 * when InvalidCustomerEmailException is thrown
+	 */
 	@Test
 	void test_validateCustomer_3() {
 		Customer customer=mock(Customer.class);
@@ -189,7 +212,9 @@ public class CustomerServiceImplTest {
 	}
 	
 	/*
-	 * when InvalidCustomerNameException is thrown*/
+	 * To test: validateCustomer()
+	 * when InvalidCustomerNameException is thrown
+	 */
 	@Test
 	void test_validateCustomer_4() {
 		Customer customer=mock(Customer.class);
@@ -201,6 +226,10 @@ public class CustomerServiceImplTest {
 		
 	}
 	
+	/*
+	 * To test: validateCustomerId()
+	 * when InvalidCustomerIdException is thrown
+	 */
 	@Test
 	void test_validateCustomerId() {
 
