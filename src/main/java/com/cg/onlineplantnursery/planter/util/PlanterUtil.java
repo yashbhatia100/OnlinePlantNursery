@@ -10,6 +10,9 @@ import com.cg.onlineplantnursery.planter.entity.Planter;
 
 @Component
 public class PlanterUtil {
+	/*
+	 * Converting Planter Object to planter Details DTO Object
+	*/
 	public PlanterDetails toDetails(Planter planter) {
 		PlanterDetails details = new PlanterDetails();
 		details.setPlanterId(planter.getPlanterId());
@@ -25,15 +28,18 @@ public class PlanterUtil {
 
 	}
 
-	public List<PlanterDetails> toDetailsList(List<Planter>planters){
-		List<PlanterDetails>desired=new ArrayList<>();
-		for(Planter planter:planters) {
-			PlanterDetails details=toDetails(planter);
-		desired.add(details);
+	/*
+	 * Converting  List of Planter to planter Details DTO 
+	*/
+	public List<PlanterDetails> toDetailsList(List<Planter> planters) {
+		List<PlanterDetails> desired = new ArrayList<>();
+		for (Planter planter : planters) {
+			PlanterDetails details = toDetails(planter);
+			desired.add(details);
 		}
-			
+
 		return desired;
-		
+
 	}
-	
+
 }
