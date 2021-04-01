@@ -1,17 +1,28 @@
 package com.cg.onlineplantnursery.dto;
 
-import com.cg.onlineplantnursery.customer.entity.Address;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class CustomerDetails {
+	@NotNull
 	private Integer customerId;
+	@NotBlank
 	private String customerName;
+	@NotBlank
 	private String customerEmail;
+	@NotBlank
 	private String username;
+	@NotBlank
 	private Integer addressId;
+	@NotBlank
 	private String houseNo;
+	@NotBlank
 	private String colony;
+	@NotBlank
 	private String city;
+	@NotBlank
 	private String state;
+	@NotNull
 	private int pincode;
 
 	public CustomerDetails() {

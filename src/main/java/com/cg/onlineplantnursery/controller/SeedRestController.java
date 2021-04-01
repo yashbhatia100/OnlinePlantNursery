@@ -2,10 +2,12 @@ package com.cg.onlineplantnursery.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,7 @@ import com.cg.onlineplantnursery.dto.SeedDetails;
 import com.cg.onlineplantnursery.seed.entity.Seed;
 import com.cg.onlineplantnursery.seed.service.ISeedService;
 import com.cg.onlineplantnursery.util.SeedUtil;
+import com.sun.istack.NotNull;
 
 @RequestMapping("/seeds")
 @RestController
@@ -38,7 +41,7 @@ public class SeedRestController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/add")
-	public SeedDetails addSeed(@RequestBody CreateSeedRequest requestData) {
+	public SeedDetails addSeed(@RequestBody @Validated CreateSeedRequest requestData) {
 		Seed seed = new Seed();
 		seed.setCommonName(requestData.getCommonName());
 		seed.setBloomTime(requestData.getBloomTime());
@@ -51,14 +54,14 @@ public class SeedRestController {
 		seed.setSeedsCost(requestData.getSeedsCost());
 		seed.setSeedsPerPacket(requestData.getSeedsPerPacket());
 		Seed created = service.addSeed(seed);
-		
-		SeedDetails details=util.toDetails(created);
+
+		SeedDetails details = util.toDetails(created);
 		return details;
 	}
 
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@PutMapping(value = "/changename")
-	public SeedDetails updateSeedCommonName(@RequestBody ChangeCommonNameRequest requestData) {
+	public SeedDetails updateSeedCommonName(@RequestBody @Valid ChangeCommonNameRequest requestData) {
 		Seed fetched = service.viewSeed(requestData.getSeedId());
 		fetched.setCommonName(requestData.getCommonName());
 		service.updateSeed(fetched);
@@ -68,7 +71,7 @@ public class SeedRestController {
 
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@PutMapping(value = "/changecost")
-	public SeedDetails updateSeedsCost(@RequestBody ChangeSeedsCostRequest requestData) {
+	public SeedDetails updateSeedsCost(@RequestBody @Valid ChangeSeedsCostRequest requestData) {
 		Seed fetched = service.viewSeed(requestData.getSeedId());
 		fetched.setSeedsCost(requestData.getSeedsCost());
 		service.updateSeed(fetched);
@@ -78,17 +81,17 @@ public class SeedRestController {
 
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@PutMapping(value = "/changestock")
-	public SeedDetails updateSeedsStock(@RequestBody ChangeSeedsStockRequest requestData) {
+	public SeedDetails updateSeedsStock(@RequestBody @Valid ChangeSeedsStockRequest requestData) {
 		Seed fetched = service.viewSeed(requestData.getSeedId());
 		fetched.setSeedsStock(requestData.getSeedsStock());
 		service.updateSeed(fetched);
 		SeedDetails details = util.toDetails(fetched);
 		return details;
 	}
-	
+
 	@ResponseStatus(HttpStatus.GONE)
 	@DeleteMapping(value = "/delete")
-	public String deleteSeed(@RequestBody DeleteSeedRequest requestData) {
+	public String deleteSeed(@RequestBody @Valid DeleteSeedRequest requestData) {
 		Seed fetched = service.viewSeed(requestData.getSeedId());
 		service.deleteSeed(fetched);
 		return "seed is deleted for id =" + requestData.getSeedId();
@@ -96,7 +99,7 @@ public class SeedRestController {
 
 	@ResponseStatus(HttpStatus.FOUND)
 	@GetMapping(value = "/fetch/byid/{seedId}")
-	public SeedDetails fetchSeedById(@PathVariable("seedId") Integer seedId) {
+	public SeedDetails fetchSeedById(@PathVariable("seedId") @NotNull Integer seedId) {
 		Seed seed = service.viewSeed(seedId);
 		SeedDetails details = util.toDetails(seed);
 		return details;
@@ -120,7 +123,7 @@ public class SeedRestController {
 
 	@ResponseStatus(HttpStatus.FOUND)
 	@GetMapping(value = "/fetch/bytype/{typeOfSeeds}")
-	public List<SeedDetails> fetchAllSeedsByType(@PathVariable("typeOfSeeds") String typeOfSeeds) {
+	public List<SeedDetails> fetchAllSeedsByType(@PathVariable("typeOfSeeds") @NotBlank String typeOfSeeds) {
 		List<Seed> seedList = service.viewAllSeeds(typeOfSeeds);
 		List<SeedDetails> desired = util.toDetailsList(seedList);
 		return desired;

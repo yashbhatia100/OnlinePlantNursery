@@ -1,9 +1,12 @@
 package com.cg.onlineplantnursery.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class ChangeSeedsCostRequest {
-
+	@NotNull
 	private int seedId;
-
+	@NotBlank
 	private double seedsCost;
 
 	public int getSeedId() {

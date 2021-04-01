@@ -1,7 +1,9 @@
 package com.cg.onlineplantnursery.dto;
 
-public class DeletePlantRequest {
+import javax.validation.constraints.NotNull;
 
+public class DeletePlantRequest {
+	@NotNull
 	private Integer plantId;
 
 	public Integer getPlantId() {

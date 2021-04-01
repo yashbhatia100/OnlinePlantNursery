@@ -2,108 +2,118 @@ package com.cg.onlineplantnursery.dto;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class OrderDetails {
-    private Integer bookingOrderId;
-    private String orderDate;
-    private String transactionMode;
-    private int quantity;
-    private double totalCost;
+	@NotNull
+	private Integer bookingOrderId;
+	@NotBlank
+	private String orderDate;
+	@NotBlank
+	private String transactionMode;
+	@NotNull
+	private int quantity;
+	@NotNull
+	private double totalCost;
+	@NotNull
+	private Integer planterId;
+	@NotNull
+	private double planterCost;
+	@NotNull
+	private Integer plantId;
+	@NotBlank
+	private String plantCommonName;
 
-    private Integer planterId;
-    private double planterCost;
+	private Integer seedId;
 
-    private Integer plantId;
-    private String plantCommonName;
+	private String seedCommonName;
 
-    private Integer seedId;
+	public Integer getBookingOrderId() {
+		return bookingOrderId;
+	}
 
-    private String seedCommonName;
+	public void setBookingOrderId(Integer bookingOrderId) {
+		this.bookingOrderId = bookingOrderId;
+	}
 
-    public Integer getBookingOrderId() {
-        return bookingOrderId;
-    }
+	public String getTransactionMode() {
+		return transactionMode;
+	}
 
-    public void setBookingOrderId(Integer bookingOrderId) {
-        this.bookingOrderId = bookingOrderId;
-    }
+	public void setTransactionMode(String transactionMode) {
+		this.transactionMode = transactionMode;
+	}
 
-    public String getTransactionMode() {
-        return transactionMode;
-    }
+	public int getQuantity() {
+		return quantity;
+	}
 
-    public void setTransactionMode(String transactionMode) {
-        this.transactionMode = transactionMode;
-    }
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
-    public int getQuantity() {
-        return quantity;
-    }
+	public double getTotalCost() {
+		return totalCost;
+	}
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+	public void setTotalCost(double totalCost) {
+		this.totalCost = totalCost;
+	}
 
-    public double getTotalCost() {
-        return totalCost;
-    }
+	public String getOrderDate() {
+		return orderDate;
+	}
 
-    public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
-    }
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
 
-    public String getOrderDate() {
-        return orderDate;
-    }
+	public Integer getPlanterId() {
+		return planterId;
+	}
 
-    public void setOrderDate(String orderDate) {
-        this.orderDate = orderDate;
-    }
+	public void setPlanterId(Integer planterId) {
+		this.planterId = planterId;
+	}
 
-    public Integer getPlanterId() {
-        return planterId;
-    }
+	public double getPlanterCost() {
+		return planterCost;
+	}
 
-    public void setPlanterId(Integer planterId) {
-        this.planterId = planterId;
-    }
+	public void setPlanterCost(double planterCost) {
+		this.planterCost = planterCost;
+	}
 
-    public double getPlanterCost() {
-        return planterCost;
-    }
+	public Integer getPlantId() {
+		return plantId;
+	}
 
-    public void setPlanterCost(double planterCost) {
-        this.planterCost = planterCost;
-    }
+	public void setPlantId(Integer plantId) {
+		this.plantId = plantId;
+	}
 
-    public Integer getPlantId() {
-        return plantId;
-    }
+	public String getPlantCommonName() {
+		return plantCommonName;
+	}
 
-    public void setPlantId(Integer plantId) {
-        this.plantId = plantId;
-    }
+	public void setPlantCommonName(String plantCommonName) {
+		this.plantCommonName = plantCommonName;
+	}
 
-    public String getPlantCommonName() {
-        return plantCommonName;
-    }
+	public Integer getSeedId() {
+		return seedId;
+	}
 
-    public void setPlantCommonName(String plantCommonName) {
-        this.plantCommonName = plantCommonName;
-    }
+	public void setSeedId(Integer seedId) {
+		this.seedId = seedId;
+	}
 
-    public Integer getSeedId() {
-        return seedId;
-    }
+	public String getSeedCommonName() {
+		return seedCommonName;
+	}
 
-    public void setSeedId(Integer seedId) {
-        this.seedId = seedId;
-    }
-
-    public String getSeedCommonName() {
-        return seedCommonName;
-    }
-
-    public void setSeedCommonName(String seedCommonName) {
-        this.seedCommonName = seedCommonName;
-    }
+	public void setSeedCommonName(String seedCommonName) {
+		this.seedCommonName = seedCommonName;
+	}
 }

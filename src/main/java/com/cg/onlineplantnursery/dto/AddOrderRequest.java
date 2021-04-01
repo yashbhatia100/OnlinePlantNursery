@@ -1,34 +1,38 @@
 package com.cg.onlineplantnursery.dto;
 
-import java.time.LocalDate;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class AddOrderRequest {
-    private String transactionMode;
-    private int quantity;
+	@NotBlank
+	private String transactionMode;
+	@NotNull
+	private int quantity;
 
-    public String getTransactionMode() {
-        return transactionMode;
-    }
+	public String getTransactionMode() {
+		return transactionMode;
+	}
 
-    public void setTransactionMode(String transactionMode) {
-        this.transactionMode = transactionMode;
-    }
+	public void setTransactionMode(String transactionMode) {
+		this.transactionMode = transactionMode;
+	}
 
-    public int getQuantity() {
-        return quantity;
-    }
+	public int getQuantity() {
+		return quantity;
+	}
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
-    private int planterId;
+	@NotNull
+	private int planterId;
 
-    public int getPlanterId() {
-        return planterId;
-    }
+	public int getPlanterId() {
+		return planterId;
+	}
 
-    public void setPlanterId(int planterId) {
-        this.planterId = planterId;
-    }
+	public void setPlanterId(int planterId) {
+		this.planterId = planterId;
+	}
 }

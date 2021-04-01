@@ -1,20 +1,31 @@
 package com.cg.onlineplantnursery.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class AddCustomerRequest {
+	@NotBlank
 	private String customerName;
+	@NotBlank
 	private String customerEmail;
+	@NotBlank
 	private String username;
+	@NotBlank
 	private String password;
+	@NotBlank
 	private String houseNo;
+	@NotBlank
 	private String colony;
+	@NotBlank
 	private String city;
+	@NotBlank
 	private String state;
+	@NotNull
 	private int pincode;
 
 	public AddCustomerRequest() {
-		
+
 	}
-	
 
 	public String getCustomerName() {
 		return customerName;

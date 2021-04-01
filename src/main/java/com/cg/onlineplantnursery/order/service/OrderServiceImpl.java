@@ -20,145 +20,130 @@ import com.cg.onlineplantnursery.seed.entity.Seed;
 @Service
 public class OrderServiceImpl implements IOrderService {
 
-    @Autowired
-    private IOrderRepository repository;
+	@Autowired
+	private IOrderRepository repository;
 
-    /**
-     *
-     */
-    @Override
-    public Order addOrder(Order order) {
-        validateOrder(order);
-        LocalDate currentDate = currentDate();
-        order.setOrderDate(currentDate);
-        Planter planter = order.getPlanter();
-        if (planter.getPlant() != null && planter.getSeed()==null) {
-            Plant plant = planter.getPlant();
-            int quantity = order.getQuantity();
-            double totalCost = quantity * (planter.getPlanterCost() + plant.getPlantCost());
-            order.setTotalCost(totalCost);
-        }
-        else if(planter.getSeed() != null && planter.getPlant()==null) {
-	        Seed seed = planter.getSeed();
-	        int quantity = order.getQuantity();
-	        double totalCost = quantity * (planter.getPlanterCost() + seed.getSeedsCost());
-	        order.setTotalCost(totalCost);
-        }
-        else {
-        	Plant plant = planter.getPlant();
-        	Seed seed = planter.getSeed();
-        	int quantity = order.getQuantity();
-        	double totalCost = quantity * (planter.getPlanterCost() + plant.getPlantCost() + seed.getSeedsCost());
-        	order.setTotalCost(totalCost);
-        }
-        order=repository.save(order);
-        return order;
-    }
+	/**
+	 *
+	 */
+	@Override
+	public Order addOrder(Order order) {
+		validateOrder(order);
+		LocalDate currentDate = currentDate();
+		order.setOrderDate(currentDate);
+		Planter planter = order.getPlanter();
+		if (planter.getPlant() != null && planter.getSeed() == null) {
+			Plant plant = planter.getPlant();
+			int quantity = order.getQuantity();
+			double totalCost = quantity * (planter.getPlanterCost() + plant.getPlantCost());
+			order.setTotalCost(totalCost);
+		}
+		if (planter.getSeed() != null && planter.getPlant() == null) {
+			Seed seed = planter.getSeed();
+			int quantity = order.getQuantity();
+			double totalCost = quantity * (planter.getPlanterCost() + seed.getSeedsCost());
+			order.setTotalCost(totalCost);
+		}
 
-    @Transactional
-    @Override
-    public Order updateOrder(Order order) {
-        validateOrder(order);
-        Integer id = order.getBookingOrderId();
-        boolean exists = repository.existsById(id);
-        if (!exists) {
-            throw new OrderUpdateException("Order id is not found for " + id);
-        }
-        Planter planter = order.getPlanter();
-        if (planter.getPlant() != null && planter.getSeed()==null) {
-            Plant plant = planter.getPlant();
-            int quantity = order.getQuantity();
-            double totalCost = quantity * (planter.getPlanterCost() + plant.getPlantCost());
-            order.setTotalCost(totalCost);
-        }
-        else if(planter.getSeed() != null && planter.getPlant()==null) {
-	        Seed seed = planter.getSeed();
-	        int quantity = order.getQuantity();
-	        double totalCost = quantity * (planter.getPlanterCost() + seed.getSeedsCost());
-	        order.setTotalCost(totalCost);
-        }
-        else {
-        	Plant plant = planter.getPlant();
-        	Seed seed = planter.getSeed();
-        	int quantity = order.getQuantity();
-        	double totalCost = quantity * (planter.getPlanterCost() + plant.getPlantCost() + seed.getSeedsCost());
-        	order.setTotalCost(totalCost);
-        }
+		order = repository.save(order);
+		return order;
+	}
 
-        Order saved = repository.save(order);
-        return saved;
+	@Transactional
+	@Override
+	public Order updateOrder(Order order) {
+		validateOrder(order);
+		Integer id = order.getBookingOrderId();
+		boolean exists = repository.existsById(id);
+		if (!exists) {
+			throw new OrderUpdateException("Order id is not found for " + id);
+		}
+		Planter planter = order.getPlanter();
+		if (planter.getPlant() != null && planter.getSeed() == null) {
+			Plant plant = planter.getPlant();
+			int quantity = order.getQuantity();
+			double totalCost = quantity * (planter.getPlanterCost() + plant.getPlantCost());
+			order.setTotalCost(totalCost);
+		}
+		if (planter.getSeed() != null && planter.getPlant() == null) {
+			Seed seed = planter.getSeed();
+			int quantity = order.getQuantity();
+			double totalCost = quantity * (planter.getPlanterCost() + seed.getSeedsCost());
+			order.setTotalCost(totalCost);
+		}
 
-    }
+		Order saved = repository.save(order);
+		return saved;
 
-    @Transactional
-    @Override
-    public Order deleteOrder(Order order) {
-        validateOrder(order);
-        Integer id = order.getBookingOrderId();
-        validateBookingId(id);
-        boolean exists = repository.existsById(id);
-        if (!exists) {
-            throw new OrderUpdateException("Order id is not found for " + order.getBookingOrderId());
-        }
-        repository.delete(order);
-        return order;
-    }
+	}
 
-    @Override
-    public Order viewOrder(int orderId) {
-        validateBookingId(orderId);
-        Optional<Order> orderList = repository.findById(orderId);
-        if (!orderList.isPresent()) {
-            throw new OrderIdNotFoundException("Order is not found for this Id");
+	@Transactional
+	@Override
+	public Order deleteOrder(Order order) {
+		validateOrder(order);
+		Integer id = order.getBookingOrderId();
+		validateBookingId(id);
+		boolean exists = repository.existsById(id);
+		if (!exists) {
+			throw new OrderUpdateException("Order id is not found for " + order.getBookingOrderId());
+		}
+		repository.delete(order);
+		return order;
+	}
 
-        }
-        return orderList.get();
-    }
+	@Override
+	public Order viewOrder(int orderId) {
+		validateBookingId(orderId);
+		Optional<Order> orderList = repository.findById(orderId);
+		if (!orderList.isPresent()) {
+			throw new OrderIdNotFoundException("Order is not found for this Id");
 
-    @Override
-    public List<Order> viewAllOrders() {
+		}
+		return orderList.get();
+	}
 
-        List<Order> orderList = repository.findAll();
-        if (orderList.isEmpty()) {
-            throw new OrderIdNotFoundException("Orders not found");
-        }
+	@Override
+	public List<Order> viewAllOrders() {
 
-        return orderList;
-    }
+		List<Order> orderList = repository.findAll();
+		if (orderList.isEmpty()) {
+			throw new OrderIdNotFoundException("Orders not found");
+		}
 
-    public LocalDate currentDate() {
-        return LocalDate.now();
-    }
+		return orderList;
+	}
 
-    public void validateOrder(Order order) {
-        if (order == null) {
-            throw new OrderUpdateException("Order cannot be null");
-        }
-        validateTransactionMode(order.getTransactionMode());
-        validateQuantity(order.getQuantity());
+	public LocalDate currentDate() {
+		return LocalDate.now();
+	}
 
+	public void validateOrder(Order order) {
+		if (order == null) {
+			throw new OrderUpdateException("Order cannot be null");
+		}
+		validateTransactionMode(order.getTransactionMode());
+		validateQuantity(order.getQuantity());
 
-    }
+	}
 
-    public void validateBookingId(Integer bookingid) {
-        if (bookingid < 0) {
-            throw new OrderIdNotFoundException("Invalid OrderBookingID");
-        }
+	public void validateBookingId(Integer bookingid) {
+		if (bookingid < 0) {
+			throw new OrderIdNotFoundException("Invalid OrderBookingID");
+		}
 
-    }
+	}
 
-    public void validateTransactionMode(String TransactionMode) {
-        if (TransactionMode.equals("")) {
-            throw new OrderIdNotFoundException("TransactionMode can't be null");
-        }
-    }
+	public void validateTransactionMode(String TransactionMode) {
+		if (TransactionMode.equals("")) {
+			throw new OrderIdNotFoundException("TransactionMode can't be null");
+		}
+	}
 
-    public void validateQuantity(int Quantity) {
-        if (Quantity < 0) {
-            throw new OrderIdNotFoundException("Invalid Quantity");
-        }
+	public void validateQuantity(int Quantity) {
+		if (Quantity < 0) {
+			throw new OrderIdNotFoundException("Invalid Quantity");
+		}
 
-    }
-
+	}
 
 }

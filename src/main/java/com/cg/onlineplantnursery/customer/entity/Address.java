@@ -1,4 +1,4 @@
-  
+
 package com.cg.onlineplantnursery.customer.entity;
 
 import javax.persistence.Entity;
@@ -61,7 +61,6 @@ public class Address {
 		this.state = state;
 	}
 
-
 	public int getPincode() {
 		return pincode;
 	}
@@ -70,4 +69,3 @@ public class Address {
 		this.pincode = pincode;
 	}
 }
-

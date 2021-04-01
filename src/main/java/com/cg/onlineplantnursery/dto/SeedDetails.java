@@ -1,17 +1,29 @@
 package com.cg.onlineplantnursery.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class SeedDetails {
 	private int seedId;
-
+	@NotBlank
 	private String commonName;
+	@NotBlank
 	private String bloomTime;
+	@NotBlank
 	private String watering;
+	@NotBlank
 	private String difficultyLevel;
+	@NotBlank
 	private String temparature;
+	@NotBlank
 	private String typeOfSeeds;
+	@NotBlank
 	private String seedsDescription;
+	@NotNull
 	private int seedsStock;
+	@NotNull
 	private double seedsCost;
+	@NotNull
 	private int seedsPerPacket;
 
 	public int getSeedId() {

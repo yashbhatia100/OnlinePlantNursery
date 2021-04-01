@@ -1,13 +1,24 @@
 package com.cg.onlineplantnursery.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class PlanterDetails {
+	@NotNull
 	private Integer planterId;
+	@NotBlank
 	private float planterHeight;
+	@NotBlank
 	private int planterCapacity;
+	@NotBlank
 	private int drainageHoles;
+	@NotBlank
 	private int planterColor;
+	@NotBlank
 	private String planterShape;
+	@NotBlank
 	private int planterStock;
+	@NotBlank
 	private int planterCost;
 
 	public Integer getPlanterId() {
