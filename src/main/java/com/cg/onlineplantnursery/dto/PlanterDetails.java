@@ -6,19 +6,19 @@ import javax.validation.constraints.NotNull;
 public class PlanterDetails {
 	@NotNull
 	private Integer planterId;
-	@NotBlank
+	@NotNull
 	private float planterHeight;
-	@NotBlank
+	@NotNull
 	private int planterCapacity;
-	@NotBlank
+	@NotNull
 	private int drainageHoles;
-	@NotBlank
+	@NotNull
 	private int planterColor;
 	@NotBlank
 	private String planterShape;
-	@NotBlank
+	@NotNull
 	private int planterStock;
-	@NotBlank
+	@NotNull
 	private int planterCost;
 
 	public Integer getPlanterId() {

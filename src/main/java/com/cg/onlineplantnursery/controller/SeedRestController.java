@@ -28,7 +28,7 @@ import com.cg.onlineplantnursery.seed.entity.Seed;
 import com.cg.onlineplantnursery.seed.service.ISeedService;
 import com.cg.onlineplantnursery.util.SeedUtil;
 import com.sun.istack.NotNull;
-
+@Validated
 @RequestMapping("/seeds")
 @RestController
 public class SeedRestController {
