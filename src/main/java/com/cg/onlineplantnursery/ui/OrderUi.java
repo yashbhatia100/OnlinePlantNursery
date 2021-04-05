@@ -90,7 +90,7 @@ public class OrderUi {
 		plantService.addPlant(plant1);
 		
 		Planter planter1 = new Planter();
-		planter1.setPlanterheight(10.0f);
+		planter1.setPlanterHeight(10.0f);
 		planter1.setPlanterCapacity(10);
 		planter1.setDrainageHoles(1);
 		planter1.setPlanterColor(1);

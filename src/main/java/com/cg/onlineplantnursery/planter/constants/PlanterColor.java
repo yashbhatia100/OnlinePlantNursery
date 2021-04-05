@@ -30,4 +30,6 @@ public enum PlanterColor {
 		}
 		throw new InvalidPlanterColorException("color not found=" + colorNumber);
 	}
+	PlanterColor planterscolor =getColorByNumber(1);
+	
 }

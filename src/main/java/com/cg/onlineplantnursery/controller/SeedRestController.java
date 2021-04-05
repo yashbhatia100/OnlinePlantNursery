@@ -28,6 +28,7 @@ import com.cg.onlineplantnursery.seed.entity.Seed;
 import com.cg.onlineplantnursery.seed.service.ISeedService;
 import com.cg.onlineplantnursery.util.SeedUtil;
 import com.sun.istack.NotNull;
+
 @Validated
 @RequestMapping("/seeds")
 @RestController
@@ -39,9 +40,10 @@ public class SeedRestController {
 	@Autowired
 	private SeedUtil util;
 
+	@Validated
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/add")
-	public SeedDetails addSeed(@RequestBody @Validated CreateSeedRequest requestData) {
+	public SeedDetails addSeed(@RequestBody @Valid CreateSeedRequest requestData) {
 		Seed seed = new Seed();
 		seed.setCommonName(requestData.getCommonName());
 		seed.setBloomTime(requestData.getBloomTime());

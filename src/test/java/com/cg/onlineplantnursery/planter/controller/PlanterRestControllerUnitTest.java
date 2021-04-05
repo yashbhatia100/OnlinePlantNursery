@@ -51,7 +51,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testFetchedPlanter_1() {
+	void testFetchedPlanter_1() {
 
 		int id = 5;
 		Planter planter = mock(Planter.class);
@@ -70,7 +70,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testFetchedPlanter_2() {
+	void testFetchedPlanter_2() {
 		String planterShape = "Square";
 		List<Planter> planter = mock(List.class);
 		List<PlanterDetails> details = mock(List.class);
@@ -88,7 +88,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testFetchedPlanter_3() {
+	void testFetchedPlanter_3() {
 
 		List<Planter> planter = mock(List.class);
 		List<PlanterDetails> details = mock(List.class);
@@ -106,7 +106,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testFetchedPlanter_4() {
+	void testFetchedPlanter_4() {
 		double minCost = 100d;
 		double maxCost = 500d;
 
@@ -126,7 +126,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testDeletePlanter_1() {
+	void testDeletePlanter_1() {
 		int id = 10;
 		Planter planter = mock(Planter.class);
 		DeletePlanterRequest request = mock(DeletePlanterRequest.class);
@@ -144,7 +144,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testAddPlanter_1() {
+	void testAddPlanter_1() {
 
 		AddPlanterRequest request = mock(AddPlanterRequest.class);
 		Planter saved = mock(Planter.class);
@@ -163,7 +163,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testUpdatePlanterHeight() {
+	void testUpdatePlanterHeight() {
 		int id = 10;
 
 		UpdatePlanterHeightRequest request = mock(UpdatePlanterHeightRequest.class);
@@ -186,7 +186,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testUpdatePlanterColor() {
+	void testUpdatePlanterColor() {
 		int id = 10;
 		Planter planter = mock(Planter.class);
 		UpdatePlanterColorRequest request = mock(UpdatePlanterColorRequest.class);
@@ -211,7 +211,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testUpdatePlannterCapacity() {
+	void testUpdatePlannterCapacity() {
 		int id = 10;
 		Planter planter = mock(Planter.class);
 		UpdatePlanterCapacityRequest request = mock(UpdatePlanterCapacityRequest.class);
@@ -236,7 +236,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testUpdatePlannterDrainageHoles() {
+	void testUpdatePlannterDrainageHoles() {
 		int id = 10;
 		Planter planter = mock(Planter.class);
 		UpdatePlanterDrainageHolesRequest request = mock(UpdatePlanterDrainageHolesRequest.class);
@@ -261,7 +261,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testUpdatePlannterShape() {
+	void testUpdatePlannterShape() {
 		int id = 10;
 		Planter planter = mock(Planter.class);
 		UpdatePlanterShapeRequest request = mock(UpdatePlanterShapeRequest.class);
@@ -286,7 +286,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testUpdatePlannterCost() {
+	void testUpdatePlannterCost() {
 		int id = 10;
 		Planter planter = mock(Planter.class);
 		UpdatePlanterCostRequest request = mock(UpdatePlanterCostRequest.class);
@@ -311,7 +311,7 @@ public class PlanterRestControllerUnitTest {
 	 * 
 	 */
 	@Test
-	public void testUpdatePlannterStock() {
+	void testUpdatePlannterStock() {
 		int id = 10;
 		Planter planter = mock(Planter.class);
 		UpdatePlanterStockRequest request = mock(UpdatePlanterStockRequest.class);

@@ -65,10 +65,6 @@ public class Planter {
 		return planterHeight;
 	}
 
-	public void setPlanterheight(float planterHeight) {
-		this.planterHeight = planterHeight;
-	}
-
 	public int getPlanterCapacity() {
 		return planterCapacity;
 	}

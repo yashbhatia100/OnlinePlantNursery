@@ -127,7 +127,7 @@ public class PlanterConsoleUi {
 		Planter planter2 = new Planter();
 		Planter planter3 = new Planter();
 
-		planter1.setPlanterheight(10.0f);
+		planter1.setPlanterHeight(10.0f);
 		planter1.setPlanterCapacity(10);
 		planter1.setDrainageHoles(1);
 		planter1.setPlanterColor(1);
@@ -137,7 +137,7 @@ public class PlanterConsoleUi {
 		planter1.setPlant(plant1);
 		planter1.setSeed(seed1);
 
-		planter2.setPlanterheight(11.0f);
+		planter2.setPlanterHeight(11.0f);
 		planter2.setPlanterCapacity(15);
 		planter2.setDrainageHoles(2);
 		planter2.setPlanterColor(2);
@@ -147,7 +147,7 @@ public class PlanterConsoleUi {
 		planter2.setPlant(plant2);
 		planter2.setSeed(seed2);
 
-		planter3.setPlanterheight(12.0f);
+		planter3.setPlanterHeight(12.0f);
 		planter3.setPlanterCapacity(20);
 		planter3.setDrainageHoles(3);
 		planter3.setPlanterColor(3);
