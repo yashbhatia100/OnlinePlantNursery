@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		Integer id = tenant.getCustomerId();
 		boolean exists = repository.existsById(id);
 		if (!exists) {
-			throw new CustomerNotFoundException("Customer not found");
+			throw new CustomerNotFoundException("Customer not found for update request");
 		}
 
 		addressRepository.save(tenant.getAddress());
@@ -59,7 +59,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		Integer id = tenant.getCustomerId();
 		boolean exists = repository.existsById(id);
 		if (!exists) {
-			throw new CustomerNotAddedException("No Customer passed");
+			throw new CustomerNotAddedException("No Customer passed for delete request");
 		}
 		repository.deleteById(id);
 		return null;
@@ -73,7 +73,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		validateCustomerId(customerId);
 		Optional<Customer> optional = repository.findById(customerId);
 		if (!optional.isPresent()) {
-			throw new CustomerNotAddedException("No Customer passed");
+			throw new CustomerNotAddedException("No Customer passed for view request");
 		}
 		return optional.get();
 	}
@@ -95,13 +95,13 @@ public class CustomerServiceImpl implements ICustomerService {
 		if (customer == null) {
 			throw new CustomerNotAddedException("No Customer passed");
 		}
-		if (customer.getCustomerName() == "") {
+		if (customer.getCustomerName().equals("")) {
 			throw new InvalidCustomerNameException("Name cannot be empty");
 		}
-		if (customer.getCustomerEmail() == "") {
+		if (customer.getCustomerEmail().equals("")) {
 			throw new InvalidCustomerEmailException("Email cannot be empty");
 		}
-		if (customer.getPassword() == "") {
+		if (customer.getPassword().equals("")) {
 			throw new InvalidCustomerPasswordException("Password cannot be empty");
 		}
 	}

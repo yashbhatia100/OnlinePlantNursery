@@ -19,7 +19,7 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class SeedServiceImplUnitTest {
+ class SeedServiceImplUnitTest {
 
 	@Mock
 	ISeedRepository repository;
@@ -33,7 +33,7 @@ public class SeedServiceImplUnitTest {
 	 * Success scenario: seed added
 	 */
 	@Test
-	public void testAddSeed_1() {
+	 void testAddSeed_1() {
 		Seed seed = Mockito.mock(Seed.class);
 		Seed saved = Mockito.mock(Seed.class);
 		Mockito.doNothing().when(service).validateSeed(seed);
@@ -50,7 +50,7 @@ public class SeedServiceImplUnitTest {
 	 * Scenario: seed is null
 	 */
 	@Test
-	public void testAddSeed_2() {
+	 void testAddSeed_2() {
 
 		Seed seed = Mockito.mock(Seed.class);
 		Mockito.doThrow(SeedAddException.class).when(service).validateSeed(seed);
@@ -66,7 +66,7 @@ public class SeedServiceImplUnitTest {
 	 * Success scenario: seed is updated
 	 */
 	@Test
-	public void testUpdateSeed_1() {
+	 void testUpdateSeed_1() {
 		Seed seed = Mockito.mock(Seed.class);
 		Mockito.doNothing().when(service).validateSeedById(seed);
 		Mockito.when(repository.save(seed)).thenReturn(seed);
@@ -82,7 +82,7 @@ public class SeedServiceImplUnitTest {
 	 * Scenario: seed id does not exist
 	 */
 	@Test
-	public void testUpdateSeed_2() {
+	 void testUpdateSeed_2() {
 		Seed seed = Mockito.mock(Seed.class);
 		Mockito.doThrow(SeedNotFoundException.class).when(service).validateSeedById(seed);
 
@@ -219,7 +219,7 @@ public class SeedServiceImplUnitTest {
 	 * Success scenario: all seeds are viewed
 	 */
 	@Test
-	public void testViewAllSeeds_1() {
+	 void testViewAllSeeds_1() {
 		List<Seed> seedList = Mockito.mock(List.class);
 		Mockito.when(repository.findAll()).thenReturn(seedList);
 		Mockito.when(seedList.isEmpty()).thenReturn(false);
@@ -234,7 +234,7 @@ public class SeedServiceImplUnitTest {
 	 * Scenario: seedList does not exist
 	 */
 	@Test
-	public void testViewAllSeeds_2() {
+	 void testViewAllSeeds_2() {
 		List<Seed> seedList = Mockito.mock(List.class);
 		Mockito.when(repository.findAll()).thenReturn(seedList);
 		Mockito.when(seedList.isEmpty()).thenReturn(true);
@@ -248,7 +248,7 @@ public class SeedServiceImplUnitTest {
 	 * Success scenario: all seeds of typeOfSeeds viewed
 	 */
 	@Test
-	public void testViewAllSeedsByType_1() {
+	 void testViewAllSeedsByType_1() {
 		String typeOfSeeds = "Pineapple";
 		Mockito.doNothing().when(service).validateSeedByType(typeOfSeeds);
 		List<Seed> seedList = Mockito.mock(List.class);
@@ -265,7 +265,7 @@ public class SeedServiceImplUnitTest {
 	 * Scenario: when seedList is empty
 	 */
 	@Test
-	public void testViewAllBySeedsType_2() {
+	 void testViewAllBySeedsType_2() {
 		String typeOfSeeds = "apple";
 		Mockito.doNothing().when(service).validateSeedByType(typeOfSeeds);
 		List<Seed> seedList = Mockito.mock(List.class);

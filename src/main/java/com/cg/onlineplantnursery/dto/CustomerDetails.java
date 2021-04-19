@@ -25,12 +25,6 @@ public class CustomerDetails {
 	@NotNull
 	private int pincode;
 
-	public CustomerDetails() {
-		
-	}
-	
-
-
 	public Integer getCustomerId() {
 		return customerId;
 
@@ -67,7 +61,6 @@ public class CustomerDetails {
 		this.username = username;
 	}
 
-	
 	public Integer getAddressId() {
 		return addressId;
 	}
@@ -116,4 +109,3 @@ public class CustomerDetails {
 		this.pincode = pincode;
 	}
 }
-

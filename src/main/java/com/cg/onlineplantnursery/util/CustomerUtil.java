@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.cg.onlineplantnursery.customer.entity.Customer;
 import com.cg.onlineplantnursery.dto.CustomerDetails;
-import com.cg.onlineplantnursery.customer.entity.Address;
 
 @Component
 public class CustomerUtil {

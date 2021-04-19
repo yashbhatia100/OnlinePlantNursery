@@ -15,17 +15,16 @@ import com.cg.onlineplantnursery.seed.entity.Seed;
 import com.cg.onlineplantnursery.seed.service.ISeedService;
 
 @Component
-public class PlanterConsoleUi {
-	
+public class PlanterUi {
+
 	@Autowired
 	IPlantService plantService;
 
 	@Autowired
 	IPlanterService planterService;
-	
+
 	@Autowired
 	ISeedService seedService;
-
 
 	@Autowired
 	IPlanterRepository planterRepository;
@@ -73,12 +72,10 @@ public class PlanterConsoleUi {
 		plant3.setPlantDescription("Provides the mango fruit");
 		plant3.setPlantsStock(20);
 		plant3.setPlantCost(500.0);
-		
+
 		plantService.addPlant(plant1);
 		plantService.addPlant(plant2);
 		plantService.addPlant(plant3);
-
-	
 
 		Seed seed1 = new Seed();
 		Seed seed2 = new Seed();
@@ -116,12 +113,10 @@ public class PlanterConsoleUi {
 		seed3.setSeedsStock(10);
 		seed3.setSeedsCost(60.0);
 		seed3.setSeedsPerPacket(30);
-		
+
 		seedService.addSeed(seed1);
 		seedService.addSeed(seed2);
 		seedService.addSeed(seed3);
-
-		
 
 		Planter planter1 = new Planter();
 		Planter planter2 = new Planter();
@@ -135,7 +130,6 @@ public class PlanterConsoleUi {
 		planter1.setPlanterStock(10);
 		planter1.setPlanterCost(150);
 		planter1.setPlant(plant1);
-		planter1.setSeed(seed1);
 
 		planter2.setPlanterHeight(11.0f);
 		planter2.setPlanterCapacity(15);
@@ -144,7 +138,7 @@ public class PlanterConsoleUi {
 		planter2.setPlanterShape("Square");
 		planter2.setPlanterStock(12);
 		planter2.setPlanterCost(400);
-		planter2.setPlant(plant2);
+
 		planter2.setSeed(seed2);
 
 		planter3.setPlanterHeight(12.0f);
@@ -155,7 +149,6 @@ public class PlanterConsoleUi {
 		planter3.setPlanterStock(14);
 		planter3.setPlanterCost(300);
 		planter3.setPlant(plant3);
-		planter3.setSeed(seed3);
 
 		planterService.addPlanter(planter1);
 		planterService.addPlanter(planter2);

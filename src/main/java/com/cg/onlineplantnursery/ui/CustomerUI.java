@@ -1,9 +1,11 @@
 package com.cg.onlineplantnursery.ui;
-import java.util.*;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cg.onlineplantnursery.customer.entity.*;
+import com.cg.onlineplantnursery.customer.entity.Address;
+import com.cg.onlineplantnursery.customer.entity.Customer;
 import com.cg.onlineplantnursery.customer.repository.ICustomerRepository;
 import com.cg.onlineplantnursery.customer.service.ICustomerService;
 
@@ -30,15 +32,15 @@ public class CustomerUI {
 		address1.setPincode(6998086);
 		
 		address2.setHouseNo("Y178");
-		address2.setColony("Anna nagar");
-		address2.setCity("Chennai");
-		address2.setState("Tamil Nadu");
+		address2.setColony("Laxmi Nagar");
+		address2.setCity(" South Delhi ");
+		address2.setState("Delhi");
 		address2.setPincode(69980342);
 		
 		address3.setHouseNo("BA3");
-		address3.setColony("Vadapalani");
-		address3.setCity("Chennai");
-		address3.setState("Tamil Nadu");
+		address3.setColony("Dayalbagh");
+		address3.setCity("Agra");
+		address3.setState("Uttar Pradesh");
 		address3.setPincode(69982412); 
 		
 		
@@ -87,7 +89,7 @@ public class CustomerUI {
 		customerService.updateCustomer(customer2);
 		
 		Customer fetchedCustomer1= customerService.viewCustomer(customer1.getCustomerId());
-		Customer fetchedCustomer2= customerService.viewCustomer(customer2.getCustomerId());
+		
 		
 		System.out.println("\n********************* Updated Customers in database *********************\n");
 		

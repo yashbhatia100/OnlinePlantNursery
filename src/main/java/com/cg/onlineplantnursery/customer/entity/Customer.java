@@ -19,9 +19,6 @@ public class Customer {
 	@OneToOne
 	private Address address;
 
-	public Customer() {
-
-	}
 
 	public Integer getCustomerId() {
 		return customerId;

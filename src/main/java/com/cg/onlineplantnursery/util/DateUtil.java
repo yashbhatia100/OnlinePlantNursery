@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DateUtil {
 
-    private final String pattern="dd/MM/yy";
+    private  static final String pattern="dd/MM/yy";
 
 
     public String toText(LocalDate date, String pattern){

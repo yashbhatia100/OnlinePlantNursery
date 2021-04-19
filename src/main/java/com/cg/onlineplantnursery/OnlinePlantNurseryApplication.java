@@ -7,7 +7,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import com.cg.onlineplantnursery.ui.CustomerUI;
 import com.cg.onlineplantnursery.ui.OrderUi;
 import com.cg.onlineplantnursery.ui.PlantUI;
-import com.cg.onlineplantnursery.ui.PlanterConsoleUi;
+import com.cg.onlineplantnursery.ui.PlanterUi;
 import com.cg.onlineplantnursery.ui.SeedUI;
 
 @SpringBootApplication
@@ -21,7 +21,7 @@ public class OnlinePlantNurseryApplication {
 		SeedUI app2 = context.getBean(SeedUI.class);
 		app2.start();
 		
-		PlanterConsoleUi app3 = context.getBean(PlanterConsoleUi.class);
+		PlanterUi app3 = context.getBean(PlanterUi.class);
 		app3.start();
 		
 		CustomerUI app4 = context.getBean(CustomerUI.class);

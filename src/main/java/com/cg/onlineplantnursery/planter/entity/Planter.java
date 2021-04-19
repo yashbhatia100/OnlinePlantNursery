@@ -30,6 +30,9 @@ public class Planter {
 	private Seed seed;
 
 	public Planter() {
+		
+		this.plant=null;
+		this.seed=null;
 
 	}
 

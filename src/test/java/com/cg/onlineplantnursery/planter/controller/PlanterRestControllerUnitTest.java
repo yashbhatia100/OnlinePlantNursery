@@ -32,7 +32,7 @@ import com.cg.onlineplantnursery.planter.service.IPlanterService;
 import com.cg.onlineplantnursery.util.PlanterUtil;
 
 @ExtendWith(MockitoExtension.class)
-public class PlanterRestControllerUnitTest {
+ class PlanterRestControllerUnitTest {
 
 	@Mock
 	private IPlanterService service;

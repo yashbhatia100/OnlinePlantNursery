@@ -23,10 +23,7 @@ public class AddCustomerRequest {
 	@NotNull
 	private int pincode;
 
-	public AddCustomerRequest() {
-
-	}
-
+	
 	public String getCustomerName() {
 		return customerName;
 

@@ -15,5 +15,4 @@ public interface ICustomerService {
 
 	List<Customer> viewAllCustomers();
 
-	// boolean validateCustomer(String userName, String password);
 }

@@ -23,7 +23,7 @@ import com.cg.onlineplantnursery.seed.service.ISeedService;
 import com.cg.onlineplantnursery.util.SeedUtil;
 
 @ExtendWith(MockitoExtension.class)
-public class SeedRestControllerUnitTest {
+ class SeedRestControllerUnitTest {
 	@Mock
 	ISeedService service;
 
@@ -35,7 +35,7 @@ public class SeedRestControllerUnitTest {
 	SeedRestController controller;
 
 	@Test
-	public void testAddSeed() {
+	 void testAddSeed() {
 		Seed saved = Mockito.mock(Seed.class);
 		CreateSeedRequest request = Mockito.mock(CreateSeedRequest.class);
 		Mockito.when(service.addSeed(Mockito.any(Seed.class))).thenReturn(saved);
@@ -47,7 +47,7 @@ public class SeedRestControllerUnitTest {
 	}
 
 	@Test
-	public void testUpdateSeedCommonName() {
+	 void testUpdateSeedCommonName() {
 		int id = 1;
 		Seed seed = Mockito.mock(Seed.class);
 		ChangeCommonNameRequest request = Mockito.mock(ChangeCommonNameRequest.class);
@@ -66,7 +66,7 @@ public class SeedRestControllerUnitTest {
 	}
 
 	@Test
-	public void testUpdateSeedsCost() {
+	 void testUpdateSeedsCost() {
 		int id = 1;
 		Seed seed = Mockito.mock(Seed.class);
 		ChangeSeedsCostRequest request = Mockito.mock(ChangeSeedsCostRequest.class);
@@ -85,7 +85,7 @@ public class SeedRestControllerUnitTest {
 	}
 
 	@Test
-	public void testUpdateSeedsStock() {
+	 void testUpdateSeedsStock() {
 		int id = 1;
 		Seed seed = Mockito.mock(Seed.class);
 		ChangeSeedsStockRequest request = Mockito.mock(ChangeSeedsStockRequest.class);
@@ -104,7 +104,7 @@ public class SeedRestControllerUnitTest {
 	}
 
 	@Test
-	public void testDeleteSeed() {
+	 void testDeleteSeed() {
 		int id = 1;
 		Seed seed = Mockito.mock(Seed.class);
 		DeleteSeedRequest request = Mockito.mock(DeleteSeedRequest.class);
@@ -115,7 +115,7 @@ public class SeedRestControllerUnitTest {
 	}
 
 	@Test
-	public void testFetchSeedById_1() {
+	 void testFetchSeedById_1() {
 		int id = 1;
 		Seed seed = Mockito.mock(Seed.class);
 		SeedDetails seedDetails = Mockito.mock(SeedDetails.class);
@@ -128,7 +128,7 @@ public class SeedRestControllerUnitTest {
 	}
 
 	@Test
-	public void testFetchSeedByName_1() {
+	 void testFetchSeedByName_1() {
 		String name = "Mango Seed";
 		Seed seed = Mockito.mock(Seed.class);
 		SeedDetails seedDetails = Mockito.mock(SeedDetails.class);
@@ -141,7 +141,7 @@ public class SeedRestControllerUnitTest {
 	}
 
 	@Test
-	public void testFetchAllSeeds_1() {
+	 void testFetchAllSeeds_1() {
 		List<Seed> seedList = Mockito.mock(List.class);
 		List<SeedDetails> seedDetails = Mockito.mock(List.class);
 		Mockito.when(service.viewAllSeeds()).thenReturn(seedList);
@@ -153,7 +153,7 @@ public class SeedRestControllerUnitTest {
 	}
 
 	@Test
-	public void testFetchAllSeedsByType_1() {
+	 void testFetchAllSeedsByType_1() {
 		String type = "Round";
 		List<Seed> seedList = Mockito.mock(List.class);
 		List<SeedDetails> seedDetails = Mockito.mock(List.class);

@@ -17,10 +17,6 @@ public class Address {
 	private String state;
 	private int pincode;
 
-	public Address() {
-
-	}
-
 	public Integer getAddressId() {
 		return addressId;
 	}

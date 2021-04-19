@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,6 @@ import com.cg.onlineplantnursery.dto.UpdatePlantStockRequest;
 import com.cg.onlineplantnursery.plant.entity.Plant;
 import com.cg.onlineplantnursery.plant.service.IPlantService;
 import com.cg.onlineplantnursery.util.PlantUtility;
-import com.sun.istack.NotNull;
 
 @Validated
 @RequestMapping("/plants")

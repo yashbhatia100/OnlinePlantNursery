@@ -98,7 +98,7 @@ public class OrderUi {
 		planter1.setPlanterStock(10);
 		planter1.setPlanterCost(150);
 		planter1.setPlant(plant1);
-		planter1.setSeed(seed1);
+		//planter1.setSeed(seed1);
 		List<Planter> planterList1=new ArrayList<>();
 		planterList1.add(planter1);
 		
@@ -143,7 +143,7 @@ public class OrderUi {
 		System.out.println("orderId: "+order.getBookingOrderId()+"\norder Quantity: "+order.getQuantity()
 							+"\nTotal cost: "+order.getTotalCost()+"\nTransaction mode: "+order.getTransactionMode()
 							+"\norder Time: "+order.getOrderDate()+"\nPlanterId -"+planter.getPlanterId()+
-							"\nplant Name- "+plant.getCommonName()+"\nSeed name -"+seed.getCommonName());
+							"\nplant Name- "+plant.getCommonName()+"\nseed Name- "+seed.getCommonName());
 		
 		System.out.println("------------------------------------------------------");
 	}

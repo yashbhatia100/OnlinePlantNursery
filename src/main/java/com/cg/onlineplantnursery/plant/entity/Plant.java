@@ -24,7 +24,6 @@ public class Plant {
 	private Integer plantsStock;
 	private double plantCost;
 	
-	public Plant() {}
 	
 	//getter and setter methods
 	public Integer getPlantId() {
