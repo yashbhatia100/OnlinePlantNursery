@@ -29,8 +29,10 @@ import com.cg.onlineplantnursery.dto.UpdatePlanterDrainageHolesRequest;
 import com.cg.onlineplantnursery.dto.UpdatePlanterHeightRequest;
 import com.cg.onlineplantnursery.dto.UpdatePlanterShapeRequest;
 import com.cg.onlineplantnursery.dto.UpdatePlanterStockRequest;
+import com.cg.onlineplantnursery.plant.service.IPlantService;
 import com.cg.onlineplantnursery.planter.entity.Planter;
 import com.cg.onlineplantnursery.planter.service.IPlanterService;
+import com.cg.onlineplantnursery.seed.service.ISeedService;
 import com.cg.onlineplantnursery.util.PlanterUtil;
 
 @Validated
@@ -40,6 +42,12 @@ public class PlanterRestController {
 
 	@Autowired
 	private IPlanterService planterService;
+	
+	@Autowired
+	private IPlantService plantService;
+	
+	@Autowired
+	private ISeedService seedService;
 
 	@Autowired
 	private PlanterUtil util;
@@ -60,6 +68,8 @@ public class PlanterRestController {
 		planter.setPlanterShape(requestData.getPlanterShape());
 		planter.setPlanterCost(requestData.getPlanterCost());
 		planter.setPlanterStock(requestData.getPlanterStock());
+		planter.setPlant(plantService.viewPlant(requestData.getPlantId()));
+		planter.setSeed(seedService.viewSeed(requestData.getSeedId()));
 		Planter saved = planterService.addPlanter(planter);
 		PlanterDetails details = util.toDetails(saved);
 		return details;
