@@ -98,6 +98,7 @@ public class OrderUi {
 		planter1.setPlanterStock(10);
 		planter1.setPlanterCost(150);
 		planter1.setPlant(plant1);
+
 		List<Planter> planterList1=new ArrayList<>();
 		planterList1.add(planter1);
 		

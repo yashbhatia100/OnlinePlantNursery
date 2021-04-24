@@ -18,6 +18,26 @@ public class AddPlanterRequest {
 	private int planterStock;
 	@NotNull
 	private int planterCost;
+	@NotNull
+	private int plantId;
+	@NotNull
+	private int seedId;
+
+	public int getPlantId() {
+		return plantId;
+	}
+
+	public void setPlantId(int plantId) {
+		this.plantId = plantId;
+	}
+
+	public int getSeedId() {
+		return seedId;
+	}
+
+	public void setSeedId(int seedId) {
+		this.seedId = seedId;
+	}
 
 	public float getPlanterHeight() {
 		return planterHeight;
