@@ -18,9 +18,9 @@ public class AddPlanterRequest {
 	private int planterStock;
 	@NotNull
 	private int planterCost;
-	
+	@NotNull
 	private int plantId;
-	
+	@NotNull
 	private int seedId;
 
 	public int getPlantId() {
