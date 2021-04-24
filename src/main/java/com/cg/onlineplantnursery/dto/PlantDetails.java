@@ -5,6 +5,8 @@ import javax.validation.constraints.NotNull;
 
 public class PlantDetails {
 	@NotNull
+	private Integer plantId;
+	@NotNull
 	private Integer plantHeight;
 	@NotBlank
 	private String plantSpread;
@@ -27,6 +29,13 @@ public class PlantDetails {
 	@NotNull
 	private double plantCost;
 
+	public Integer getPlantId() {
+		return plantId;
+	}
+
+	public void setPlantId(Integer plantId) {
+		this.plantId = plantId;
+	}
 	public Integer getPlantHeight() {
 		return plantHeight;
 	}

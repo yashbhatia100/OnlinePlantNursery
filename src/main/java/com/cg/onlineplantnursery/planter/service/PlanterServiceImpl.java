@@ -108,7 +108,7 @@ public class PlanterServiceImpl implements IPlanterService {
 
 		List<Planter> planterList = planterRepository.findByPlanterShape(planterShape);
 		if (planterList.isEmpty()) {
-			throw new PlanterNotFoundException("No planters found");
+			throw new PlanterNotFoundException("No planters found for this shape");
 		}
 
 		return planterList;
@@ -145,7 +145,7 @@ public class PlanterServiceImpl implements IPlanterService {
 
 		List<Planter> planterList = planterRepository.findAllPlantersBetweenCost(minCostInt, maxCostInt);
 		if (planterList.isEmpty()) {
-			throw new PlanterNotFoundException("No planters found");
+			throw new PlanterNotFoundException("No planters found in this range");
 		}
 
 		return planterList;

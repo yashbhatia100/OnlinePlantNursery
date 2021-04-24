@@ -15,6 +15,7 @@ public class PlantUtility {
 	public PlantDetails toDetails(Plant plant) {
 		
 		PlantDetails details = new PlantDetails();
+		details.setPlantId(plant.getPlantId());
 		details.setPlantHeight(plant.getPlantHeight());
 		details.setPlantSpread(plant.getPlantSpread());
 		details.setCommonName(plant.getCommonName());

@@ -18,17 +18,17 @@ public class OnlinePlantNurseryApplication {
 		PlantUI app1 = context.getBean(PlantUI.class);
 		app1.start();
 		
-		SeedUI app2 = context.getBean(SeedUI.class);
-		app2.start();
+		//SeedUI app2 = context.getBean(SeedUI.class);
+		//app2.start();
 		
-		PlanterUi app3 = context.getBean(PlanterUi.class);
-		app3.start();
+		//PlanterUi app3 = context.getBean(PlanterUi.class);
+		//app3.start();
 		
-		CustomerUI app4 = context.getBean(CustomerUI.class);
-		app4.start();
+		//CustomerUI app4 = context.getBean(CustomerUI.class);
+		//app4.start();
 		
-		OrderUi app5 = context.getBean(OrderUi.class);
-		app5.start();
+		//OrderUi app5 = context.getBean(OrderUi.class);
+		//app5.start();
 	}
 
 }

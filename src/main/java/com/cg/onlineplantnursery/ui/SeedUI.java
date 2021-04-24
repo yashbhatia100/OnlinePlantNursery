@@ -15,6 +15,9 @@ public class SeedUI {
 	private ISeedService service;
 
 	public void start() {
+		
+		final String Monocotyledonous = "monocotyledonous";
+		final String Dicotyledonous = "dicotyledonous";
 
 		Seed seed1 = new Seed();
 		Seed seed2 = new Seed();
@@ -22,10 +25,10 @@ public class SeedUI {
 
 		seed1.setCommonName("Rose seed");
 		seed1.setBloomTime("3days");
-		seed1.setWatering("Sprinkle");
+		seed1.setWatering("Misting");
 		seed1.setDifficultyLevel("Easy");
 		seed1.setTemparature("25deg");
-		seed1.setTypeOfSeeds("Round");
+		seed1.setTypeOfSeeds(Monocotyledonous);
 		seed1.setSeedsDescription("Red rose seeds");
 		seed1.setSeedsStock(20);
 		seed1.setSeedsCost(100.0);
@@ -36,7 +39,7 @@ public class SeedUI {
 		seed2.setWatering("Sprinkle");
 		seed2.setDifficultyLevel("Easy");
 		seed2.setTemparature("25deg");
-		seed2.setTypeOfSeeds("Round");
+		seed2.setTypeOfSeeds(Dicotyledonous);
 		seed2.setSeedsDescription("Potato seeds");
 		seed2.setSeedsStock(30);
 		seed2.setSeedsCost(50.0);
@@ -44,10 +47,10 @@ public class SeedUI {
 
 		seed3.setCommonName("Carrot seed");
 		seed3.setBloomTime("5days");
-		seed3.setWatering("Sprinkle");
+		seed3.setWatering("Skin Bath");
 		seed3.setDifficultyLevel("Medium");
 		seed3.setTemparature("15deg");
-		seed3.setTypeOfSeeds("Round");
+		seed3.setTypeOfSeeds(Monocotyledonous);
 		seed3.setSeedsDescription("Carrot seeds");
 		seed3.setSeedsStock(10);
 		seed3.setSeedsCost(60.0);

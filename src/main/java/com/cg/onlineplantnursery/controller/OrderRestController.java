@@ -107,7 +107,7 @@ public class OrderRestController {
 	}
 
 	@ResponseStatus(HttpStatus.FOUND)
-	@GetMapping
+	@GetMapping("/fetch")
 	public List<OrderDetails> fetchAll() {
 		List<Order> orderList = orderService.viewAllOrders();
 		List<OrderDetails> desiredList = util.toDetailList(orderList);

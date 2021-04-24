@@ -28,10 +28,18 @@ public class PlanterUi {
 
 	@Autowired
 	IPlanterRepository planterRepository;
+	
 
 	public void start() {
-
-		System.out.println("\n***********Planters**********\n");
+		
+		
+		final String Cylindrical = "cylindrical";
+		final String Square = "square";
+		final String Rectangular = "regctangular";
+		final String Monocotyledonous = "monocotyledonous";
+		final String Dicotyledonous = "dicotyledonous";
+		
+		System.err.println("\n***********Planters**********\n");
 
 		Plant plant1 = new Plant();
 		Plant plant2 = new Plant();
@@ -83,10 +91,10 @@ public class PlanterUi {
 
 		seed1.setCommonName("Rose seed");
 		seed1.setBloomTime("3days");
-		seed1.setWatering("Sprinkle");
+		seed1.setWatering("Misting");
 		seed1.setDifficultyLevel("Easy");
-		seed1.setTemparature("25deg");
-		seed1.setTypeOfSeeds("Round");
+		seed1.setTemparature("26deg");
+		seed1.setTypeOfSeeds(Monocotyledonous);
 		seed1.setSeedsDescription("Red rose seeds");
 		seed1.setSeedsStock(20);
 		seed1.setSeedsCost(100.0);
@@ -96,8 +104,8 @@ public class PlanterUi {
 		seed2.setBloomTime("4days");
 		seed2.setWatering("Sprinkle");
 		seed2.setDifficultyLevel("Easy");
-		seed2.setTemparature("25deg");
-		seed2.setTypeOfSeeds("Round");
+		seed2.setTemparature("27deg");
+		seed2.setTypeOfSeeds(Dicotyledonous);
 		seed2.setSeedsDescription("Potato seeds");
 		seed2.setSeedsStock(30);
 		seed2.setSeedsCost(50.0);
@@ -105,10 +113,10 @@ public class PlanterUi {
 
 		seed3.setCommonName("Carrot seed");
 		seed3.setBloomTime("5days");
-		seed3.setWatering("Sprinkle");
+		seed3.setWatering("Skin Bath");
 		seed3.setDifficultyLevel("Medium");
 		seed3.setTemparature("15deg");
-		seed3.setTypeOfSeeds("Round");
+		seed3.setTypeOfSeeds(Monocotyledonous);
 		seed3.setSeedsDescription("Carrot seeds");
 		seed3.setSeedsStock(10);
 		seed3.setSeedsCost(60.0);
@@ -126,7 +134,7 @@ public class PlanterUi {
 		planter1.setPlanterCapacity(10);
 		planter1.setDrainageHoles(1);
 		planter1.setPlanterColor(1);
-		planter1.setPlanterShape("Cylinderical");
+		planter1.setPlanterShape(Cylindrical);
 		planter1.setPlanterStock(10);
 		planter1.setPlanterCost(150);
 		planter1.setPlant(plant1);
@@ -135,7 +143,7 @@ public class PlanterUi {
 		planter2.setPlanterCapacity(15);
 		planter2.setDrainageHoles(2);
 		planter2.setPlanterColor(2);
-		planter2.setPlanterShape("Square");
+		planter2.setPlanterShape(Square);
 		planter2.setPlanterStock(12);
 		planter2.setPlanterCost(400);
 
@@ -145,7 +153,7 @@ public class PlanterUi {
 		planter3.setPlanterCapacity(20);
 		planter3.setDrainageHoles(3);
 		planter3.setPlanterColor(3);
-		planter3.setPlanterShape("Rectangular");
+		planter3.setPlanterShape(Rectangular);
 		planter3.setPlanterStock(14);
 		planter3.setPlanterCost(300);
 		planter3.setPlant(plant3);
