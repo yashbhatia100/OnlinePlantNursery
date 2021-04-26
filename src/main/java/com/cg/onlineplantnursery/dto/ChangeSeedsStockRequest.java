@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 public class ChangeSeedsStockRequest {
 	@NotNull
 	private int seedId;
-	@NotBlank
+	@NotNull
 	private int seedsStock;
 
 	public int getSeedId() {

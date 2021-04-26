@@ -18,9 +18,9 @@ public class CreateSeedRequest {
 	private String typeOfSeeds;
 	@NotBlank
 	private String seedsDescription;
-	@NotBlank
+	@NotNull
 	private int seedsStock;
-	@NotBlank
+	@NotNull
 	private double seedsCost;
 	@NotNull
 	private int seedsPerPacket;

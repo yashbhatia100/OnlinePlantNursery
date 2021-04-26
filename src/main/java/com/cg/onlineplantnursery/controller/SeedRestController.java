@@ -41,7 +41,6 @@ public class SeedRestController {
 	@Autowired
 	private SeedUtil util;
 
-	@Validated
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/add")
 	public SeedDetails addSeed(@RequestBody @Valid CreateSeedRequest requestData) {
@@ -100,7 +99,7 @@ public class SeedRestController {
 		return "seed is deleted for id =" + requestData.getSeedId();
 	}
 
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(value = "/fetch/byid/{seedId}")
 	public SeedDetails fetchSeedById(@PathVariable("seedId") @NotNull Integer seedId) {
 		Seed seed = service.viewSeed(seedId);
@@ -108,7 +107,7 @@ public class SeedRestController {
 		return details;
 	}
 
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(value = "/fetch/bycommonname/{commonName}")
 	public SeedDetails fetchSeedByName(@PathVariable("commonName") @NotBlank String commonName) {
 		Seed seed = service.viewSeed(commonName);
@@ -116,7 +115,7 @@ public class SeedRestController {
 		return details;
 	}
 
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(value = "/fetch")
 	public List<SeedDetails> fetchAllSeeds() {
 		List<Seed> seedList = service.viewAllSeeds();
@@ -124,7 +123,7 @@ public class SeedRestController {
 		return desired;
 	}
 
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(value = "/fetch/bytype/{typeOfSeeds}")
 	public List<SeedDetails> fetchAllSeedsByType(@PathVariable("typeOfSeeds") @NotBlank String typeOfSeeds) {
 		List<Seed> seedList = service.viewAllSeeds(typeOfSeeds);
