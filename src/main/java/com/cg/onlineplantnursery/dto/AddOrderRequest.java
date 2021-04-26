@@ -4,9 +4,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class AddOrderRequest {
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String transactionMode;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int quantity;
 
 	public String getTransactionMode() {
@@ -25,7 +25,7 @@ public class AddOrderRequest {
 		this.quantity = quantity;
 	}
 
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int planterId;
 
 	public int getPlanterId() {

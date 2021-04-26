@@ -4,9 +4,9 @@ import javax.validation.constraints.NotNull;
 
 public class UpdatePlantPriceRequest {
 
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private Integer plantId;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private double plantCost;
 
 	public Integer getPlantId() {

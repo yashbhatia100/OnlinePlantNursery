@@ -4,9 +4,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class ChangeCommonNameRequest {
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int seedId;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String commonName;
 
 	public int getSeedId() {

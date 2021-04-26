@@ -4,27 +4,27 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class AddPlantRequest {
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private Integer plantHeight;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String plantSpread;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String commonName;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String bloomTime;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String medicinalOrCulinaryUse;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String difficultyLevel;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String temperature;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String typeOfPlant;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String plantDescription;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private Integer plantsStock;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private double plantCost;
 
 	public Integer getPlantsStock() {

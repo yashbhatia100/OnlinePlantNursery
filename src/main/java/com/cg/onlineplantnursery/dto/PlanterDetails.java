@@ -4,21 +4,21 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class PlanterDetails {
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private Integer planterId;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private float planterHeight;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int planterCapacity;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int drainageHoles;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int planterColor;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String planterShape;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int planterStock;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int planterCost;
 
 	public Integer getPlanterId() {

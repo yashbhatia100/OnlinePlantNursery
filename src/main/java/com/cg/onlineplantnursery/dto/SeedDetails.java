@@ -5,25 +5,25 @@ import javax.validation.constraints.NotNull;
 
 public class SeedDetails {
 	private int seedId;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String commonName;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String bloomTime;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String watering;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String difficultyLevel;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String temparature;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String typeOfSeeds;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String seedsDescription;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int seedsStock;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private double seedsCost;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int seedsPerPacket;
 
 	public int getSeedId() {

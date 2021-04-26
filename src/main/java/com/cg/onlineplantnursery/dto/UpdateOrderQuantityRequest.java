@@ -3,9 +3,9 @@ package com.cg.onlineplantnursery.dto;
 import javax.validation.constraints.NotNull;
 
 public class UpdateOrderQuantityRequest {
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private Integer bookingOrderId;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int quantity;
 
 	public Integer getBookingOrderId() {

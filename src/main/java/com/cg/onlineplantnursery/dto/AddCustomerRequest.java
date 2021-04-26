@@ -4,23 +4,23 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class AddCustomerRequest {
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String customerName;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String customerEmail;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String username;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String password;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String houseNo;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String colony;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String city;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String state;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int pincode;
 
 	

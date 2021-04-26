@@ -4,23 +4,23 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class OrderDetails {
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private Integer bookingOrderId;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String orderDate;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String transactionMode;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int quantity;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private double totalCost;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private Integer planterId;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private double planterCost;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private Integer plantId;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String plantCommonName;
 
 	private Integer seedId;

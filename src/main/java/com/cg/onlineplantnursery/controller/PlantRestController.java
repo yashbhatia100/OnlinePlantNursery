@@ -115,7 +115,7 @@ public class PlantRestController {
 	 * Rest controller for fetching a plant object from database by ID Calls :
 	 * service.viewPlant() and util.toDetails()
 	 */
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/fetch/byid/{id}")
 	public PlantDetails fetchById(@PathVariable("id") @NotNull Integer plantId) {
 
@@ -128,7 +128,7 @@ public class PlantRestController {
 	 * Rest controller for fetching a plant object from database by Name Calls :
 	 * service.viewPlant() and util.toDetails()
 	 */
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/fetch/byname/{name}")
 	public PlantDetails fetchByName(@PathVariable("name") @NotBlank String commonName) {
 
@@ -141,7 +141,7 @@ public class PlantRestController {
 	 * Rest controller for fetching all plant objects from database by Type Calls :
 	 * service.viewAllPlants() and util.toDetailList()
 	 */
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/fetch/bytype/{type}")
 	public List<PlantDetails> fetchAllByType(@PathVariable("type") @NotBlank String typeOfPlant) {
 
@@ -154,7 +154,7 @@ public class PlantRestController {
 	 * Rest controller for fetching all plant objects from database Calls :
 	 * service.viewAllPlants() and util.toDetailList()
 	 */
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/fetch")
 	public List<PlantDetails> fetchAll() {
 

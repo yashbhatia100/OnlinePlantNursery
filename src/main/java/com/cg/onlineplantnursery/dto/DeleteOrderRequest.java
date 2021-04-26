@@ -3,7 +3,7 @@ package com.cg.onlineplantnursery.dto;
 import javax.validation.constraints.NotNull;
 
 public class DeleteOrderRequest {
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private Integer bookingOrderId;
 
 	public Integer getBookingOrderId() {

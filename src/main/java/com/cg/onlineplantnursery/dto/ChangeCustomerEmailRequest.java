@@ -4,9 +4,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class ChangeCustomerEmailRequest {
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private Integer id;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String customerEmail;
 
 	public int getId() {

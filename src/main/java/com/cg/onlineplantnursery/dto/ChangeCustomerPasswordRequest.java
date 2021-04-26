@@ -5,12 +5,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class ChangeCustomerPasswordRequest {
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private int customerId;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	private String password;
 
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	public String getPassword() {
 		return password;
 	}

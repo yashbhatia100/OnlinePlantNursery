@@ -3,9 +3,9 @@ package com.cg.onlineplantnursery.dto;
 import javax.validation.constraints.NotNull;
 
 public class UpdatePlanterHeightRequest {
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	int planterId;
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	private float planterHeight;
 
 	public int getPlanterId() {

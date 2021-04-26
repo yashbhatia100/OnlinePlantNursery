@@ -4,9 +4,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class UpdatePlanterShapeRequest {
-	@NotNull
+	@NotNull(message = "Field cannot be empty")
 	int planterId;
-	@NotBlank
+	@NotBlank(message = "Field cannot be empty")
 	String planterShape;
 
 	public int getPlanterId() {

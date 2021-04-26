@@ -133,14 +133,14 @@ public class OrderServiceImpl implements IOrderService {
 
 	}
 
-	public void validateTransactionMode(String TransactionMode) {
-		if (TransactionMode.equals("")) {
+	public void validateTransactionMode(String transactionMode) {
+		if (transactionMode.equals("")) {
 			throw new OrderIdNotFoundException("TransactionMode can't be null");
 		}
 	}
 
-	public void validateQuantity(int Quantity) {
-		if (Quantity < 0) {
+	public void validateQuantity(int quantity) {
+		if (quantity < 0) {
 			throw new OrderIdNotFoundException("Invalid Quantity");
 		}
 

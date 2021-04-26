@@ -8,11 +8,12 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import com.cg.onlineplantnursery.ui.CustomerUI;
-import com.cg.onlineplantnursery.ui.OrderUi;
-import com.cg.onlineplantnursery.ui.PlantUI;
-import com.cg.onlineplantnursery.ui.PlanterUi;
-import com.cg.onlineplantnursery.ui.SeedUI;
+//import com.cg.onlineplantnursery.ui.CustomerUI;
+//import com.cg.onlineplantnursery.ui.OrderUi;
+//import com.cg.onlineplantnursery.ui.PlantUI;
+//import com.cg.onlineplantnursery.ui.PlanterUi;
+//import com.cg.onlineplantnursery.ui.SeedUI;
+import com.cg.onlineplantnursery.ui.OnlinePlantNurseryUI;
 
 
 @SpringBootApplication
@@ -20,8 +21,11 @@ public class OnlinePlantNurseryApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(OnlinePlantNurseryApplication.class, args);
 		
-		PlantUI app1 = context.getBean(PlantUI.class);
-		app1.start();
+		OnlinePlantNurseryUI app = context.getBean(OnlinePlantNurseryUI.class);
+		app.start();
+		
+		//PlantUI app1 = context.getBean(PlantUI.class);
+		//app1.start();
 		
 		//SeedUI app2 = context.getBean(SeedUI.class);
 		//app2.start();
