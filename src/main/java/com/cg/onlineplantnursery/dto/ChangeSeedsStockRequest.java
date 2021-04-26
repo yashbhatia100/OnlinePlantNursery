@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 public class ChangeSeedsStockRequest {
 	@NotNull(message = "Field cannot be empty")
 	private int seedId;
-	@NotBlank(message = "Field cannot be empty")
+	@NotNull(message = "Field cannot be empty")
 	private int seedsStock;
 
 	public int getSeedId() {

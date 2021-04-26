@@ -18,9 +18,9 @@ public class CreateSeedRequest {
 	private String typeOfSeeds;
 	@NotBlank(message = "Field cannot be empty")
 	private String seedsDescription;
-	@NotBlank(message = "Field cannot be empty")
+	@NotNull(message = "Field cannot be empty")
 	private int seedsStock;
-	@NotBlank(message = "Field cannot be empty")
+	@NotNull
 	private double seedsCost;
 	@NotNull(message = "Field cannot be empty")
 	private int seedsPerPacket;
