@@ -68,8 +68,15 @@ public class PlanterRestController {
 		planter.setPlanterShape(requestData.getPlanterShape());
 		planter.setPlanterCost(requestData.getPlanterCost());
 		planter.setPlanterStock(requestData.getPlanterStock());
+		if(requestData.getPlantId()>0)
+		{
 		planter.setPlant(plantService.viewPlant(requestData.getPlantId()));
+		}
+		if(requestData.getSeedId()>0)
+		{
 		planter.setSeed(seedService.viewSeed(requestData.getSeedId()));
+		
+		}
 		Planter saved = planterService.addPlanter(planter);
 		PlanterDetails details = util.toDetails(saved);
 		return details;
