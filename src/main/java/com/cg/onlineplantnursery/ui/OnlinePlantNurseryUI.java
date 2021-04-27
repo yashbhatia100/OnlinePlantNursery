@@ -45,7 +45,7 @@ public class OnlinePlantNurseryUI {
 			plant1.setBloomTime("2months");
 			plant1.setMedicinalOrCulinaryUse("Improves immunity");
 			plant1.setDifficultyLevel("Easy");
-			plant1.setTemperature("25deg");
+			plant1.setTemperature("26deg");
 			plant1.setTypeOfPlant("Shrub");
 			plant1.setPlantDescription("Yellow colored sun facing flowers");
 			plant1.setPlantsStock(10);
