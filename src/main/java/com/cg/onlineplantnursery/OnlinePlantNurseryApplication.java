@@ -8,17 +8,28 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import com.cg.onlineplantnursery.ui.OnlinePlantNurseryUI;
+import org.slf4j.*;
 
 
 @SpringBootApplication
 public class OnlinePlantNurseryApplication {
+	private static final Logger Log =LoggerFactory.getLogger(OnlinePlantNurseryApplication.class); 
+	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(OnlinePlantNurseryApplication.class, args);
 		
 		OnlinePlantNurseryUI app = context.getBean(OnlinePlantNurseryUI.class);
 		app.start();
+		
+		 Log.debug("****i am logged using debug level");
+	       Log.info("***i am logged using info level");
+	       Log.error("***i am logged using error level");
 
 	}
+	/*
+	 * for handling the cross origin requests 
+	 * 
+	  */
 	
 	@Bean
 	   public CorsFilter corsFilter(){

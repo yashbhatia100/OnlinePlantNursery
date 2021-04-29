@@ -27,6 +27,7 @@ public class OrderUtility {
         details.setTransactionMode(order.getTransactionMode());
         details.setTotalCost(order.getTotalCost());
         Planter planter = order.getPlanter();
+        details.setPlanterId(planter.getPlanterId());
         if (planter.getPlant() != null) {
             Plant plant = planter.getPlant();
             details.setPlantId(plant.getPlantId());

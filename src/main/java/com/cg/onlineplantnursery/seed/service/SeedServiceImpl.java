@@ -10,9 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cg.onlineplantnursery.seed.entity.Seed;
 import com.cg.onlineplantnursery.seed.repository.ISeedRepository;
 import com.cg.onlineplantnursery.exceptions.*;
+import org.slf4j.*;
 
 @Service
 public class SeedServiceImpl implements ISeedService {
+	
+	private static final Logger Log= LoggerFactory.getLogger(SeedServiceImpl.class);
 
 	@Autowired
 	private ISeedRepository repository;
@@ -23,6 +26,7 @@ public class SeedServiceImpl implements ISeedService {
 	@Transactional
 	@Override
 	public Seed addSeed(Seed seed) {
+		Log.debug("Inside add seed");
 		validateSeed(seed);
 		Seed saved = repository.save(seed);
 		return saved;
@@ -35,6 +39,7 @@ public class SeedServiceImpl implements ISeedService {
 	@Transactional
 	@Override
 	public Seed updateSeed(Seed seed) {
+		Log.debug("Inside update seed");
 		validateSeedById(seed);
 		Seed seed1 = repository.save(seed);
 		return seed1;
@@ -47,6 +52,7 @@ public class SeedServiceImpl implements ISeedService {
 	@Transactional
 	@Override
 	public Seed deleteSeed(Seed seed) {
+		Log.debug("Inside delete Order");
 		validateSeedById(seed);
 		repository.delete(seed);
 		return seed;
@@ -57,6 +63,7 @@ public class SeedServiceImpl implements ISeedService {
 	 */
 	@Override
 	public Seed viewSeed(int seedId) {
+		Log.debug("Inside view seed with "+seedId);
 		validateSeedId(seedId);
 		Optional<Seed> optional = repository.findById(seedId);
 		if (!optional.isPresent()) {
@@ -70,6 +77,7 @@ public class SeedServiceImpl implements ISeedService {
 	 */
 	@Override
 	public Seed viewSeed(String commonName) {
+		Log.debug("Inside view seed with "+commonName);
 		validateCommonName(commonName);
 		boolean exists = repository.existsByCommonName(commonName);
 		if (!exists) {
@@ -83,6 +91,7 @@ public class SeedServiceImpl implements ISeedService {
 	 */
 	@Override
 	public List<Seed> viewAllSeeds() {
+		Log.debug("Inside view  all seed  ");
 		List<Seed> seedList = repository.findAll();
 		if (seedList.isEmpty()) {
 			throw new SeedNotFoundException("Seedlist not found");
@@ -96,6 +105,7 @@ public class SeedServiceImpl implements ISeedService {
 	 */
 	@Override
 	public List<Seed> viewAllSeeds(String typeOfSeeds) {
+		Log.debug("Inside view  all seed  with "+typeOfSeeds);
 		validateSeedByType(typeOfSeeds);
 		List<Seed> seedList = repository.findAllByTypeOfSeeds(typeOfSeeds);
 		if (seedList.isEmpty()) {

@@ -19,9 +19,11 @@ import com.cg.onlineplantnursery.exceptions.InvalidPlanterStockException;
 import com.cg.onlineplantnursery.exceptions.PlanterNotFoundException;
 import com.cg.onlineplantnursery.planter.entity.Planter;
 import com.cg.onlineplantnursery.planter.repository.IPlanterRepository;
+import org.slf4j.*;
 
 @Service
 public class PlanterServiceImpl implements IPlanterService {
+	private static final Logger Log=LoggerFactory.getLogger(PlanterServiceImpl.class);
 
 	@Autowired
 	private IPlanterRepository planterRepository;
@@ -37,6 +39,7 @@ public class PlanterServiceImpl implements IPlanterService {
 	
 	@Override
 	public Planter addPlanter(Planter planter) {
+		Log.debug("inside add Planter");
 		validatePlanter(planter);
 		Planter saved = planterRepository.save(planter);
 		return saved;
@@ -52,6 +55,7 @@ public class PlanterServiceImpl implements IPlanterService {
 	
 	@Override
 	public Planter updatePlanter(Planter planter) {
+		Log.debug("inside update Planter");
 		validatePlanterById(planter);
 		return planterRepository.save(planter);
 	}
@@ -66,6 +70,7 @@ public class PlanterServiceImpl implements IPlanterService {
 	
 	@Override
 	public Planter deletePlanter(Planter planter) {
+		Log.debug("inside delete Planter");
 		validatePlanterById(planter);
 		planterRepository.delete(planter);
 		return planter;
@@ -82,6 +87,7 @@ public class PlanterServiceImpl implements IPlanterService {
 	
 	@Override
 	public Planter viewPlanter(int planterId) {
+		Log.debug("inside view Planter"+ planterId);
 
 		validatePlanterId(planterId);
 		Optional<Planter> optional = planterRepository.findById(planterId);
@@ -104,6 +110,7 @@ public class PlanterServiceImpl implements IPlanterService {
 	
 	@Override
 	public List<Planter> viewPlanter(String planterShape) {
+		Log.debug("inside view Planter"+ planterShape);
 		validatePlanterShape(planterShape);
 
 		List<Planter> planterList = planterRepository.findByPlanterShape(planterShape);
@@ -125,6 +132,7 @@ public class PlanterServiceImpl implements IPlanterService {
 
 	@Override
 	public List<Planter> viewAllPlanters() {
+		Log.debug("inside view All Planter");
 		List<Planter> planterList = planterRepository.findAll();
 		if (planterList.isEmpty()) {
 			throw new PlanterNotFoundException("No planters found");

@@ -16,9 +16,13 @@ import com.cg.onlineplantnursery.exceptions.InvalidCustomerEmailException;
 import com.cg.onlineplantnursery.exceptions.InvalidCustomerIdException;
 import com.cg.onlineplantnursery.exceptions.InvalidCustomerNameException;
 import com.cg.onlineplantnursery.exceptions.InvalidCustomerPasswordException;
+import org.slf4j.*;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
+	
+	private static final Logger Log=LoggerFactory.getLogger(CustomerServiceImpl.class);
+	
 	@Autowired
 	private ICustomerRepository repository;
 
@@ -29,6 +33,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Transactional
 	@Override
 	public Customer addCustomer(Customer customer) {
+		Log.debug("inside add Customer");
 
 		validateCustomer(customer);
 		addressRepository.save(customer.getAddress());
@@ -41,6 +46,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Transactional
 	@Override
 	public Customer updateCustomer(Customer tenant) {
+		Log.debug("inside update Customer");
 		Integer id = tenant.getCustomerId();
 		boolean exists = repository.existsById(id);
 		if (!exists) {
@@ -56,6 +62,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Transactional
 	@Override
 	public Customer deleteCustomer(Customer tenant) {
+		Log.debug("inside delete Customer");
 		Integer id = tenant.getCustomerId();
 		boolean exists = repository.existsById(id);
 		if (!exists) {
@@ -70,6 +77,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Transactional
 	@Override
 	public Customer viewCustomer(int customerId) {
+		Log.debug("inside view  Customer with "+customerId);
 		validateCustomerId(customerId);
 		Optional<Customer> optional = repository.findById(customerId);
 		if (!optional.isPresent()) {
@@ -82,6 +90,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Transactional
 	@Override
 	public List<Customer> viewAllCustomers() {
+		Log.debug("inside view All Customer");
 		List<Customer> customerList = repository.findAll();
 		if (customerList.isEmpty()) {
 			throw new CustomerNotFoundException("customers not found");

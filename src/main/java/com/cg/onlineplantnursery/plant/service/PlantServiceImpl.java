@@ -17,10 +17,13 @@ import com.cg.onlineplantnursery.exceptions.InvalidPlantTypeException;
 import com.cg.onlineplantnursery.exceptions.PlantNotFoundException;
 import com.cg.onlineplantnursery.plant.entity.Plant;
 import com.cg.onlineplantnursery.plant.repository.IPlantRepository;
+import org.slf4j.*;
 
 @Service
 public class PlantServiceImpl implements IPlantService {
 
+	private static final Logger Log=LoggerFactory.getLogger(PlantServiceImpl.class);
+	
 	@Autowired
 	private IPlantRepository repository;
 	
@@ -28,6 +31,7 @@ public class PlantServiceImpl implements IPlantService {
 	@Transactional
 	@Override
 	public Plant addPlant(Plant plant) {
+		Log.debug("inside add Plant");
 		
 		validatePlant(plant);
 		return repository.save(plant);
@@ -37,6 +41,7 @@ public class PlantServiceImpl implements IPlantService {
 	@Transactional
 	@Override
 	public Plant updatePlant(Plant plant) {
+		Log.debug("inside update Plant");
 		
 		validatePlantById(plant);
 		return repository.save(plant);
@@ -46,6 +51,7 @@ public class PlantServiceImpl implements IPlantService {
 	@Transactional
 	@Override
 	public Plant deletePlant(Plant plant) {
+		Log.debug("inside delete Planter");
 		
 		validatePlantById(plant);
 		repository.delete(plant);
@@ -55,6 +61,7 @@ public class PlantServiceImpl implements IPlantService {
 	// Fetching a plant object from store by ID
 	@Override
 	public Plant viewPlant(int plantId) {
+		Log.debug("inside view plant with "+ plantId);
 		
 		validatePlantId(plantId);
 		Optional<Plant> optional = repository.findById(plantId);
@@ -67,7 +74,7 @@ public class PlantServiceImpl implements IPlantService {
 	// Fetching a plant object from store by Common Name
 	@Override
 	public Plant viewPlant(String commonName) {
-		
+		Log.debug("inside view plant with "+ commonName);
 		validateCommonName(commonName);
 		boolean exists = repository.existsByCommonName(commonName);
 		if(!exists) {
@@ -79,6 +86,7 @@ public class PlantServiceImpl implements IPlantService {
 	// Fetching all plant objects from store
 	@Override
 	public List<Plant> viewAllPlants(){
+		Log.debug("inside view All plant ");
 		
 		List<Plant> plantList = repository.findAll();
 		if(plantList.isEmpty()) {
@@ -90,6 +98,7 @@ public class PlantServiceImpl implements IPlantService {
 	// Fetching all plant objects based on a particular type from store
 	@Override
 	public List<Plant> viewAllPlants(String typeOfPlant){
+		Log.debug("inside view All plant with "+typeOfPlant);
 		
 		validatePlantType(typeOfPlant);
 		List<Plant> plantList = repository.findByTypeOfPlant(typeOfPlant);

@@ -16,9 +16,12 @@ import com.cg.onlineplantnursery.order.repository.IOrderRepository;
 import com.cg.onlineplantnursery.plant.entity.Plant;
 import com.cg.onlineplantnursery.planter.entity.Planter;
 import com.cg.onlineplantnursery.seed.entity.Seed;
+import org.slf4j.*;
 
 @Service
 public class OrderServiceImpl implements IOrderService {
+	
+	private static final Logger Log =LoggerFactory.getLogger(OrderServiceImpl.class);
 
 	@Autowired
 	private IOrderRepository repository;
@@ -28,6 +31,7 @@ public class OrderServiceImpl implements IOrderService {
 	 */
 	@Override
 	public Order addOrder(Order order) {
+		Log.debug("Inside add Order");
 		validateOrder(order);
 		LocalDate currentDate = currentDate();
 		order.setOrderDate(currentDate);
@@ -52,6 +56,7 @@ public class OrderServiceImpl implements IOrderService {
 	@Transactional
 	@Override
 	public Order updateOrder(Order order) {
+		Log.debug("Inside update Order");
 		validateOrder(order);
 		Integer id = order.getBookingOrderId();
 		boolean exists = repository.existsById(id);
@@ -80,6 +85,7 @@ public class OrderServiceImpl implements IOrderService {
 	@Transactional
 	@Override
 	public Order deleteOrder(Order order) {
+		Log.debug("Inside delete Order");
 		validateOrder(order);
 		Integer id = order.getBookingOrderId();
 		validateBookingId(id);
@@ -93,6 +99,7 @@ public class OrderServiceImpl implements IOrderService {
 
 	@Override
 	public Order viewOrder(int orderId) {
+		Log.debug("Inside view Order with "+orderId);
 		validateBookingId(orderId);
 		Optional<Order> orderList = repository.findById(orderId);
 		if (!orderList.isPresent()) {
@@ -104,6 +111,7 @@ public class OrderServiceImpl implements IOrderService {
 
 	@Override
 	public List<Order> viewAllOrders() {
+		Log.debug("Inside view All Order");
 
 		List<Order> orderList = repository.findAll();
 		if (orderList.isEmpty()) {
