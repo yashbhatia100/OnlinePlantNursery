@@ -97,7 +97,7 @@ public class OrderRestController {
 		return details;
 	}
 
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/fetch/byid/{id}")
 	public OrderDetails fetchById(@PathVariable("id") @NotNull Integer orderId) {
 
@@ -106,7 +106,7 @@ public class OrderRestController {
 		return details;
 	}
 
-	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/fetch")
 	public List<OrderDetails> fetchAll() {
 		List<Order> orderList = orderService.viewAllOrders();
